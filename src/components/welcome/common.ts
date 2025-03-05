@@ -1,0 +1,1 @@
+export const containerClasses = "flex items-center justify-between layout flex-col layout min-h-svh text-center "

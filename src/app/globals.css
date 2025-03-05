@@ -1,26 +1,105 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@theme {
+  --color-background: #F8F9FA;
+  --color-primary: #6C5CE7;
+  --color-secondary: #00CEC9;
+  --color-text: #2C3E50;
+  --color-text-secondary: #7D7D7D;
+  --color-success: #00B894;
+  --color-error: #D63031;
+  --color-border: #D1D5DB;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+/* @media (prefers-color-scheme: dark) {
+  @theme {
+    --color-background: #121212;
+    --color-primary: #A29BFE;
+    --color-secondary: #00BFA5;
+    --color-text: #EAEAEA;
+    --color-text-secondary: #A0A0A0;
+    --color-success: #00FF9D;
+    --color-error: #FF7675;
+    --color-border: #292F36;
   }
+} */
+
+:root {
+  --background: var(--color-background);
+  --foreground: var(--color-text);
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: "Urbanist", sans-serif;
+}
+
+.center {
+  @apply flex justify-center items-center
+}
+
+.secondary-button {
+  position: relative;
+  padding: 10px 30px;
+  font-weight: 500;
+  color: #00CEC9;
+  background: transparent;
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+
+.secondary-button::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  padding: 2px;
+  border-radius: inherit;
+  background: linear-gradient(to right, var(--color-primary), var(--color-secondary));
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: destination-out;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+
+.layoutx {
+  @apply px-[10px] sm:px-[20px] md:px-[30px] lg:px-[40px] xl:px-[50px]
+}
+
+.layout {
+  @apply p-[10px] sm:p-[20px] md:p-[30px] lg:p-[40px] xl:p-[50px]
+}
+
+.layouty {
+  @apply py-[10px] sm:py-[20px] md:py-[30px] lg:py-[40px] xl:py-[50px]
+}
+
+.horizontally-center {
+  @apply flex items-center gap-[10px] md:gap-[15px]
+}
+
+.p1 {
+  @apply text-[24px] sm:text-[28px] md:text-[32px] lg:text-[36px] xl:text-[40px]
+}
+
+.p2 {
+  @apply text-[14px] sm:text-[16px] md:text-[18px] lg:text-[20px] xl:text-[22px]
+}
+.p3 {
+  @apply text-[12px] sm:text-[13px] md:text-[14px] lg:text-[15px] xl:text-[16px]
+}
+
+.brandname {
+  @apply text-[40px] sm:text-[46px] md:text-[50px] lg:text-[56px] xl:text-[62px] leading-tight
+}
+
+.points-ul li{
+  @apply flex items-start gap-[10px]
 }

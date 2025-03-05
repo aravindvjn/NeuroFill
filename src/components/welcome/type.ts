@@ -1,0 +1,1 @@
+export type CurrentPageType = "Welcome" | "Features" | "Steps" | "AuthPage"
