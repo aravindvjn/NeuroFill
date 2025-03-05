@@ -15,7 +15,6 @@ datasource db {
 
 model User {
   id            String   @id @default(uuid())
-  clerkId       String   @unique
   email         String   @unique
   firstName     String   @default("NeuroFill User")
   lastName      String?
@@ -24,8 +23,20 @@ model User {
   creditBalance Float    @default(0)
   images        Image[]
   transactions  Transactions[]
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
 }
 
+model PendingUser {
+  id                 String   @id @default(uuid())
+  email              String   @unique
+  firstName          String?
+  lastName           String?
+  profilePic         String?
+  verificationToken  String   @unique
+  tokenExpiresAt     DateTime
+  createdAt          DateTime @default(now())
+}
 
 model Image {
   id                String   @id @default(uuid())
@@ -35,18 +46,18 @@ model Image {
   transformationUrl String?
   prompt            String?
   authorId          String
-  author            User     @relation(fields: [authorId], references: [id])
+  author            User     @relation(fields: [authorId], references: [id], onDelete: Cascade)
   createdAt         DateTime @default(now())
   updatedAt         DateTime @updatedAt
 }
 
 model Transactions {
-  id       String  @id @default(uuid()) 
-  stripeId String  @unique
-  amount   Float
-  plan     String
-  credit   Int
-  buyerId  String
-  buyer    User    @relation(fields: [buyerId], references: [id]) 
+  id        String  @id @default(uuid()) 
+  stripeId  String  @unique
+  amount    Float
+  plan      String
+  credit    Int
+  buyerId   String
+  buyer     User    @relation(fields: [buyerId], references: [id], onDelete: Cascade) 
   createdAt DateTime @default(now()) 
 }
