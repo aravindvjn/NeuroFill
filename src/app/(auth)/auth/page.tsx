@@ -3,7 +3,6 @@ import AuthForm from "@/components/forms/auth-form/auth-form";
 import { CurrentPageType } from "@/components/welcome/type";
 import Welcome from "@/components/welcome/welcome";
 import { isWelcomeShown } from "@/lib/helpers/is-welcome-shown";
-import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 export default function Home() {

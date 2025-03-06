@@ -15,12 +15,12 @@ const ResponsiveSideBar = () => {
       <div className="hidden sm:flex">
         <div className="sm:w-[270px] md:w-[290px] lg:w-[310px]"></div>
 
-        <div className="fixed left-0 top-0">
+        <div className="fixed bg-background left-0 top-0">
           <SideBar />
         </div>
       </div>
       <div className="flex sm:hidden">
-        <nav className="fixed z-10 bg-white layoutx top-0 left-0 w-full border-b border-primary justify-between gap-[5px] h-[50px] shadow flex items-center">
+        <nav className="fixed z-10 bg-background layoutx top-0 left-0 w-full border-b border-primary justify-between gap-[5px] h-[50px] shadow flex items-center">
           <BrandName size={22} />
           <MdMenu
             onClick={() => setShowSideBar(true)}
@@ -41,7 +41,7 @@ const ResponsiveSideBar = () => {
             >
               <motion.div
                 {...slideAnimation("right", 0.1)}
-                className="w-fit bg-white"
+                className="w-fit bg-background"
               >
                 <SideBar />
               </motion.div>

@@ -1,3 +1,4 @@
+'use client'
 import React from "react";
 import type { CurrentPageType } from "./type";
 import { setIsWelcomeShown } from "@/lib/helpers/is-welcome-shown";

@@ -20,16 +20,15 @@ const AuthForm = () => {
   });
   const [isDisabled, setIsDisabled] = useState<boolean>(true);
 
-  const initailState = {
+  const initialState = {
     message: "",
     success: false,
   };
 
   // Server action state
-  const [state, formAction, isPending] = isLogin
-    ? useActionState(loginUser, initailState)
-    : useActionState(createPendingUser, initailState);
-
+  const actionFunction = isLogin ? loginUser : createPendingUser;
+  const [state, formAction, isPending] = useActionState(actionFunction, initialState);
+  
   // Sync state data with input
   useEffect(() => {
     if (state?.data) {
@@ -112,7 +111,7 @@ const AuthForm = () => {
     <AnimatePresence>
       <motion.div className="layout flex-col min-h-svh center">
         <form
-          className="flex flex-col max-w-[400px] w-full px-[30px]"
+          className="flex flex-col gap-[10px] max-w-[400px] w-full px-[30px]"
           action={formAction}
         >
           <div className="center mb-4">
@@ -142,7 +141,7 @@ const AuthForm = () => {
           {!state.success && <p className="text-red-500">{state.message}</p>}
 
           <Button
-            className={`mt-5 !rounded ${isDisabled && "opacity-50"}`}
+            className={`mt-[5px] !rounded ${isDisabled && "opacity-50"}`}
             type="submit"
             disabled={isPending || isDisabled}
           >

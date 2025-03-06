@@ -93,6 +93,7 @@ export async function createPendingUser(prevState: PrevState, formData: FormData
             message: "Verification email sent. Please check your inbox.",
         };
 
+        // eslint-disable-next-line
     } catch (error: any) {
         console.error("Error creating pending user:", error);
         return {

@@ -58,9 +58,10 @@ export async function loginUser(prevState: PrevState, formData: FormData) {
             secure: process.env.NODE_ENV === "production",
             sameSite: "strict",
             path: "/",
-            maxAge: 7 * 24 * 60 * 60, 
+            maxAge: 7 * 24 * 60 * 60,
         });
 
+        // eslint-disable-next-line
     } catch (error: any) {
         console.error("Error creating pending user:", error);
         return {
