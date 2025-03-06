@@ -26,7 +26,7 @@ const SingleNav = ({ label, link, isActive }: Props) => {
   };
 
   const activeClasses = isActive
-    ? "bg-gradient-to-r from-primary to-secondary hover:opacity-90  text-white  "
+    ? "bg-gradient-to-r from-primary to-secondary hover:opacity-90 text-white  "
     : "";
 
   return (

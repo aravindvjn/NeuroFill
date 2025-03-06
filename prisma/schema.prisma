@@ -14,28 +14,30 @@ datasource db {
 }
 
 model User {
-  id            String   @id @default(uuid())
-  email         String   @unique
-  firstName     String   @default("NeuroFill User")
+  id            String         @id @default(uuid())
+  email         String         @unique
+  firstName     String         @default("NeuroFill User")
   lastName      String?
   profilePic    String?
   planId        String?
-  creditBalance Float    @default(0)
+  password      String
+  creditBalance Float          @default(0)
   images        Image[]
   transactions  Transactions[]
-  createdAt     DateTime @default(now())
-  updatedAt     DateTime @updatedAt
+  createdAt     DateTime       @default(now())
+  updatedAt     DateTime       @updatedAt
 }
 
 model PendingUser {
-  id                 String   @id @default(uuid())
-  email              String   @unique
-  firstName          String?
-  lastName           String?
-  profilePic         String?
-  verificationToken  String   @unique
-  tokenExpiresAt     DateTime
-  createdAt          DateTime @default(now())
+  id                String   @id @default(uuid())
+  email             String   @unique
+  firstName         String?
+  lastName          String?
+  profilePic        String?
+  password          String
+  verificationToken String   @unique
+  tokenExpiresAt    DateTime
+  createdAt         DateTime @default(now())
 }
 
 model Image {
@@ -52,12 +54,12 @@ model Image {
 }
 
 model Transactions {
-  id        String  @id @default(uuid()) 
-  stripeId  String  @unique
+  id        String   @id @default(uuid())
+  stripeId  String   @unique
   amount    Float
   plan      String
   credit    Int
   buyerId   String
-  buyer     User    @relation(fields: [buyerId], references: [id], onDelete: Cascade) 
-  createdAt DateTime @default(now()) 
+  buyer     User     @relation(fields: [buyerId], references: [id], onDelete: Cascade)
+  createdAt DateTime @default(now())
 }

@@ -2,6 +2,7 @@
 
 @theme {
   --color-background: #F8F9FA;
+  --color-secondary-background: #f1f1f1;
   --color-primary: #6C5CE7;
   --color-secondary: #00CEC9;
   --color-text: #2C3E50;
@@ -14,6 +15,7 @@
 /* @media (prefers-color-scheme: dark) {
   @theme {
     --color-background: #121212;
+    --color-secondary-background: #3c3c3c;
     --color-primary: #A29BFE;
     --color-secondary: #00BFA5;
     --color-text: #EAEAEA;
@@ -70,7 +72,7 @@ body {
 
 
 .layoutx {
-  @apply px-[10px] sm:px-[20px] md:px-[30px] lg:px-[40px] xl:px-[50px]
+  @apply px-[20px] sm:px-[25px] md:px-[30px] lg:px-[40px] xl:px-[50px]
 }
 
 .layout {
@@ -92,14 +94,15 @@ body {
 .p2 {
   @apply text-[14px] sm:text-[16px] md:text-[18px] lg:text-[20px] xl:text-[22px]
 }
+
 .p3 {
-  @apply text-[12px] sm:text-[13px] md:text-[14px] lg:text-[15px] xl:text-[16px]
+  @apply text-[13px] sm:text-[14px] md:text-[15px] lg:text-[16px] xl:text-[17px]
 }
 
 .brandname {
   @apply text-[40px] sm:text-[46px] md:text-[50px] lg:text-[56px] xl:text-[62px] leading-tight
 }
 
-.points-ul li{
+.points-ul li {
   @apply flex items-start gap-[10px]
 }

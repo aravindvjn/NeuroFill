@@ -1,11 +1,22 @@
-import React from 'react'
+import VerifyEmailForm from "@/components/forms/auth-form/verify-email";
+import { notFound } from "next/navigation";
+import React from "react";
 
-const page = () => {
-  return (
-    <div>
-      
-    </div>
-  )
-}
+type Props = {
+  searchParams: Promise<{
+    token: string;
+  }>;
+};
+const page = async ({ searchParams }: Props) => {
+  const { token } = await searchParams;
 
-export default page
+  if(!token){
+    notFound()
+  }
+
+  return <div className="center">
+    <VerifyEmailForm token={token} />
+  </div>;
+};
+
+export default page;

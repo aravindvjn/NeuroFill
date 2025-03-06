@@ -8,7 +8,7 @@ export default function RootLayout({
   return (
     <section className="flex pt-[60px] sm:pt-0">
       <ResponsiveSideBar />
-      {children}
+      <section className="w-full">{children}</section>
     </section>
   );
 }

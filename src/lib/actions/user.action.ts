@@ -5,8 +5,7 @@ import crypto from "crypto";
 import xss from 'xss'
 import { validateUserInput } from "../helpers/validate-user-input";
 import { sendVerificationEmail } from "../helpers/send-verification";
-import { data } from "framer-motion/client";
-
+import bcrypt from 'bcrypt'
 
 type PrevState = {
     data?: UserInput;
@@ -54,6 +53,12 @@ export async function createPendingUser(prevState: PrevState, formData: FormData
             throw new Error("Email already registered. Try Login!")
         }
 
+        const hashedPassword = await bcrypt.hash(password, 10)
+
+        if (!hashedPassword) {
+            throw new Error("Failed to Login, Try Again!")
+        }
+
         await prisma.pendingUser.upsert({
             where: { email },
             update: {
@@ -62,6 +67,7 @@ export async function createPendingUser(prevState: PrevState, formData: FormData
                 profilePic,
                 verificationToken,
                 tokenExpiresAt,
+                password: hashedPassword
             },
             create: {
                 email,
@@ -70,6 +76,7 @@ export async function createPendingUser(prevState: PrevState, formData: FormData
                 profilePic,
                 verificationToken,
                 tokenExpiresAt,
+                password: hashedPassword
             },
         });
 
@@ -86,12 +93,12 @@ export async function createPendingUser(prevState: PrevState, formData: FormData
             message: "Verification email sent. Please check your inbox.",
         };
 
-    } catch (error) {
+    } catch (error: any) {
         console.error("Error creating pending user:", error);
         return {
             ...prevState,
             success: false,
-            message: "An error occurred while creating your account.",
+            message: typeof error.message === "string" ? error.message : "Failed to register. Try again!",
         };
     }
 }
@@ -99,30 +106,49 @@ export async function createPendingUser(prevState: PrevState, formData: FormData
 
 
 //verify email 
-export async function verifyEmail(token: string) {
+export async function verifyEmail(token: string, password: string) {
 
-    const pendingUser = await prisma.pendingUser.findUnique({
-        where: { verificationToken: token },
-    });
+    try {
 
-    if (!pendingUser || pendingUser.tokenExpiresAt < new Date()) {
-        throw new Error("Invalid or expired token.");
+        const pendingUser = await prisma.pendingUser.findUnique({
+            where: {
+                verificationToken: token,
+            },
+        });
+
+        if (!pendingUser || pendingUser.tokenExpiresAt < new Date()) {
+            return { success: false, message: "Invalid or expired token." }
+        }
+
+        const isMatch = await bcrypt.compare(password, pendingUser?.password)
+
+        if (!isMatch) {
+            return { success: false, message: "Incorrect Password." }
+        }
+
+        // Move user from PendingUser to User
+        await prisma.user.create({
+            data: {
+                email: pendingUser.email,
+                firstName: pendingUser.firstName || "NeuroFill User",
+                lastName: pendingUser.lastName,
+                profilePic: pendingUser.profilePic,
+                password: pendingUser.password,
+            },
+        });
+
+        // Delete from PendingUser table
+        await prisma.pendingUser.delete({
+            where: { id: pendingUser.id },
+        });
+
+        return { success: true, message: "Email verified successfully, Try Login!" };
+    } catch (error) {
+
+        console.log("Error in Verifying mail id :", error)
+        return { success: false, message: "Server not responding." }
     }
-
-    // Move user from PendingUser to User
-    await prisma.user.create({
-        data: {
-            email: pendingUser.email,
-            firstName: pendingUser.firstName || "NeuroFill User",
-            lastName: pendingUser.lastName,
-            profilePic: pendingUser.profilePic,
-        },
-    });
-
-    // Delete from PendingUser table
-    await prisma.pendingUser.delete({
-        where: { id: pendingUser.id },
-    });
-
-    return { message: "Email verified successfully!" };
 }
+
+
+

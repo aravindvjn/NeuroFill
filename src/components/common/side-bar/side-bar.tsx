@@ -10,7 +10,7 @@ const SideBar = () => {
   const pathname = usePathname();
 
   return (
-    <div className="flex flex-col p-[20px] sm:p-[30px] border-r border-secondary min-h-dvh justify-between shadow">
+    <div className="flex flex-col p-[20px] sm:p-[30px] border-r border-secondary min-h-dvh justify-between shadow sm:min-w-[270px] md:min-w-[290px] lg:min-w-[310px]">
       <div>
 
         <div className="pb-2 pl-[20px]">

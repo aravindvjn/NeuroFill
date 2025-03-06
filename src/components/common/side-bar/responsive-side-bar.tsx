@@ -13,7 +13,13 @@ const ResponsiveSideBar = () => {
   return (
     <AnimatePresence>
       <div className="hidden sm:flex">
-        <SideBar />
+
+        <div className="sm:min-w-[270px] md:min-w-[290px] lg:min-w-[310px]"></div>
+
+        <div className="fixed left-0 top-0">
+          <SideBar />
+        </div>
+
       </div>
       <div className="flex sm:hidden">
         <nav className="fixed z-10 bg-white layoutx top-0 left-0 w-full border-b border-primary gap-[10px] h-[50px] shadow flex items-center">
@@ -33,7 +39,7 @@ const ResponsiveSideBar = () => {
               onClick={() => {
                 setShowSideBar(false);
               }}
-              className="fixed top-0 left-0 bg-black/30 backdrop-blur-sm w-full z-20"
+              className="fixed top-0 left-0 bg-black/50 backdrop-blur-sm w-full z-20"
             >
               <motion.div
                 {...slideAnimation("left", 0.1)}

@@ -8,9 +8,10 @@ import { UserInput } from "./type";
 import { validateUserInput } from "@/lib/helpers/validate-user-input";
 import { createPendingUser } from "@/lib/actions/user.action";
 import { useActionState } from "react";
+import { loginUser } from "@/lib/actions/login.action";
 
 const AuthForm = () => {
-  const [isLogin, setIsLogin] = useState<boolean>(false);
+  const [isLogin, setIsLogin] = useState<boolean>(true);
   const [input, setInput] = useState<UserInput>({
     firstName: { value: "" },
     lastName: { value: "" },
@@ -19,11 +20,15 @@ const AuthForm = () => {
   });
   const [isDisabled, setIsDisabled] = useState<boolean>(true);
 
-  // Server action state
-  const [state, formAction, isPending] = useActionState(createPendingUser, {
+  const initailState = {
     message: "",
     success: false,
-  });
+  };
+
+  // Server action state
+  const [state, formAction, isPending] = isLogin
+    ? useActionState(loginUser, initailState)
+    : useActionState(createPendingUser, initailState);
 
   // Sync state data with input
   useEffect(() => {
@@ -45,9 +50,11 @@ const AuthForm = () => {
 
   // Enable button only if all required fields are filled and valid
   useEffect(() => {
-    const allFieldsValid = Object.values(input).every(
-      (field) => field.value.trim() !== "" && !field.error
-    );
+    const allFieldsValid = isLogin
+      ? true
+      : Object.values(input).every(
+          (field) => field.value.trim() !== "" && !field.error
+        );
     setIsDisabled(!allFieldsValid);
   }, [input]);
 
@@ -133,7 +140,7 @@ const AuthForm = () => {
 
           {state.success && <p className="text-green-500">{state.message}</p>}
           {!state.success && <p className="text-red-500">{state.message}</p>}
-          
+
           <Button
             className={`mt-5 !rounded ${isDisabled && "opacity-50"}`}
             type="submit"
