@@ -13,22 +13,20 @@ const ResponsiveSideBar = () => {
   return (
     <AnimatePresence>
       <div className="hidden sm:flex">
-
-        <div className="sm:min-w-[270px] md:min-w-[290px] lg:min-w-[310px]"></div>
+        <div className="sm:w-[270px] md:w-[290px] lg:w-[310px]"></div>
 
         <div className="fixed left-0 top-0">
           <SideBar />
         </div>
-
       </div>
       <div className="flex sm:hidden">
-        <nav className="fixed z-10 bg-white layoutx top-0 left-0 w-full border-b border-primary gap-[10px] h-[50px] shadow flex items-center">
+        <nav className="fixed z-10 bg-white layoutx top-0 left-0 w-full border-b border-primary justify-between gap-[5px] h-[50px] shadow flex items-center">
+          <BrandName size={22} />
           <MdMenu
             onClick={() => setShowSideBar(true)}
-            size={25}
+            size={27}
             className="text-primary cursor-pointer"
           />
-          <BrandName size={22} />
         </nav>
         {showSideBar &&
           createPortal(
@@ -39,10 +37,10 @@ const ResponsiveSideBar = () => {
               onClick={() => {
                 setShowSideBar(false);
               }}
-              className="fixed top-0 left-0 bg-black/50 backdrop-blur-sm w-full z-20"
+              className="fixed top-0 right-0 flex justify-end bg-black/50 backdrop-blur-sm w-full z-20"
             >
               <motion.div
-                {...slideAnimation("left", 0.1)}
+                {...slideAnimation("right", 0.1)}
                 className="w-fit bg-white"
               >
                 <SideBar />

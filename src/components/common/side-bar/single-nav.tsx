@@ -1,12 +1,9 @@
 import React from "react";
 import { navLinks } from "./nav-links";
-import { IoIosImage } from "react-icons/io";
-import { CgEditUnmask } from "react-icons/cg";
-import { TbObjectScan } from "react-icons/tb";
-import { PiSelectionBackgroundDuotone } from "react-icons/pi";
-import {  MdAccountCircle, MdHome } from "react-icons/md";
-import { IoBagHandleSharp } from "react-icons/io5";
+import {  MdAccountCircle, MdHome, MdOutlineDocumentScanner, MdPrivacyTip } from "react-icons/md";
+import { IoBagHandleSharp, IoLogoBuffer, IoQrCode } from "react-icons/io5";
 import Link from "next/link";
+import { FaFileInvoice } from "react-icons/fa";
 
 type Props = {
   link: string;
@@ -17,12 +14,13 @@ type Props = {
 const SingleNav = ({ label, link, isActive }: Props) => {
   const icon = {
     [navLinks[0].link]: <MdHome size={19} />,
-    [navLinks[1].link]: <IoIosImage />,
-    [navLinks[2].link]: <CgEditUnmask />,
-    [navLinks[3].link]: <TbObjectScan />,
-    [navLinks[4].link]: <PiSelectionBackgroundDuotone />,
-    [navLinks[5].link]: <MdAccountCircle />,
-    [navLinks[6].link]: <IoBagHandleSharp />,
+    [navLinks[1].link]: <MdOutlineDocumentScanner />,
+    [navLinks[2].link]: <IoLogoBuffer />,
+    [navLinks[3].link]: <FaFileInvoice />,
+    [navLinks[4].link]: <MdPrivacyTip />,
+    [navLinks[5].link]: <IoQrCode />,
+    [navLinks[6].link]: <MdAccountCircle />,
+    [navLinks[7].link]: <IoBagHandleSharp />,
   };
 
   const activeClasses = isActive

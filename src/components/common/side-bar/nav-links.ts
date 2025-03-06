@@ -4,20 +4,24 @@ export const navLinks = [
         link: '/'
     },
     {
-        label: "Image Restore",
-        link: '/image-restore'
+        label: "Resume Maker",
+        link: '/resume'
     },
     {
-        label: "Generative Fill",
-        link: '/generative-fill'
+        label: "Logo Generator",
+        link: '/logo'
     },
     {
-        label: "Remove Object",
-        link: '/remove-object'
+        label: "Invoice Generator",
+        link: '/invoice'
     },
     {
-        label: "Remove Background",
-        link: '/remove-background'
+        label: "P&T Generator",
+        link: '/terms'
+    },
+    {
+        label: "QR Code Generator",
+        link: '/qr'
     },
     {
         label: "Account",

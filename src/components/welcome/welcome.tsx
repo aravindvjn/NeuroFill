@@ -46,7 +46,7 @@ const Welcome = ({currentPage,setCurrentPage}:Props) => {
 
       <motion.div {...slideAnimation("left")}>
         <div className="p1">
-          Welcome to <BrandName />
+          Welcome to <BrandName size={50} />
         </div>
       </motion.div>
 

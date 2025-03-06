@@ -1,69 +1,66 @@
 "use client";
-
-import React, { useState } from "react";
-import { CldUploadWidget } from "next-cloudinary";
-import { toast } from "react-hot-toast";
+import React, { useRef, useState } from "react";
 import Image from "next/image";
+import { uploadImage } from "@/lib/helpers/upload-media";
+import { convertToBase64 } from "@/lib/helpers/conversion";
 
-
-type Props = {
-  setImage:React.Dispatch<React.SetStateAction<any>>
-}
-
-const MediaUploader = ({setImage}:Props) => {
+const MediaUploader = () => {
   const [imageUrl, setImageUrl] = useState<string | null>(null);
+  const [loading, setLoading] = useState<boolean>(false);
+  const inputRef = useRef<HTMLInputElement>(null);
 
-  const onSuccessHandler = (result: any) => {
-    const uploadedFile = result?.info;
+  const handleImage = () => {
+    inputRef.current?.click();
+  };
 
-    if (uploadedFile?.secure_url) {
-      setImage(uploadedFile);
-      setImageUrl(uploadedFile.secure_url);
-      toast.success("Image uploaded successfully!");
-    } else {
-      toast.error("Upload failed. Please try again.");
+  const editImageHandler = async () => {
+    if (inputRef.current?.files && inputRef.current.files.length > 0) {
+      const file = inputRef.current.files[0];
+
+      // Convert file to Base64
+      const base64Image = await convertToBase64(file);
+
+      setLoading(true);
+
+      // Upload the original image to Cloudinary
+      const cloudinaryUrl = await uploadImage(base64Image);
+      if (!cloudinaryUrl) {
+        setLoading(false);
+        return;
+      }
+      setImageUrl(URL.createObjectURL(file));
+
     }
   };
 
-  const onErrorHandler = (error: any) => {
-    console.error("Upload Error:", error);
-    toast.error("An error occurred during upload.");
-  };
-
   return (
-    <div className="flex w-full sm:w-2/3 md:w-1/2  flex-col items-center space-y-4">
-
+    <div className="flex w-full sm:w-2/3 md:w-1/2 flex-col items-center space-y-4">
       {!imageUrl ? (
-        <CldUploadWidget
-          uploadPreset="neurofill"
-          options={{
-            multiple: false,
-            resourceType: "image",
-          }}
-          onSuccess={onSuccessHandler}
-          onError={onErrorHandler}
+        <div
+          onClick={handleImage}
+          className="center w-full rounded aspect-square bg-secondary-background border border-border cursor-pointer hover:border-text-secondary duration-300 ease-in-out active:translate-y-0.5 select-none"
         >
-          {({ open }) => (
-            <div
-              onClick={() => open()}
-              className="center w-full rounded aspect-square bg-secondary-background border border-border cursor-pointer hover:border-text-secondary duration-300 ease-in-out active:translate-y-0.5 select-none"
-            >
-              Upload Image
-            </div>
-          )}
-        </CldUploadWidget>
-      ) 
-      :
-       (
-        <Image
-          height={1000}
-          width={1000}
-          src={imageUrl}
-          alt="Uploaded"
-          className="w-full rounded"
-        />
+          Upload Image
+          <input
+            ref={inputRef}
+            className="hidden"
+            type="file"
+            accept="image/*"
+            onChange={editImageHandler}
+          />
+        </div>
+      ) : (
+        <div className="relative w-full">
+          <Image
+            height={1000}
+            width={1000}
+            src={imageUrl}
+            alt="Uploaded"
+            className="w-full rounded"
+          />
+          {loading && <p className="text-center">Processing...</p>}
+        </div>
       )}
-
     </div>
   );
 };

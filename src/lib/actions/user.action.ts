@@ -98,7 +98,7 @@ export async function createPendingUser(prevState: PrevState, formData: FormData
         return {
             ...prevState,
             success: false,
-            message: typeof error.message === "string" ? error.message : "Failed to register. Try again!",
+            message: typeof error?.message === "string" ? error.message : "Failed to register. Try again!",
         };
     }
 }
