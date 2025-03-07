@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useState } from "react";
+import React, { ChangeEvent } from "react";
 import Input from "./input";
 import { Props } from "./type";
 import { MdDelete } from "react-icons/md";

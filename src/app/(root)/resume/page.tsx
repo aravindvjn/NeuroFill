@@ -7,7 +7,7 @@ import PopUp from "@/components/ui/pop-up";
 import React, { useState } from "react";
 import { IoMdAdd } from "react-icons/io";
 
-const page = () => {
+const Page = () => {
   const [showPopUp, setShowPopUp] = useState<boolean>(false);
 
   const handleShowPopUp = () => {
@@ -41,4 +41,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;

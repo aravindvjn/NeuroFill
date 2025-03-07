@@ -19,7 +19,6 @@ import Button from "@/components/ui/button";
 import ProfessionalExperience from "./professional-experience";
 import PersonalDetailsPreview from "@/components/previews/resume/personal-details";
 import SummaryPreview from "@/components/previews/resume/summary";
-import { dummyResume } from "@/components/previews/resume/dummy";
 import ExperiencePreview from "@/components/previews/resume/experience";
 import EducationPreview from "@/components/previews/resume/education";
 import SkillsPreview from "@/components/previews/resume/skills";
