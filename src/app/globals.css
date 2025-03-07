@@ -26,9 +26,9 @@
     --color-text-secondary: #A0A0A0;
     --color-success: #00FF9D;
     --color-error: #FF7675;
-    --color-border: #292F36;
+    --color-border: #696969;
 
-    --color-card-background: #1E1E1E;
+    --color-card-background: #212121;
     --color-card-text: #EAEAEA;
     --color-card-border: #333;
   }
@@ -162,4 +162,8 @@ body {
 
 .card-container:hover .subheading {
   opacity: 1;
+}
+
+.li {
+  list-style-type: disc; 
 }

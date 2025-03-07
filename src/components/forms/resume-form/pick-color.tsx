@@ -1,11 +1,11 @@
-import React, { useRef } from "react";
+import React, { ChangeEvent, useRef } from "react";
 
 type Props = {
-    setColor:React.Dispatch<React.SetStateAction<string>>;
-    color:string;
+  handleChangeColor:(e:ChangeEvent<HTMLInputElement>)=>void;
+  color:string
 }
 
-const PickColor = ({color,setColor}:Props) => {
+const PickColor = ({handleChangeColor,color}:Props) => {
   const colorInputRef = useRef<HTMLInputElement>(null);
 
   const handleClick = () => {
@@ -20,7 +20,7 @@ const PickColor = ({color,setColor}:Props) => {
         type="color"
         ref={colorInputRef}
         value={color}
-        onChange={(e) => setColor(e.target.value)}
+        onChange={handleChangeColor}
         className="hidden"
       />
 

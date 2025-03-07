@@ -5,7 +5,7 @@ const Card = ({ children, className }: { children: React.ReactNode; className?: 
   return (
     <div
       className={clsx(
-        "p-4 bg-card-background shadow-md rounded-lg shadow-border",
+        "p-4 bg-card-background shadow rounded-lg shadow-border",
         className
       )}
     >
