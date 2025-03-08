@@ -1,0 +1,47 @@
+@import "tailwindcss";
+
+@media print {
+    body * {
+      visibility: hidden;
+    }
+  
+    .print-only,
+    .print-only * {
+      visibility: visible;
+    }
+  
+    .print-only {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      background: white !important; 
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+    
+    .print-only {
+      box-shadow: none !important;
+      border: none !important;
+    }
+  
+    .print-only div,
+    .print-only span,
+    .print-only p {
+      color-adjust: exact;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+
+    .print-only p{
+        @apply text-[14px]
+    }
+    .print-only h1{
+        @apply text-2xl
+    }
+
+    .print-only h2{
+        @apply text-lg
+    }
+  }
+  

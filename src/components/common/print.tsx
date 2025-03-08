@@ -3,6 +3,7 @@ import ResumePreview from "../previews/resume/resume";
 import { ResumeInputType } from "@/components/forms/resume-form/type";
 import Link from "next/link";
 import React, { useRef, useState } from "react";
+import './print.css'
 
 const ResumePage = ({ resume }: { resume: ResumeInputType }) => {
   const pdfRef = useRef<HTMLDivElement>(null);
@@ -16,10 +17,12 @@ const ResumePage = ({ resume }: { resume: ResumeInputType }) => {
   };
 
   return (
-    <div className="p-5 flex flex-col items-center">
+    <div className="p-2 sm:p-3 md:p-5 flex flex-col center w-full">
+      <p className="p2 font-bold  py-4
+      ">Resume: {resume.title}</p>
       <div
         ref={pdfRef}
-        className="border  p-8 bg-white shadow-lg w-[80%] max-w-3xl text-lg"
+        className="border items-center bg-white shadow-lg w-full max-w-3xl text-lg"
       >
         <div className={isPaid ? "print-only" : ""}>
           <ResumePreview noElevation resume={resume} />
@@ -34,7 +37,7 @@ const ResumePage = ({ resume }: { resume: ResumeInputType }) => {
         </button>
         <Link
           className=" bg-blue-500 text-white px-4 py-2 rounded-md text-lg font-semibold"
-          href={`/v1/resume/${resume.id}/edi`}
+          href={`/v1/resume/${resume.id}/edit`}
         >
           Edit
         </Link>

@@ -1,0 +1,13 @@
+@import "tailwindcss";
+
+.resume p {
+    @apply text-[10px] sm:text-[12px] md:text-[13px] lg:text-[14px] xl:text-[15px];
+}
+
+.resume h1 {
+    @apply text-[14px] sm:text-[16px] md:text-[18px] lg:text-[20px] xl:text-[24px];
+}
+
+.resume h2 {
+    @apply text-[12px] sm:text-[14px] md:text-[16px] lg:text-[18px] xl:text-[20px];
+}

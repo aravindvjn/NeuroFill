@@ -17,12 +17,12 @@ const EducationPreview = ({
   return (
     <div className="mt-4">
       <div className="bg-[#f3f4f6] my-2 py-2">
-        <p
+        <h2
           style={{ color }}
           className="text-center font-bold underline text-lg"
         >
           EDUCATION
-        </p>
+        </h2>
       </div>
       {education.map((edu, index) => (
         <div className="mb-4 text-[14px]" key={edu.id || index}>

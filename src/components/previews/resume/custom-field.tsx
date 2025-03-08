@@ -19,12 +19,12 @@ const CustomFieldPreview = ({
         <div key={index} className="mt-4">
           {field?.heading && (
             <div className="bg-[#f3f4f6] my-2 py-2">
-              <p
+              <h2
                 style={{ color }}
                 className="text-center font-bold underline text-lg uppercase"
               >
                 {field?.heading}
-              </p>
+              </h2>
             </div>
           )}
           <div>

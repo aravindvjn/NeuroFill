@@ -16,21 +16,21 @@ const SkillPreview = ({
   return (
     <div className="mt-4">
       <div className="bg-[#f3f4f6] my-2 py-2">
-        <p
+        <h2
           style={{ color }}
-          className="text-center font-bold underline text-lg"
+          className="text-center font-bold underline"
         >
           SKILLS
-        </p>
+        </h2>
       </div>
-      <ul className="grid grid-cols-2 gap-[20px] text-[14px]">
+      <ul className="grid grid-cols-2 gap-[20px] ">
         {skill.map((singleSkill) => (
           <li
             key={singleSkill.id}
             className="flex justify-between pb-1 relative"
           >
-            <span>{singleSkill.name}</span>
-            <span className="text-[#6b7280] ">{singleSkill.rating}</span>
+            <p>{singleSkill.name}</p>
+            <p className="text-[#6b7280] ">{singleSkill.rating}</p>
             <div className="absolute w-full bottom-0 left-0 h-[4px] bg-[#e5e7eb] rounded-md">
               <div
                 className="absolute bottom-0 left-0 h-full transition-all"

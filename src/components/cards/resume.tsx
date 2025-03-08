@@ -1,39 +1,71 @@
-'use client'
-import React from "react";
+"use client";
+import React, { useState, useRef, useEffect } from "react";
 import type { ResumeType } from "./type";
 import Image from "next/image";
-import Link from "next/link";
 import { BsThreeDotsVertical } from "react-icons/bs";
-import { useRouter } from "next/navigation";
+import Link from "next/link";
 
-const Resume = ({ thumbnail_url, title,id }: ResumeType) => {
+const Resume = ({ thumbnail_url, title, id }: ResumeType) => {
+  const [showOptions, setShowOptions] = useState(false);
+  const [positionLeft, setPositionLeft] = useState(false);
+  const optionsRef = useRef<HTMLDivElement>(null);
 
-  const router = useRouter()
-
-  // const [showOptions,setShowOptions] = useState<boolean>(false)
-
-  const navigateToEdit = (e:React.MouseEvent<SVGElement, MouseEvent>)=>{
-    e.stopPropagation()
-    router.push(`/v1/resume/${id}/edit`)
-  }
+  useEffect(() => {
+    if (optionsRef.current) {
+      const { right } = optionsRef.current.getBoundingClientRect();
+      const screenWidth = window.innerWidth;
+      
+      // Check if there's more space on the left or right
+      if (right > screenWidth - 150) {
+        setPositionLeft(true);
+      } else {
+        setPositionLeft(false);
+      }
+    }
+  }, [showOptions]);
 
   return (
-    <Link
-      href={`/v1/resume/${id}`}
-      className="border-[2px] rounded-lg overflow-hidden hover:opacity-90 active:translate-y-0.5  border-secondary"
-    >
+    <div className="border-[2px] rounded-lg hover:opacity-90  border-secondary">
       <Image
-        className="card-child aspect-square"
+        className="card-child aspect-square rounded-t-lg"
         height={500}
         width={500}
         src={thumbnail_url || "/images/resume-maker.png"}
         alt={"resume"}
       />
-      <div className="px-3 h-[35px] bg-card-background border-t-[2px] border-secondary flex items-center justify-between w-full">
-        <p  className="p3 font-semibold line-clamp-1">{title || "Untitiled"}</p>
-        <BsThreeDotsVertical onClick={navigateToEdit} />
+      <div className="px-3 h-[35px] bg-card-background rounded-b-lg border-t-[2px] border-secondary flex items-center justify-between w-full">
+        <p className="p3 font-semibold line-clamp-1">{title || "Untitled"}</p>
+        <div
+          ref={optionsRef}
+          onMouseLeave={() => setShowOptions(false)}
+          onMouseEnter={() => setShowOptions(true)}
+          className="relative"
+        >
+          <BsThreeDotsVertical />
+
+          {showOptions && (
+            <ul
+              className={`absolute top-0 z-50 flex flex-col bg-card-background border border-card-border rounded shadow-md ${
+                positionLeft ? "right-full mr-2" : "left-full ml-2"
+              }`}
+            >
+              <Link
+                className="px-5 py-2 border-b border-b-card-border hover:bg-card-border"
+                href={`/v1/resume/${id}/edit`}
+              >
+                Edit
+              </Link>
+              <Link
+                className="px-5 py-2 hover:bg-card-border"
+                href={`/v1/resume/${id}`}
+              >
+                View
+              </Link>
+            </ul>
+          )}
+        </div>
       </div>
-    </Link>
+    </div>
   );
 };
 

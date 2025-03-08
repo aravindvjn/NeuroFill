@@ -13,7 +13,7 @@ const ExperiencePreview: React.FC<{ experience: ResumeInputType["experience"],co
   return (
     <div className="mt-2">
       <div className="bg-[#f3f4f6] my-2">
-        <p style={{color}} className="text-center font-bold underline text-lg">EXPERIENCE</p>
+        <h2 style={{color}} className="text-center font-bold underline text-lg">EXPERIENCE</h2>
       </div>
       {experience.map((exp, index) => (
         <div className="mb-4 text-[14px]" key={exp.id || index}>
