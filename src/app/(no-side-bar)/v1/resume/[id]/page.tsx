@@ -1,6 +1,7 @@
 import ResumePage from "@/components/common/print";
 import { ResumeInputType } from "@/components/forms/resume-form/type";
 import { getResumeById } from "@/lib/actions/resume.action";
+import { Metadata } from "next";
 import { notFound } from "next/navigation";
 import React from "react";
 
@@ -9,6 +10,13 @@ type Props = {
     id: string;
   }>;
 };
+
+export async function generateMetadata(): Promise<Metadata> {
+  return {
+    title: `Resume`,
+    description: `View the resume on NeuroFill.`,
+  };
+}
 
 const page = async ({ params }: Props) => {
 
