@@ -2,14 +2,14 @@ import { ResumeInputType } from "@/components/forms/resume-form/type";
 import { convertToRatingPercentage } from "@/lib/helpers/conversion";
 import React from "react";
 
-const SkillsPreview = ({
-  skills,
+const SkillPreview = ({
+  skill,
   color,
 }: {
-  skills: ResumeInputType["skills"];
+  skill: ResumeInputType["skill"];
   color?: ResumeInputType["color"];
 }) => {
-  if (!skills || skills.length === 0) {
+  if (!skill || skill.length === 0) {
     return null;
   }
 
@@ -24,15 +24,18 @@ const SkillsPreview = ({
         </p>
       </div>
       <ul className="grid grid-cols-2 gap-[20px] text-[14px]">
-        {skills.map((skill) => (
-          <li key={skill.id} className="flex justify-between pb-1 relative">
-            <span>{skill.name}</span>
-            <span className="text-gray-500 ">{skill.rating}</span>
+        {skill.map((singleSkill) => (
+          <li
+            key={singleSkill.id}
+            className="flex justify-between pb-1 relative"
+          >
+            <span>{singleSkill.name}</span>
+            <span className="text-gray-500 ">{singleSkill.rating}</span>
             <div className="absolute w-full bottom-0 left-0 h-[4px] bg-gray-200 rounded-md">
               <div
                 className="absolute bottom-0 left-0 h-full transition-all"
                 style={{
-                  width: `${convertToRatingPercentage(skill.rating)}%`,
+                  width: `${convertToRatingPercentage(singleSkill.rating)}%`,
                   backgroundColor: color || "blue",
                 }}
               ></div>
@@ -44,4 +47,4 @@ const SkillsPreview = ({
   );
 };
 
-export default SkillsPreview;
+export default SkillPreview;

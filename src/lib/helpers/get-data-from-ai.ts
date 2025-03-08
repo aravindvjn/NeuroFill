@@ -19,7 +19,6 @@ const generationConfig = {
 
 export async function generateSummary(resumeData: ResumeInputType) {
   try {
-    console.log("getting...")
     const chatSession = model.startChat({
       generationConfig,
       history: [],
@@ -28,7 +27,7 @@ export async function generateSummary(resumeData: ResumeInputType) {
     const prompt = `Generate a professional resume summary in JSON format based on the given details:
     
     - Profession: ${resumeData.profession}
-    - Skills: ${resumeData?.skills?.map(skill => skill.name).join(", ") || "Not provided"}
+    - Skills: ${resumeData?.skill?.map(ski => ski.name).join(", ") || "Not provided"}
     - Talk as I am
 
     Response format (JSON):
@@ -42,12 +41,33 @@ export async function generateSummary(resumeData: ResumeInputType) {
     const result = await chatSession.sendMessage([{ text: prompt }]);
 
     const responseText = result.response.text(); 
-    const summaryData = JSON.parse(responseText); 
+    const data = JSON.parse(responseText); 
 
-    console.log("Resume Summary:", summaryData);
-    return summaryData;
+    console.log("AI returned Data:", data);
+    return data;
   } catch (error) {
     console.error("Error generating summary:", error);
     return [{ experienceLevel: "Unknown", summary: "Failed to generate summary." }];
+  }
+}
+
+
+export const generateWithAI=async (prompt:string)=>{
+  try {
+    const chatSession = model.startChat({
+      generationConfig,
+      history: [],
+    });
+
+    const result = await chatSession.sendMessage([{ text: prompt }]);
+
+    const responseText = result.response.text(); 
+    const data = JSON.parse(responseText); 
+
+    console.log("AI returned Data:", data);
+    return data;
+    
+  } catch (error) {
+    return null
   }
 }

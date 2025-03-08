@@ -55,7 +55,7 @@ export const dummyResume: ResumeInputType = {
       endDate: "2014-05-01",
     },
   ],
-  skills: [
+  skill: [
     { id: "skill1", name: "React.js", rating: "Expert" },
     { id: "skill2", name: "Next.js", rating: "Advanced" },
     { id: "skill3", name: "Node.js", rating: "Advanced" },

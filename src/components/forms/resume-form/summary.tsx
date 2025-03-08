@@ -2,7 +2,7 @@ import React, { ChangeEvent, useState } from "react";
 import { AiSuggestedSummaryType, Props } from "./type";
 import TextArea from "@/components/ui/text-area";
 import Button from "@/components/ui/button";
-import { generateSummary } from "@/lib/helpers/get-summary";
+import { generateSummary } from "@/lib/helpers/get-data-from-ai";
 
 const Summary = ({ handleChange, input, setInput }: Props) => {
   const onChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
@@ -42,7 +42,7 @@ const Summary = ({ handleChange, input, setInput }: Props) => {
               <p className="font-bold">
                 {suggestion.experienceLevel}{" "}
                 <button
-                  className=" cursor-pointer hover:bg-primary text-white text-primary font-normal border rounded px-2 ml-3"
+                  className=" cursor-pointer hover:bg-primary text-primary font-normal border rounded px-2 ml-3"
                   onClick={() => onPick(suggestion.summary)}
                   type="button"
                 >

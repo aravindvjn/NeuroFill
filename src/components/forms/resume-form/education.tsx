@@ -1,22 +1,18 @@
 import React, { ChangeEvent } from "react";
 import Input from "./input";
-import { ExperienceType, ProfessionProps, Props } from "./type";
+import { EducationProps, ExperienceType, Props } from "./type";
 import { MdDelete, MdEdit } from "react-icons/md";
 import TextArea from "@/components/ui/text-area";
 import { formatDateInput } from "@/lib/helpers/date";
 
 
-const ProfessionalExperience = ({
+const Education = ({
   handleChange,
-  experience,
   input,
   handleDelete,
-  setExperience,
-}: Props & ProfessionProps) => {
-  
-  const onChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
-    handleChange(e as unknown as ChangeEvent<HTMLInputElement>);
-  };
+  education,
+  setEducation
+}: Props & EducationProps) => {
 
   const onDateInput = (e: React.FormEvent<HTMLInputElement>) => {
     const target = e.currentTarget;
@@ -29,29 +25,23 @@ const ProfessionalExperience = ({
       <div className="w-full flex items-center gap-[20px]">
         <Input
           onChange={handleChange}
-          value={experience?.position}
-          label="Position Title"
-          name="position"
+          value={education?.degree}
+          label="Degreee"
+          name="degree"
         />
         <Input
           onChange={handleChange}
-          value={experience?.companyName}
-          label="Company Name"
-          name="companyName"
+          value={education?.major}
+          label="Major"
+          name="major"
         />
       </div>
       <div className="flex w-full items-center gap-[20px]">
         <Input
           onChange={handleChange}
-          value={experience?.city}
-          label="City"
-          name="city"
-        />
-        <Input
-          onChange={handleChange}
-          value={experience?.state}
-          label="State"
-          name="state"
+          value={education?.universityName}
+          label="University Name"
+          name="universityName"
         />
       </div>
       <div className="flex w-full items-center gap-[20px]">
@@ -59,7 +49,7 @@ const ProfessionalExperience = ({
           onInput={onDateInput}
           placeholder="DD-MM-YYYY"
           onChange={handleChange}
-          value={experience?.startDate}
+          value={education?.startDate}
           label="Start Date"
           name="startDate"
         />
@@ -67,52 +57,35 @@ const ProfessionalExperience = ({
           onInput={onDateInput}
           placeholder="DD-MM-YYYY"
           onChange={handleChange}
-          value={experience?.endDate}
+          value={education?.endDate}
           label="End Date"
           name="endDate"
         />
       </div>
 
-      <div className="flex gap-2">
-        <input
-          type="checkbox"
-          name="currentlyWorking"
-          onChange={handleChange}
-          checked={experience?.currentlyWorking}
-        />
-        <p>Currently working</p>
-      </div>
-
-      <TextArea
-        label="summary"
-        name="workSummary"
-        value={experience?.workSummary}
-        onChange={onChange}
-      />
-
       <div>
-        <p className="text-lg font-semibold underline">Existing Experience</p>
+        <p className="text-lg font-semibold underline">Existing Education</p>
 
         <ul className=" my-2 px-[20px]">
-          {input?.experience.map((exp, index) => (
+          {input?.education.map((edu, index) => (
             <div
-              key={exp.id || index}
+              key={edu.id || index}
               className="li flex items-center justify-between gap-2"
             >
               <li>
-                {exp?.position} at {exp?.companyName}
+                {edu?.degree} in {edu?.major}
               </li>
               <div className="horizontally-center">
                 <MdEdit
                   onClick={() => {
-                    setExperience(exp);
-                    handleDelete!("experience", index);
+                    setEducation(edu);
+                    handleDelete!("education", index);
                   }}
                   size={20}
                   className="text-red-500 w-[20px] cursor-pointer"
                 />
                 <MdDelete
-                  onClick={() => handleDelete!("experience", index)}
+                  onClick={() => handleDelete!("education", index)}
                   size={20}
                   className="text-red-500 w-[20px] cursor-pointer"
                 />
@@ -125,4 +98,4 @@ const ProfessionalExperience = ({
   );
 };
 
-export default ProfessionalExperience;
+export default Education;

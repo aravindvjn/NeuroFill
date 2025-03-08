@@ -4,36 +4,48 @@ import PickColor from "./pick-color";
 import PersonalDetails from "./personal-details";
 import type {
   DeleteType,
+  EducationType,
   ExperienceType,
   PageType,
   ResumeInputType,
+  SkillType,
 } from "./type";
 import {
+  defaultEducationValue,
   defaultExperienceValue,
   defaultInputValue,
+  defaultSkillValue,
   navigator,
   pages,
 } from "./constants";
 import Card from "@/components/ui/card";
-import Button from "@/components/ui/button";
 import ProfessionalExperience from "./professional-experience";
 import PersonalDetailsPreview from "@/components/previews/resume/personal-details";
 import SummaryPreview from "@/components/previews/resume/summary";
 import ExperiencePreview from "@/components/previews/resume/experience";
 import EducationPreview from "@/components/previews/resume/education";
-import SkillsPreview from "@/components/previews/resume/skills";
+import SkillPreview from "@/components/previews/resume/skills";
 import Summary from "./summary";
 import Link from "next/link";
 import { IoArrowBack } from "react-icons/io5";
+import { dummyResume } from "@/components/previews/resume/dummy";
+import Education from "./education";
+import Skill from "./skill";
+import Buttons from "./buttons";
 
 const ResumeForm = () => {
   const [input, setInput] = useState<ResumeInputType>(
- defaultInputValue
+    dummyResume || defaultInputValue
   );
   const [page, setPage] = useState<PageType>("Personal Details");
   const [experience, setExperience] = useState<ExperienceType>(
     defaultExperienceValue
   );
+  const [education, setEducation] = useState<EducationType>(
+    defaultEducationValue
+  );
+
+  const [skill, setSkill] = useState<SkillType>(defaultSkillValue);
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     setInput((prev: ResumeInputType) => {
@@ -51,12 +63,28 @@ const ResumeForm = () => {
     });
   };
 
-  //handle experience
+  //handle change in experience
   const handleExperience = (e: ChangeEvent<HTMLInputElement>) => {
     setExperience((prev) => ({
       ...prev,
       [e.target.name]:
         e.target.type === "checkbox" ? e.target.checked : e.target.value,
+    }));
+  };
+
+  //handle change in education
+  const handleEducation = (e: ChangeEvent<HTMLInputElement>) => {
+    setEducation((prev) => ({
+      ...prev,
+      [e.target.name]: e.target.value,
+    }));
+  };
+
+  //handle change in skill
+  const handleSkill = (e: ChangeEvent<HTMLInputElement>) => {
+    setSkill((prev) => ({
+      ...prev,
+      [e.target.name]: e.target.value,
     }));
   };
 
@@ -72,75 +100,48 @@ const ResumeForm = () => {
     }));
   };
 
-  const addExprience = () => {
-    if (
-      !experience.companyName.trim() ||
-      !experience.position ||
-      !experience.city ||
-      !experience.state
-    )
-      return;
-    setInput((prev) => ({
-      ...prev,
-      experience: [...prev["experience"], experience],
-    }));
-    setExperience(defaultExperienceValue);
-  };
+  //Add experience, skils, educations
+  const addItems = () => {
 
-  //render button
-  const renderButton = () => {
-    if (page === pages[0]) {
-      return (
-        <Button
-          variant="normal"
-          onClick={() => handlePage(true)}
-          type="button"
-          className="w-fit mt-[15px] !rounded"
-        >
-          Next
-        </Button>
-      );
+    if (page === pages[2]) {
+
+      setInput((prev) => ({
+        ...prev,
+        experience: [...prev["experience"], experience],
+      }));
+      setExperience(defaultExperienceValue);
+
+    } else if (page === pages[3]) {
+
+      setInput((prev) => ({
+        ...prev,
+        education: [...prev["education"], education],
+      }));
+      setEducation(defaultEducationValue);
+
+    } else if (page === pages[4]) {
+
+      setInput((prev) => ({
+        ...prev,
+        skill: [...prev["skill"], skill],
+      }));
+      setSkill(defaultSkillValue);
+
     }
-
-    return (
-      <div className="flex mt-[15px] justify-between items-center gap-[20px] flex-wrap">
-        <div className="flex items-center gap-[20px]">
-          <Button
-            variant="normal"
-            onClick={() => handlePage(false)}
-            type="button"
-            className="w-fit !rounded"
-          >
-            Back
-          </Button>
-          <Button
-            variant="normal"
-            onClick={() => handlePage(true)}
-            type="button"
-            className="w-fit !rounded"
-          >
-            Next
-          </Button>
-        </div>
-        {page !== pages[1] && (
-          <Button
-            variant="normal"
-            onClick={addExprience}
-            type="button"
-            className="w-fit !rounded !bg-blue-500"
-          >
-            Add
-          </Button>
-        )}
-      </div>
-    );
   };
 
   return (
     <div className="layout">
       <p className="p1 mb-4 font-semibold text-center">Create Resume</p>
+
       <div className="horizontally-center">
-        <Link href={'/resume'} className="horizontally-center rounded border-text border-2 px-2 py-1"><IoArrowBack/> Back</Link>
+        <Link
+          href={"/resume"}
+          className="horizontally-center rounded border-text border-2 px-2 py-1"
+        >
+          <IoArrowBack /> Back
+        </Link>
+
         <PickColor
           color={input?.color || "black"}
           handleChangeColor={handleChangeColor}
@@ -163,8 +164,10 @@ const ResumeForm = () => {
                 handleChange={handleChange}
               />
             )}
+
             {page === pages[2] && (
               <ProfessionalExperience
+                setExperience={setExperience}
                 input={input}
                 experience={experience}
                 handleChange={handleExperience}
@@ -172,16 +175,38 @@ const ResumeForm = () => {
               />
             )}
 
-            {renderButton()}
+            {page === pages[3] && (
+              <Education
+                education={education}
+                handleChange={handleEducation}
+                setEducation={setEducation}
+                input={input}
+                handleDelete={handleDelete}
+              />
+            )}
+
+            {page === pages[4] && (
+              <Skill
+                handleChange={handleSkill}
+                setSkill={setSkill}
+                skill={skill}
+                handleDelete={handleDelete}
+                input={input}
+              />
+            )}
+
+            <Buttons addItems={addItems} handlePage={handlePage} page={page} />
           </Card>
         </form>
+
         <Card className="p-10 bg-white text-black">
           <PersonalDetailsPreview {...input} />
           <SummaryPreview {...input} />
           <ExperiencePreview {...input} />
           <EducationPreview {...input} />
-          <SkillsPreview {...input} />
+          <SkillPreview {...input} />
         </Card>
+        
       </section>
     </div>
   );

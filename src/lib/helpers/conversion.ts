@@ -11,7 +11,7 @@ export const convertToBase64 = (file: File): Promise<string> => {
 
 export const convertToRatingPercentage = (rating: string) => {
   const ratingMap: { [key: string]: number } = {
-    Beginner: 20,
+    Beginner: 25,
     Intermediate: 50,
     Advanced: 75,
     Expert: 100,
