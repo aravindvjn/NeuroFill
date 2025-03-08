@@ -29,19 +29,19 @@ export async function generateSummary(resumeData: ResumeInputType) {
     - Profession: ${resumeData.profession}
     - Skills: ${resumeData?.skill?.map(ski => ski.name).join(", ") || "Not provided"}
     - Talk as I am
-
     Response format (JSON):
     {
       "experienceLevel": "Mid-Level",
       "summary": "I am a skilled software engineer with expertise in React and Node.js..."
     }
       
-    for all levels`;
+    for all levels
+    summary should around 3000 characters`;
 
     const result = await chatSession.sendMessage([{ text: prompt }]);
 
-    const responseText = result.response.text(); 
-    const data = JSON.parse(responseText); 
+    const responseText = result.response.text();
+    const data = JSON.parse(responseText);
 
     console.log("AI returned Data:", data);
     return data;
@@ -52,7 +52,7 @@ export async function generateSummary(resumeData: ResumeInputType) {
 }
 
 
-export const generateWithAI=async (prompt:string)=>{
+export const generateWithAI = async (prompt: string) => {
   try {
     const chatSession = model.startChat({
       generationConfig,
@@ -61,13 +61,13 @@ export const generateWithAI=async (prompt:string)=>{
 
     const result = await chatSession.sendMessage([{ text: prompt }]);
 
-    const responseText = result.response.text(); 
-    const data = JSON.parse(responseText); 
+    const responseText = result.response.text();
+    const data = JSON.parse(responseText);
 
     console.log("AI returned Data:", data);
-    return data;
-    
-  } catch (error) {
-    return null
+    return { success: true, data };
+
+  } catch {
+    return { success: false, message:"Failed to generated."}
   }
 }

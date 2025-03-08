@@ -1,6 +1,7 @@
 export const formatDate = (date: string) => {
-  const options: Intl.DateTimeFormatOptions = { year: "numeric", month: "short" };
-  return new Date(date).toLocaleDateString("en-US", options);
+  const [day, month, year] = date.split("-").map(Number);
+  const dateObj = new Date(year, month - 1, day);
+  return dateObj.toLocaleString("en-US", { month: "long", year: "numeric" });
 };
 
 

@@ -4,9 +4,10 @@ import React, { TextareaHTMLAttributes, useRef, useEffect } from "react";
 interface TextAreaProps extends TextareaHTMLAttributes<HTMLTextAreaElement> {
   label?: string;
   error?: string;
+  children?:React.ReactNode
 }
 
-const TextArea: React.FC<TextAreaProps> = ({ label, error, className, ...props }) => {
+const TextArea: React.FC<TextAreaProps> = ({ label, error, children,className, ...props }) => {
   const textareaRef = useRef<HTMLTextAreaElement>(null);
 
   useEffect(() => {
@@ -18,8 +19,9 @@ const TextArea: React.FC<TextAreaProps> = ({ label, error, className, ...props }
   }, [props.value]);
 
   return (
-    <div className="flex w-full flex-col gap-1">
+    <div className="flex relative w-full flex-col gap-1">
       {label && <label className="text-sm font-medium text-gray-700">{label}</label>}
+      {children}
       <textarea
         ref={textareaRef}
         className={`border rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none overflow-hidden ${

@@ -2,6 +2,7 @@ import React from "react";
 
 export type ResumeInputType = {
     id?: string;
+    title?: string;
     firstName: string;
     lastName: string;
     profession: string;
@@ -13,7 +14,16 @@ export type ResumeInputType = {
     color?: string;
     education: EducationType[];
     skill: SkillType[]
+    authorId?: string;
+    templateId?: string;
+    customField:CustomFieldType[]
 
+}
+export type CustomFieldType = {
+    id?:string;
+    heading:string;
+    subheading:string;
+    content:string
 }
 
 export type ExperienceType = {
@@ -59,18 +69,23 @@ export type ProfessionProps = {
 
 export type EducationProps = {
     setEducation: React.Dispatch<React.SetStateAction<EducationType>>;
-    education:EducationType
+    education: EducationType
+};
+
+export type CustomFieldProps = {
+    setCustomField: React.Dispatch<React.SetStateAction<CustomFieldType>>;
+    customField: CustomFieldType
 };
 
 export type SkillProps = {
     setSkill: React.Dispatch<React.SetStateAction<SkillType>>;
-    skill:SkillType
+    skill: SkillType
 };
 
 
-export type DeleteType = "experience" | "education" | "skill"
+export type DeleteType = "experience" | "education" | "skill" | "customField"
 
-export type PageType = "Personal Details" | "Professional Experience" | "Skills" | "Summary" | "Education"
+export type PageType = "Personal Details" | "Professional Experience" | "Skills" | "Summary" | "Education" | "Custom Fields"
 
 export type AiSuggestedSummaryType = {
     experienceLevel: string;

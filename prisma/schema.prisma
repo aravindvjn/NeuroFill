@@ -22,8 +22,8 @@ model User {
   planId        String?
   password      String
   creditBalance Float          @default(0)
-  images        Image[]
   transactions  Transactions[]
+  resumes       Resume[]       @relation("UserToResume")
   createdAt     DateTime       @default(now())
   updatedAt     DateTime       @updatedAt
 }
@@ -40,17 +40,68 @@ model PendingUser {
   createdAt         DateTime @default(now())
 }
 
-model Image {
-  id                String   @id @default(uuid())
-  title             String
-  publicId          String
-  secureUrl         String
-  transformationUrl String?
-  prompt            String?
-  authorId          String
-  author            User     @relation(fields: [authorId], references: [id], onDelete: Cascade)
-  createdAt         DateTime @default(now())
-  updatedAt         DateTime @updatedAt
+model Resume {
+  id          String        @id @default(uuid())
+  title       String        @default("Untitled")
+  firstName   String
+  lastName    String
+  profession  String
+  address     String
+  phone       String
+  email       String
+  summary     String
+  color       String?
+  authorId    String
+  author      User          @relation("UserToResume", fields: [authorId], references: [id], onDelete: Cascade)
+  templateId  String?
+  experience  Experience[]  @relation("ResumeToExperience")
+  education   Education[]   @relation("ResumeToEducation")
+  skill       Skill[]       @relation("ResumeToSkill")
+  customField CustomField[] @relation("ResumeToCustomField")
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
+}
+
+model Experience {
+  id               String  @id @default(uuid())
+  position         String
+  companyName      String
+  city             String
+  state            String
+  startDate        String
+  endDate          String
+  currentlyWorking Boolean
+  workSummary      String
+  resumeId         String
+  resume           Resume  @relation("ResumeToExperience", fields: [resumeId], references: [id], onDelete: Cascade)
+}
+
+model Education {
+  id             String @id @default(uuid())
+  degree         String
+  universityName String
+  major          String
+  startDate      String
+  endDate        String
+  resumeId       String
+  resume         Resume @relation("ResumeToEducation", fields: [resumeId], references: [id], onDelete: Cascade)
+}
+
+model Skill {
+  id       String @id @default(uuid())
+  name     String
+  rating   String
+  resumeId String
+  resume   Resume @relation("ResumeToSkill", fields: [resumeId], references: [id], onDelete: Cascade)
+}
+
+model CustomField {
+  id         String @id @default(uuid())
+  heading    String?
+  subheading String
+  content    String
+  resumeId   String
+  resume     Resume @relation("ResumeToCustomField", fields: [resumeId], references: [id], onDelete: Cascade)
 }
 
 model Transactions {

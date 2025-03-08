@@ -1,10 +1,14 @@
-import React, { ChangeEvent } from "react";
+import React, { ChangeEvent, useState } from "react";
 import Input from "./input";
-import { ExperienceType, ProfessionProps, Props } from "./type";
-import { MdDelete, MdEdit } from "react-icons/md";
+import { ProfessionProps, Props } from "./type";
 import TextArea from "@/components/ui/text-area";
 import { formatDateInput } from "@/lib/helpers/date";
-
+import Button from "@/components/ui/button";
+import { generateWithAI } from "@/lib/helpers/get-data-from-ai";
+import { createExperiencePrompt } from "./constants";
+import toast from "react-hot-toast";
+import { generateWorkSummaryValidation } from "@/lib/validations/validate-resume";
+import DargAndDrop from "./drag-and-drop";
 
 const ProfessionalExperience = ({
   handleChange,
@@ -12,10 +16,29 @@ const ProfessionalExperience = ({
   input,
   handleDelete,
   setExperience,
+  setInput,
 }: Props & ProfessionProps) => {
-  
-  const onChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
-    handleChange(e as unknown as ChangeEvent<HTMLInputElement>);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+
+  const handleGenerateWithAI = async () => {
+    const isNotValid = generateWorkSummaryValidation(experience);
+    if (isNotValid) {
+      toast.error(isNotValid);
+      return;
+    }
+
+    setIsLoading(true);
+    const res = await generateWithAI(createExperiencePrompt(experience!));
+
+    if (res.success && res.data[0]?.summary) {
+      setExperience((prev) => ({
+        ...prev,
+        workSummary: res.data[0].summary,
+      }));
+    } else {
+      toast.error("Failed to generate work Summary. Please try again.");
+    }
+    setIsLoading(false);
   };
 
   const onDateInput = (e: React.FormEvent<HTMLInputElement>) => {
@@ -84,42 +107,33 @@ const ProfessionalExperience = ({
       </div>
 
       <TextArea
-        label="summary"
+        label="Summary"
         name="workSummary"
         value={experience?.workSummary}
-        onChange={onChange}
-      />
+        onChange={(e) =>
+          handleChange(e as unknown as ChangeEvent<HTMLInputElement>)
+        }
+      >
+        <Button
+          type="button"
+          disabled={isLoading}
+          isLoading={isLoading}
+          onClick={handleGenerateWithAI}
+          className="!h-[30px] !w-fit absolute right-0 -top-3 mb-2 !px-4"
+        >
+          Generate with AI
+        </Button>
+      </TextArea>
 
       <div>
         <p className="text-lg font-semibold underline">Existing Experience</p>
-
-        <ul className=" my-2 px-[20px]">
-          {input?.experience.map((exp, index) => (
-            <div
-              key={exp.id || index}
-              className="li flex items-center justify-between gap-2"
-            >
-              <li>
-                {exp?.position} at {exp?.companyName}
-              </li>
-              <div className="horizontally-center">
-                <MdEdit
-                  onClick={() => {
-                    setExperience(exp);
-                    handleDelete!("experience", index);
-                  }}
-                  size={20}
-                  className="text-red-500 w-[20px] cursor-pointer"
-                />
-                <MdDelete
-                  onClick={() => handleDelete!("experience", index)}
-                  size={20}
-                  className="text-red-500 w-[20px] cursor-pointer"
-                />
-              </div>
-            </div>
-          ))}
-        </ul>
+        <DargAndDrop
+          handleDelete={handleDelete!}
+          input={input!}
+          setInput={setInput!}
+          setValue={setExperience}
+          name="experience"
+        />
       </div>
     </div>
   );

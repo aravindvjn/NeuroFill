@@ -3,6 +3,7 @@ import React, { ChangeEvent, useState } from "react";
 import PickColor from "./pick-color";
 import PersonalDetails from "./personal-details";
 import type {
+  CustomFieldType,
   DeleteType,
   EducationType,
   ExperienceType,
@@ -11,6 +12,7 @@ import type {
   SkillType,
 } from "./type";
 import {
+  defaultCustomValue,
   defaultEducationValue,
   defaultExperienceValue,
   defaultInputValue,
@@ -20,30 +22,31 @@ import {
 } from "./constants";
 import Card from "@/components/ui/card";
 import ProfessionalExperience from "./professional-experience";
-import PersonalDetailsPreview from "@/components/previews/resume/personal-details";
-import SummaryPreview from "@/components/previews/resume/summary";
-import ExperiencePreview from "@/components/previews/resume/experience";
-import EducationPreview from "@/components/previews/resume/education";
-import SkillPreview from "@/components/previews/resume/skills";
 import Summary from "./summary";
 import Link from "next/link";
 import { IoArrowBack } from "react-icons/io5";
-import { dummyResume } from "@/components/previews/resume/dummy";
 import Education from "./education";
 import Skill from "./skill";
 import Buttons from "./buttons";
+import ResumePreview from "@/components/previews/resume/resume";
+import CustomField from "./custom-field";
 
-const ResumeForm = () => {
+const ResumeForm = ({ resume }: { resume: ResumeInputType }) => {
   const [input, setInput] = useState<ResumeInputType>(
-    dummyResume || defaultInputValue
+ resume || defaultInputValue
   );
+
   const [page, setPage] = useState<PageType>("Personal Details");
   const [experience, setExperience] = useState<ExperienceType>(
     defaultExperienceValue
   );
+
   const [education, setEducation] = useState<EducationType>(
     defaultEducationValue
   );
+
+  const [customField, setCustomField] =
+    useState<CustomFieldType>(defaultCustomValue);
 
   const [skill, setSkill] = useState<SkillType>(defaultSkillValue);
 
@@ -80,6 +83,14 @@ const ResumeForm = () => {
     }));
   };
 
+  //handle change in education
+  const handleCustomField = (e: ChangeEvent<HTMLInputElement>) => {
+    setCustomField((prev) => ({
+      ...prev,
+      [e.target.name]: e.target.value,
+    }));
+  };
+
   //handle change in skill
   const handleSkill = (e: ChangeEvent<HTMLInputElement>) => {
     setSkill((prev) => ({
@@ -88,11 +99,12 @@ const ResumeForm = () => {
     }));
   };
 
-  //handle Color
+  //handle color
   const handleChangeColor = (e: ChangeEvent<HTMLInputElement>) => {
     setInput((prev) => ({ ...prev, color: e.target.value }));
   };
 
+  //handle delete
   const handleDelete = (name: DeleteType, index: number) => {
     setInput((prev) => ({
       ...prev,
@@ -100,7 +112,7 @@ const ResumeForm = () => {
     }));
   };
 
-  //Add experience, skils, educations
+  //Add experience, skils, educations, custom field
   const addItems = () => {
 
     if (page === pages[2]) {
@@ -127,7 +139,20 @@ const ResumeForm = () => {
       }));
       setSkill(defaultSkillValue);
 
+    } else if (page === pages[5]) {
+      
+      setInput((prev) => ({
+        ...prev,
+        customField: [...prev["customField"], customField],
+      }));
+      setSkill(defaultSkillValue);
     }
+  };
+
+  const props = {
+    handleDelete: handleDelete,
+    input: input,
+    setInput: setInput,
   };
 
   return (
@@ -167,21 +192,19 @@ const ResumeForm = () => {
 
             {page === pages[2] && (
               <ProfessionalExperience
-                setExperience={setExperience}
-                input={input}
-                experience={experience}
                 handleChange={handleExperience}
-                handleDelete={handleDelete}
+                setExperience={setExperience}
+                experience={experience}
+                {...props}
               />
             )}
 
             {page === pages[3] && (
               <Education
-                education={education}
                 handleChange={handleEducation}
+                education={education}
                 setEducation={setEducation}
-                input={input}
-                handleDelete={handleDelete}
+                {...props}
               />
             )}
 
@@ -190,23 +213,29 @@ const ResumeForm = () => {
                 handleChange={handleSkill}
                 setSkill={setSkill}
                 skill={skill}
-                handleDelete={handleDelete}
-                input={input}
+                {...props}
               />
             )}
 
-            <Buttons addItems={addItems} handlePage={handlePage} page={page} />
+            {page === pages[5] && (
+              <CustomField
+                handleChange={handleCustomField}
+                setCustomField={setCustomField}
+                customField={customField}
+                {...props}
+              />
+            )}
+
+            <Buttons
+              input={input}
+              addItems={addItems}
+              handlePage={handlePage}
+              page={page}
+            />
           </Card>
         </form>
 
-        <Card className="p-10 bg-white text-black">
-          <PersonalDetailsPreview {...input} />
-          <SummaryPreview {...input} />
-          <ExperiencePreview {...input} />
-          <EducationPreview {...input} />
-          <SkillPreview {...input} />
-        </Card>
-        
+        <ResumePreview resume={input} />
       </section>
     </div>
   );

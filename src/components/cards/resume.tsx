@@ -1,13 +1,25 @@
+'use client'
 import React from "react";
 import type { ResumeType } from "./type";
 import Image from "next/image";
 import Link from "next/link";
 import { BsThreeDotsVertical } from "react-icons/bs";
+import { useRouter } from "next/navigation";
 
-const Resume = ({ thumbnail_url, title }: ResumeType) => {
+const Resume = ({ thumbnail_url, title,id }: ResumeType) => {
+
+  const router = useRouter()
+
+  // const [showOptions,setShowOptions] = useState<boolean>(false)
+
+  const navigateToEdit = (e:React.MouseEvent<SVGElement, MouseEvent>)=>{
+    e.stopPropagation()
+    router.push(`/v1/resume/${id}/edit`)
+  }
+
   return (
     <Link
-      href={""}
+      href={`/v1/resume/${id}`}
       className="border-[2px] rounded-lg overflow-hidden hover:opacity-90 active:translate-y-0.5  border-secondary"
     >
       <Image
@@ -18,8 +30,8 @@ const Resume = ({ thumbnail_url, title }: ResumeType) => {
         alt={"resume"}
       />
       <div className="px-3 h-[35px] bg-card-background border-t-[2px] border-secondary flex items-center justify-between w-full">
-        <p className="p3 font-semibold line-clamp-1">{title || "Untitiled"}</p>
-        <BsThreeDotsVertical />
+        <p  className="p3 font-semibold line-clamp-1">{title || "Untitiled"}</p>
+        <BsThreeDotsVertical onClick={navigateToEdit} />
       </div>
     </Link>
   );

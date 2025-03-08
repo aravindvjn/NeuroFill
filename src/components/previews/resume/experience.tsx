@@ -12,24 +12,24 @@ const ExperiencePreview: React.FC<{ experience: ResumeInputType["experience"],co
 
   return (
     <div className="mt-2">
-      <div className="bg-gray-100 my-2">
+      <div className="bg-[#f3f4f6] my-2">
         <p style={{color}} className="text-center font-bold underline text-lg">EXPERIENCE</p>
       </div>
       {experience.map((exp, index) => (
         <div className="mb-4 text-[14px]" key={exp.id || index}>
-          <div className="flex justify-between items-center border-b border-dotted border-gray-400 pb-1">
+          <div className="flex justify-between items-center border-b border-dotted border-[#9ca3af] pb-1">
             <p style={{color}} className="flex items-center gap-2 font-semibold text-[16px]">
               <VscDebugBreakpointLog  />
               {exp.position} at {exp.companyName}
             </p>
-            <p className="italic text-gray-500">
+            <p className="italic text-[#6b7280]">
               {formatDate(exp.startDate)} - {exp.currentlyWorking ? "Present" : formatDate(exp.endDate)}
             </p>
           </div>
-          <p className="text-gray-600">
+          <p className="text-[#4b5563]">
             {exp.city}, {exp.state}
           </p>
-          <p className="text-gray-700">{exp.workSummary}</p>
+          <p className="text-[#374151]">{exp.workSummary}</p>
         </div>
       ))}
     </div>

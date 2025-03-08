@@ -1,9 +1,8 @@
-import React, { ChangeEvent } from "react";
+import React from "react";
 import Input from "./input";
-import { EducationProps, ExperienceType, Props } from "./type";
-import { MdDelete, MdEdit } from "react-icons/md";
-import TextArea from "@/components/ui/text-area";
+import { EducationProps,Props } from "./type";
 import { formatDateInput } from "@/lib/helpers/date";
+import DargAndDrop from "./drag-and-drop";
 
 
 const Education = ({
@@ -11,7 +10,8 @@ const Education = ({
   input,
   handleDelete,
   education,
-  setEducation
+  setEducation,
+  setInput
 }: Props & EducationProps) => {
 
   const onDateInput = (e: React.FormEvent<HTMLInputElement>) => {
@@ -66,33 +66,13 @@ const Education = ({
       <div>
         <p className="text-lg font-semibold underline">Existing Education</p>
 
-        <ul className=" my-2 px-[20px]">
-          {input?.education.map((edu, index) => (
-            <div
-              key={edu.id || index}
-              className="li flex items-center justify-between gap-2"
-            >
-              <li>
-                {edu?.degree} in {edu?.major}
-              </li>
-              <div className="horizontally-center">
-                <MdEdit
-                  onClick={() => {
-                    setEducation(edu);
-                    handleDelete!("education", index);
-                  }}
-                  size={20}
-                  className="text-red-500 w-[20px] cursor-pointer"
-                />
-                <MdDelete
-                  onClick={() => handleDelete!("education", index)}
-                  size={20}
-                  className="text-red-500 w-[20px] cursor-pointer"
-                />
-              </div>
-            </div>
-          ))}
-        </ul>
+        <DargAndDrop
+          handleDelete={handleDelete!}
+          input={input!}
+          setInput={setInput!}
+          setValue={setEducation}
+          name="education"
+        />
       </div>
     </div>
   );

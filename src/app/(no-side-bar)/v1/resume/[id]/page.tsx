@@ -1,4 +1,4 @@
-import ResumeForm from "@/components/forms/resume-form/resume-form";
+import ResumePage from "@/components/common/print";
 import { ResumeInputType } from "@/components/forms/resume-form/type";
 import { getResumeById } from "@/lib/actions/resume.action";
 import { notFound } from "next/navigation";
@@ -9,21 +9,23 @@ type Props = {
     id: string;
   }>;
 };
-const page = async ({ params }: Props) => {
-  const { id} = await params;
 
+const page = async ({ params }: Props) => {
+
+  const { id } = await params;
+  
   if (!id || typeof id !== "string") {
     notFound();
   }
   const res = await getResumeById(id);
 
- if (!res.success) {
-    notFound(); 
+  if (!res.success) {
+    notFound();
   }
 
   return (
     <div>
-      <ResumeForm resume={res.data as ResumeInputType} />
+      <ResumePage resume={res.data as ResumeInputType} />
     </div>
   );
 };

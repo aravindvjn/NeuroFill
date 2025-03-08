@@ -167,3 +167,43 @@ body {
 .li {
   list-style-type: disc; 
 }
+
+
+@page {
+  margin: 0;
+}
+
+@media print {
+  body * {
+    visibility: hidden;
+  }
+
+  .print-only,
+  .print-only * {
+    visibility: visible;
+  }
+
+  .print-only {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    background: white !important; 
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  
+  .print-only {
+    box-shadow: none !important;
+    border: none !important;
+  }
+
+  .print-only div,
+  .print-only span,
+  .print-only p {
+    color-adjust: exact;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+}
+

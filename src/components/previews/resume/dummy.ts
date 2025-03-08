@@ -63,4 +63,14 @@ export const dummyResume: ResumeInputType = {
     { id: "skill5", name: "PostgreSQL", rating: "Intermediate" },
     { id: "skill6", name: "Docker", rating: "Intermediate" },
   ],
+  customField: [{
+    heading: "Projects",
+    subheading: "WhatsApp Clone",
+    content: "I made a whatsapp clone app using react js and express js. I used postgresql as DB"
+  },
+  {
+    heading: "",
+    subheading: "Instagram Clone",
+    content: "I made a Instagram clone app using react js and express js. I used postgresql as DB"
+  }]
 };
