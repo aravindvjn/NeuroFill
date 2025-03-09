@@ -1,13 +1,13 @@
 @import "tailwindcss";
 
 .resume p {
-    @apply text-[10px] sm:text-[12px] md:text-[13px] lg:text-[14px] xl:text-[15px];
+    @apply text-[9px] sm:text-[10px] md:text-[12px] lg:text-[13px] xl:text-[14px];
 }
 
 .resume h1 {
-    @apply text-[14px] sm:text-[16px] md:text-[18px] lg:text-[20px] xl:text-[24px];
+    @apply text-[14px] sm:text-[16px] md:text-[18px] lg:text-[20px] xl:text-[24px] leading-tight; 
 }
 
 .resume h2 {
-    @apply text-[12px] sm:text-[14px] md:text-[16px] lg:text-[18px] xl:text-[20px];
+    @apply text-[12px] sm:text-[14px] md:text-[16px] lg:text-[18px] xl:text-[20px] leading-tight; 
 }

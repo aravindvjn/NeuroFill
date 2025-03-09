@@ -6,8 +6,8 @@ const page = () => {
   return (
     <div className="layout">
       <Heading
-        subheading={cardsItems[4].subheading}
-        heading={cardsItems[4].heading}
+        subheading={cardsItems[2]?.subheading}
+        heading={cardsItems[2]?.heading}
       />
     </div>
   )

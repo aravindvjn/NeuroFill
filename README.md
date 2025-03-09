@@ -13,7 +13,6 @@
 - **Privacy Policy & Terms Generator**
 - **QR Code Generator**
 - **Invoice Generator**
-- **Logo Generator**
 
 
 ## License

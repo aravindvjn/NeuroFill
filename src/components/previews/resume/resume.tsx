@@ -25,8 +25,8 @@ const ResumePreview = ({
       <SummaryPreview {...resume} />
       <ExperiencePreview {...resume} />
       <EducationPreview {...resume} />
-      <CustomFieldPreview {...resume} />
       <SkillPreview {...resume} />
+      <CustomFieldPreview {...resume} />
     </Card>
   );
 };

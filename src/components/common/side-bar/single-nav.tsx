@@ -1,7 +1,7 @@
 import React from "react";
 import { navLinks } from "./nav-links";
 import {  MdAccountCircle, MdHome, MdOutlineDocumentScanner, MdPrivacyTip } from "react-icons/md";
-import { IoBagHandleSharp, IoLogoBuffer, IoQrCode } from "react-icons/io5";
+import { IoBagHandleSharp, IoQrCode } from "react-icons/io5";
 import Link from "next/link";
 import { FaFileInvoice } from "react-icons/fa";
 
@@ -15,12 +15,11 @@ const SingleNav = ({ label, link, isActive }: Props) => {
   const icon = {
     [navLinks[0].link]: <MdHome size={19} />,
     [navLinks[1].link]: <MdOutlineDocumentScanner />,
-    [navLinks[2].link]: <IoLogoBuffer />,
-    [navLinks[3].link]: <FaFileInvoice />,
-    [navLinks[4].link]: <MdPrivacyTip />,
-    [navLinks[5].link]: <IoQrCode />,
-    [navLinks[6].link]: <MdAccountCircle />,
-    [navLinks[7].link]: <IoBagHandleSharp />,
+    [navLinks[2].link]: <FaFileInvoice />,
+    [navLinks[3].link]: <MdPrivacyTip />,
+    [navLinks[4].link]: <IoQrCode />,
+    [navLinks[5].link]: <MdAccountCircle />,
+    [navLinks[6].link]: <IoBagHandleSharp />,
   };
 
   const activeClasses = isActive

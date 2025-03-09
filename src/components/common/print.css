@@ -14,6 +14,7 @@
       position: absolute;
       left: 0;
       top: 0;
+      padding:30px;
       width: 100%;
       background: white !important; 
       -webkit-print-color-adjust: exact;
@@ -34,14 +35,14 @@
     }
 
     .print-only p{
-        @apply text-[14px]
+        @apply text-[14px] leading-normal
     }
     .print-only h1{
-        @apply text-2xl
+        @apply text-2xl leading-tight
     }
 
     .print-only h2{
-        @apply text-lg
+        @apply text-lg leading-tight
     }
   }
   

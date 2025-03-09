@@ -8,12 +8,6 @@ export const cardsItems: CardProps[] = [
         link:'/resume'
     },
     {
-        image_path: "/images/logo-generator.png",
-        heading: "Logo Generator",
-        subheading: "Design unique logos effortlessly",
-        link:'/logo'
-    },
-    {
         image_path: "/images/privacy-policy-generator.png",
         heading: "Privacy Policy & Terms Generator",
         subheading: "Generate legal policies tailored for your business",

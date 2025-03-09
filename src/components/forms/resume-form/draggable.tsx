@@ -25,28 +25,28 @@ const Draggable = ({ value, index, setValue, handleDelete, name }: Props) => {
     if (name === "experience") {
       return (
         <>
-          {value?.position} at {value?.companyName}
+          {value?.position} {value?.position && value?.companyName && "at"} {value?.companyName}
         </>
       );
     }
     if (name === "education") {
       return (
         <>
-          {value?.degree} in {value?.major}
+          {value?.degree} {value?.degree && value?.major && "in"} {value?.major}
         </>
       );
     }
     if (name === "skill") {
       return (
         <>
-          {value?.name} - {value.rating}
+          {value?.name} {value?.name && value?.rating && "-" } {value.rating}
         </>
       );
     }
     if (name === "customField") {
       return (
         <>
-          {value?.heading} , {value?.subheading}
+          {value?.heading} {value?.heading && value?.subheading && ","} {value?.subheading}
         </>
       );
     }

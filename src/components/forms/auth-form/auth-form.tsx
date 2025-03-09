@@ -9,26 +9,26 @@ import { validateUserInput } from "@/lib/helpers/validate-user-input";
 import { createPendingUser } from "@/lib/actions/user.action";
 import { useActionState } from "react";
 import { loginUser } from "@/lib/actions/login.action";
+import { defaultInputValue } from "./constants";
 
 const AuthForm = () => {
   const [isLogin, setIsLogin] = useState<boolean>(true);
-  const [input, setInput] = useState<UserInput>({
-    firstName: { value: "" },
-    lastName: { value: "" },
-    email: { value: "" },
-    password: { value: "" },
-  });
+  const [input, setInput] = useState<UserInput>(defaultInputValue);
   const [isDisabled, setIsDisabled] = useState<boolean>(true);
 
   const initialState = {
     message: "",
     success: false,
+    data:defaultInputValue,
   };
 
   // Server action state
   const actionFunction = isLogin ? loginUser : createPendingUser;
-  const [state, formAction, isPending] = useActionState(actionFunction, initialState);
-  
+  const [state, formAction, isPending] = useActionState(
+    actionFunction,
+    initialState
+  );
+
   // Sync state data with input
   useEffect(() => {
     if (state?.data) {

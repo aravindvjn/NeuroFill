@@ -15,7 +15,7 @@ const SkillPreview = ({
 
   return (
     <div className="mt-4">
-      <div className="bg-[#f3f4f6] my-2 py-2">
+      <div className="bg-[#f3f4f6] my-1 py-1">
         <h2
           style={{ color }}
           className="text-center font-bold underline"

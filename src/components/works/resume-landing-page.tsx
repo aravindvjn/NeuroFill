@@ -14,7 +14,7 @@ type Props = {
 
 const ResumeLandingPage = ({resumes}:Props) => {
   const [showPopUp, setShowPopUp] = useState<boolean>(false);
-
+  const [showOptions, setShowOptions] = useState<string>("");
   const handleShowPopUp = () => {
     setShowPopUp(true);
   };
@@ -36,11 +36,11 @@ const ResumeLandingPage = ({resumes}:Props) => {
       <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4  gap-[10px] sm:gap-[20px] cursor-pointer md:gap-[30px]">
         <div
           onClick={handleShowPopUp}
-          className="border-[2px] rounded-lg overflow-hidden center hover:bg-secondary-background text-border active:translate-y-0.5 border-border"
+          className="border-[2px] min-h-[70px] rounded-lg overflow-hidden center hover:bg-secondary-background text-border active:translate-y-0.5 border-border"
         >
           <IoMdAdd size={30} />
         </div>
-        {resumes?.map(resume=><Resume key={resume.id} thumbnail_url="" title={resume.title} id={resume.id} />)}
+        {resumes?.map(resume=><Resume showOption={showOptions} setShowOption={setShowOptions} key={resume.id} thumbnail_url="" title={resume.title} id={resume.id} />)}
       </div>
     </div>
   );

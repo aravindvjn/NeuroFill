@@ -5,8 +5,16 @@ import Image from "next/image";
 import { BsThreeDotsVertical } from "react-icons/bs";
 import Link from "next/link";
 
-const Resume = ({ thumbnail_url, title, id }: ResumeType) => {
-  const [showOptions, setShowOptions] = useState(false);
+const Resume = ({
+  thumbnail_url,
+  title,
+  id,
+  setShowOption,
+  showOption,
+}: ResumeType & {
+  setShowOption: React.Dispatch<React.SetStateAction<string>>;
+  showOption: string;
+}) => {
   const [positionLeft, setPositionLeft] = useState(false);
   const optionsRef = useRef<HTMLDivElement>(null);
 
@@ -14,15 +22,14 @@ const Resume = ({ thumbnail_url, title, id }: ResumeType) => {
     if (optionsRef.current) {
       const { right } = optionsRef.current.getBoundingClientRect();
       const screenWidth = window.innerWidth;
-      
-      // Check if there's more space on the left or right
+
       if (right > screenWidth - 150) {
         setPositionLeft(true);
       } else {
         setPositionLeft(false);
       }
     }
-  }, [showOptions]);
+  }, [showOption]);
 
   return (
     <div className="border-[2px] rounded-lg hover:opacity-90  border-secondary">
@@ -33,17 +40,16 @@ const Resume = ({ thumbnail_url, title, id }: ResumeType) => {
         src={thumbnail_url || "/images/resume-maker.png"}
         alt={"resume"}
       />
-      <div className="px-3 h-[35px] bg-card-background rounded-b-lg border-t-[2px] border-secondary flex items-center justify-between w-full">
+      <div className="px-3 h-[40px] bg-card-background rounded-b-lg border-t-[2px] border-secondary flex items-center justify-between w-full">
         <p className="p3 font-semibold line-clamp-1">{title || "Untitled"}</p>
         <div
           ref={optionsRef}
-          onMouseLeave={() => setShowOptions(false)}
-          onMouseEnter={() => setShowOptions(true)}
+          onClick={() => setShowOption((prev) => (prev ? "" : id))}
           className="relative"
         >
           <BsThreeDotsVertical />
 
-          {showOptions && (
+          {showOption === id && (
             <ul
               className={`absolute top-0 z-50 flex flex-col bg-card-background border border-card-border rounded shadow-md ${
                 positionLeft ? "right-full mr-2" : "left-full ml-2"

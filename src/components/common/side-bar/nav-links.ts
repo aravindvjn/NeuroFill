@@ -1,36 +1,38 @@
 export const navLinks = [
     {
-        label: "Home",
-        link: '/'
+      id: 1,
+      label: "Home",
+      link: "/",
     },
     {
-        label: "Resume Maker",
-        link: '/resume'
+      id: 2,
+      label: "Resume Maker",
+      link: "/resume",
     },
     {
-        label: "Logo Generator",
-        link: '/logo'
+      id: 3,
+      label: "Invoice Generator",
+      link: "/invoice",
     },
     {
-        label: "Invoice Generator",
-        link: '/invoice'
+      id: 4,
+      label: "P&T Generator",
+      link: "/terms",
     },
     {
-        label: "P&T Generator",
-        link: '/terms'
+      id: 5,
+      label: "QR Code Generator",
+      link: "/qr",
     },
     {
-        label: "QR Code Generator",
-        link: '/qr'
+      id: 7,
+      label: "Account",
+      link: "/account",
     },
     {
-        label: "Account",
-        link: '/account'
+      id: 8,
+      label: "Buy Credit",
+      link: "/buy-credit",
     },
-    {
-        label: "Buy Credit",
-        link: '/buy-credit'
-    },
-
-
-]
+  ];
+  

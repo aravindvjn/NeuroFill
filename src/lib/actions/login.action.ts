@@ -29,7 +29,10 @@ export async function loginUser(prevState: PrevState, formData: FormData) {
         };
 
         if (!email || !password) {
-            throw new Error("All fields are requied.")
+            return {
+                ...prevState,
+                message:"All fields are requied.",
+            };
         }
 
         const user = await prisma.user.findUnique({
@@ -39,13 +42,19 @@ export async function loginUser(prevState: PrevState, formData: FormData) {
         })
 
         if (!user) {
-            throw new Error("Invalid Credentials")
+            return {
+                ...prevState,
+                message:"Invalid Credentials",
+            };
         }
 
         const isMatch = await bcrypt.compare(password, user.password)
 
         if (!isMatch) {
-            throw new Error("Invalid Credentials")
+            return {
+                ...prevState,
+                message:"Invalid Credentials",
+            };
         }
 
 
@@ -67,7 +76,7 @@ export async function loginUser(prevState: PrevState, formData: FormData) {
         return {
             ...prevState,
             success: false,
-            message: typeof error.message === "string" ? error.message : "Failed to login. Try again!",
+            message:"Failed to login. Try again!",
         };
     }
     redirect("/")

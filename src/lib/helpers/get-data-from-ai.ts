@@ -36,7 +36,7 @@ export async function generateSummary(resumeData: ResumeInputType) {
     }
       
     for all levels
-    summary should around 3000 characters`;
+    summary should not exceed 2500 characters`;
 
     const result = await chatSession.sendMessage([{ text: prompt }]);
 

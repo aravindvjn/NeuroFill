@@ -50,13 +50,16 @@ export async function createPendingUser(prevState: PrevState, formData: FormData
         })
 
         if (isEmailExist) {
-            throw new Error("Email already registered. Try Login!")
+            return {
+                ...prevState,
+                message: "Email already registered. Try Login!",
+            };
         }
 
         const hashedPassword = await bcrypt.hash(password, 10)
 
         if (!hashedPassword) {
-            throw new Error("Failed to Login, Try Again!")
+            throw new Error("Failed to hash the password")
         }
 
         await prisma.pendingUser.upsert({
@@ -85,7 +88,7 @@ export async function createPendingUser(prevState: PrevState, formData: FormData
 
         return {
             ...prevState,
-            data: {
+            data:{
                 email: { value: "" },
                 password: { value: "" }
             },
@@ -98,8 +101,12 @@ export async function createPendingUser(prevState: PrevState, formData: FormData
         console.error("Error creating pending user:", error);
         return {
             ...prevState,
+            data:{
+                email: { value: "" },
+                password: { value: "" }
+            },
             success: false,
-            message: typeof error?.message === "string" ? error.message : "Failed to register. Try again!",
+            message:"Failed to register. Try again!",
         };
     }
 }

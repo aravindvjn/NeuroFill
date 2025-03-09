@@ -11,9 +11,9 @@ const urbanist = Urbanist({
 });
 
 export const metadata: Metadata = {
-  title: "NeuroFill - AI Image Editing",
+  title: "NeuroFill",
   description:
-    "AI-powered image editing with generative fill, background removal, and more.",
+    "AI-powered SaaS web app.",
 };
 
 export default function RootLayout({

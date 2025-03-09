@@ -12,14 +12,14 @@ export async function middleware(req: NextRequest) {
   const { pathname } = req.nextUrl;
 
   if (
-    pathname.startsWith("/_next") || 
-    pathname.startsWith("/api") || 
+    pathname.startsWith("/_next") ||
+    pathname.startsWith("/api") ||
     pathname.startsWith("/public") ||
-    pathname.endsWith(".js") || 
-    pathname.endsWith(".css") || 
-    pathname.endsWith(".ico") || 
+    pathname.endsWith(".js") ||
+    pathname.endsWith(".css") ||
+    pathname.endsWith(".ico") ||
     pathname.endsWith(".png") ||
-    pathname.endsWith(".jpg") || 
+    pathname.endsWith(".jpg") ||
     pathname.endsWith(".jpeg")
   ) {
     return NextResponse.next();
@@ -36,7 +36,12 @@ export async function middleware(req: NextRequest) {
   }
 
   try {
-    await jwtVerify(token, new TextEncoder().encode(JWT_SECRET));
+    const decoded = await jwtVerify(token, new TextEncoder().encode(JWT_SECRET));
+    
+    if(!decoded || !decoded.payload?.userId){
+      throw new Error()
+    }
+    
     return NextResponse.next();
   } catch (error) {
     if (process.env.NODE_ENV !== "production") {
@@ -47,5 +52,5 @@ export async function middleware(req: NextRequest) {
 }
 
 export const config = {
-  matcher: "/((?!_next|api|public|.*\\..*).*)" 
+  matcher: "/((?!_next|api|public|.*\\..*).*)"
 };
