@@ -11,44 +11,29 @@ if (!JWT_SECRET) {
 export async function middleware(req: NextRequest) {
   const { pathname } = req.nextUrl;
 
-  if (
-    pathname.startsWith("/_next") ||
-    pathname.startsWith("/api") ||
-    pathname.startsWith("/public") ||
-    pathname.endsWith(".js") ||
-    pathname.endsWith(".css") ||
-    pathname.endsWith(".ico") ||
-    pathname.endsWith(".png") ||
-    pathname.endsWith(".jpg") ||
-    pathname.endsWith(".jpeg")
-  ) {
-    return NextResponse.next();
-  }
-
-  if (pathname.startsWith("/auth")) {
-    return NextResponse.next();
-  }
-
-  const token = req.cookies.get("token")?.value;
-  if (!token) {
-    console.warn("No token found, redirecting to /auth");
-    return NextResponse.redirect(new URL("/auth", req.url));
-  }
-
-  try {
-    const decoded = await jwtVerify(token, new TextEncoder().encode(JWT_SECRET));
-    
-    if(!decoded || !decoded.payload?.userId){
-      throw new Error()
+  if (pathname.startsWith("/v1/resume")) {
+    const token = req.cookies.get("token")?.value;
+    if (!token) {
+      console.warn("No token found, redirecting to /auth");
+      return NextResponse.redirect(new URL("/auth", req.url));
     }
-    
-    return NextResponse.next();
-  } catch (error) {
-    if (process.env.NODE_ENV !== "production") {
-      console.error("Invalid token:", error);
-    }
-    return NextResponse.redirect(new URL("/auth", req.url));
+  
+    try {
+      const decoded = await jwtVerify(token, new TextEncoder().encode(JWT_SECRET));
+      
+      if(!decoded || !decoded.payload?.userId){
+        throw new Error()
+      }
+      
+      return NextResponse.next();
+    } catch (error) {
+      if (process.env.NODE_ENV !== "production") {
+        console.error("Invalid token:", error);
+      }
+      return NextResponse.redirect(new URL("/auth", req.url));
+    } 
   }
+   return NextResponse.next();
 }
 
 export const config = {

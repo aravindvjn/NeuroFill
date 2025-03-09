@@ -25,7 +25,7 @@ const Welcome = ({currentPage,setCurrentPage}:Props) => {
         if (prev === "Welcome") return "Features";
         if (prev === "Features") return "Steps";
         setIsWelcomeShown();
-        return "AuthPage";
+        return "Home";
       });
     } else {
       setCurrentPage((prev) => {

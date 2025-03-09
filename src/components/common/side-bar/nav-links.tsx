@@ -4,6 +4,7 @@ import {
   MdOutlineDocumentScanner,
   MdPrivacyTip,
 } from "react-icons/md";
+import { RiLoginCircleFill } from "react-icons/ri";
 import { IoBagHandleSharp, IoQrCode } from "react-icons/io5";
 import { FaFileInvoice } from "react-icons/fa";
 
@@ -43,6 +44,11 @@ export const navLinks = [
       label: "Buy Credit",
       link: "/buy-credit",
     },
+    {
+      id: 9,
+      label: "Login",
+      link: "/auth",
+    },
   ];
   
   export const icon = {
@@ -53,6 +59,7 @@ export const navLinks = [
     [navLinks[4].link]: <IoQrCode />,
     [navLinks[5].link]: <MdAccountCircle />,
     [navLinks[6].link]: <IoBagHandleSharp />,
+    [navLinks[7].link]: <RiLoginCircleFill />,
   };
   
   

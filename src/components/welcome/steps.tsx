@@ -47,7 +47,7 @@ const Steps = ({ handleNextPage }: Props) => {
             className="w-[150px] sm:w-[180px] md:w-[230px]"
             onClick={() => handleNextPage(true)}
           >
-            Login <IoArrowForward />
+            Start <IoArrowForward />
           </Button>
         </div>
       </motion.div>

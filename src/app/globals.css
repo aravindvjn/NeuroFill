@@ -16,7 +16,7 @@
   --color-card-border: #E0E0E0;
 }
 
-@media (prefers-color-scheme: dark) {
+/* @media (prefers-color-scheme: dark) {
   @theme {
     --color-background: #121212;
     --color-secondary-background: #3c3c3c;
@@ -32,7 +32,7 @@
     --color-card-text: #EAEAEA;
     --color-card-border: #333;
   }
-}
+} */
 
 
 :root {
