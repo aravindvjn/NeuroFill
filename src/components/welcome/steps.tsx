@@ -19,15 +19,15 @@ const Steps = ({ handleNextPage }: Props) => {
         <ul className="p3 points-ul flex flex-col gap-[10px] text-start">
           <li>
             <Point />
-            Upload Your Image – Drag and drop or choose from your device.
+            Enter Your Details – Provide the necessary inputs for your document.
           </li>
           <li>
             <Point />
-            Edit with AI – Use powerful AI tools to enhance, erase, or modify.
+            AI Assistance – Get AI-powered suggestions and enhancements.
           </li>
           <li>
             <Point />
-            Download & Share – Save your masterpiece and share it anywhere!
+            Download & Use – Save your final document and use it anywhere!
           </li>
         </ul>
       </motion.div>

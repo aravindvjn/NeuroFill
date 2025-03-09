@@ -1,9 +1,6 @@
 import React from "react";
-import { navLinks } from "./nav-links";
-import {  MdAccountCircle, MdHome, MdOutlineDocumentScanner, MdPrivacyTip } from "react-icons/md";
-import { IoBagHandleSharp, IoQrCode } from "react-icons/io5";
 import Link from "next/link";
-import { FaFileInvoice } from "react-icons/fa";
+import { icon } from "./nav-links";
 
 type Props = {
   link: string;
@@ -12,16 +9,6 @@ type Props = {
 };
 
 const SingleNav = ({ label, link, isActive }: Props) => {
-  const icon = {
-    [navLinks[0].link]: <MdHome size={19} />,
-    [navLinks[1].link]: <MdOutlineDocumentScanner />,
-    [navLinks[2].link]: <FaFileInvoice />,
-    [navLinks[3].link]: <MdPrivacyTip />,
-    [navLinks[4].link]: <IoQrCode />,
-    [navLinks[5].link]: <MdAccountCircle />,
-    [navLinks[6].link]: <IoBagHandleSharp />,
-  };
-
   const activeClasses = isActive
     ? "bg-gradient-to-r from-primary to-secondary hover:opacity-90 text-white  "
     : "";
@@ -38,3 +25,5 @@ const SingleNav = ({ label, link, isActive }: Props) => {
 };
 
 export default SingleNav;
+
+

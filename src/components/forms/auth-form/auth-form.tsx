@@ -10,6 +10,7 @@ import { createPendingUser } from "@/lib/actions/user.action";
 import { useActionState } from "react";
 import { loginUser } from "@/lib/actions/login.action";
 import { defaultInputValue } from "./constants";
+import Link from "next/link";
 
 const AuthForm = () => {
   const [isLogin, setIsLogin] = useState<boolean>(true);
@@ -150,6 +151,7 @@ const AuthForm = () => {
         </form>
 
         {renderFooter()}
+        <Link className="my-3 border border-primary px-3 py-2 rounded text-primary hover:bg-primary hover:text-white" href={'/'} >Continue Without Login</Link>
       </motion.div>
     </AnimatePresence>
   );

@@ -47,7 +47,7 @@ Props<any>) => {
         strategy={verticalListSortingStrategy}
       >
         <ul className="my-2 px-[20px]">
-          {input![name].map((value, index) => (
+          {input![name]?.length > 0 ? input![name].map((value, index) => (
             <Draggable
               key={value.id || index}
               value={value}
@@ -56,7 +56,7 @@ Props<any>) => {
               setValue={setValue}
               handleDelete={handleDelete}
             />
-          ))}
+          )) : <p className="text-center">No data yet. </p>}
         </ul>
       </SortableContext>
     </DndContext>

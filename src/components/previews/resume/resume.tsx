@@ -17,7 +17,7 @@ const ResumePreview = ({
 }) => {
   return (
     <Card
-      className={`p-2 sm:p-4 md:p-6 lg:p-8 xl:p-10 resume bg-[#ffffff] resume text-[#000] ${
+      className={`p-2 sm:p-4 md:p-6 lg:p-8 xl:p-10 resume dark:bg-[#ffffff] bg-[#ffffff] resume text-[#000] ${
         noElevation && "!shadow-none !rounded-none"
       }`}
     >

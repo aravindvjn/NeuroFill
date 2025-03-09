@@ -19,28 +19,27 @@ const Features = ({ handleNextPage }: Props) => {
         <ul className="p3 points-ul flex flex-col gap-[10px] text-start">
           <li>
             <Point />
-            Generative Fill – Magically fill missing parts of an image with AI.
+            Resume Maker – Generate professional resumes effortlessly with AI.
           </li>
           <li>
             <Point />
-            AI Object Removal – Erase unwanted objects seamlessly.
+            Privacy Policy & Terms Generator – Create legal policies tailored to
+            your needs.
           </li>
           <li>
             <Point />
-            Background Replacement – Swap backgrounds in just one click.
-          </li>
-
-          <li>
-            <Point />
-            AI Upscaling – Enhance image resolution without losing quality.
+            QR Code Generator – Instantly generate custom QR codes.
           </li>
           <li>
             <Point />
-            Style Transfer – Apply artistic filters powered by AI.
+            Invoice Generator – Create and manage invoices with ease.
           </li>
         </ul>
       </motion.div>
-      <motion.div {...slideAnimation("down")} className="layout center w-full flex-col gap-[10px] text-start">
+      <motion.div
+        {...slideAnimation("down")}
+        className="layout center w-full flex-col gap-[10px] text-start"
+      >
         <div className="flex w-full items-center justify-around gap-[30px]">
           <Button
             className="w-[150px] sm:w-[180px] md:w-[230px]"

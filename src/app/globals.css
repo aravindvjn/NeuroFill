@@ -16,7 +16,7 @@
   --color-card-border: #E0E0E0;
 }
 
-/* @media (prefers-color-scheme: dark) {
+@media (prefers-color-scheme: dark) {
   @theme {
     --color-background: #121212;
     --color-secondary-background: #3c3c3c;
@@ -32,7 +32,7 @@
     --color-card-text: #EAEAEA;
     --color-card-border: #333;
   }
-} */
+}
 
 
 :root {
@@ -174,3 +174,78 @@ body {
 }
 
 
+@import "tailwindcss";
+
+@media print {
+    body * {
+      visibility: hidden;
+    }
+  
+    .print-only,
+    .print-only * {
+      visibility: visible;
+    }
+  
+    .print-only {
+      position: absolute;
+      left: 0;
+      top: 0;
+      padding:30px;
+      width: 100%;
+      background: white !important; 
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+      
+    }
+    
+    .print-only {
+      box-shadow: none !important;
+      border: none !important;
+    }
+  
+    .print-only div,
+    .print-only span,
+    .print-only p {
+      color-adjust: exact;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+
+    .print-only#medium p{
+        @apply !text-[14px]
+    }
+    .print-only#medium h1{
+        @apply !text-2xl !leading-tight
+    }
+
+    .print-only#medium h2{
+        @apply !text-lg !leading-tight
+    }
+
+    .print-only#small p{
+        @apply !text-[12px]
+    }
+    .print-only#small h1{
+        @apply !text-2xl !leading-tight
+    }
+
+    .print-only#small h2{
+        @apply !text-lg !leading-tight
+    }
+
+    .print-only#large p{
+        @apply !text-[16px]
+    }
+    .print-only#large h1{
+        @apply !text-3xl !leading-tight
+    }
+
+    .print-only#large h2{
+        @apply !text-xl !leading-tight
+    }
+    .print-only div{
+      background-color: white;
+    }
+    
+  }
+  

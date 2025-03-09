@@ -32,24 +32,16 @@ import ResumePreview from "@/components/previews/resume/resume";
 import CustomField from "./custom-field";
 
 const ResumeForm = ({ resume }: { resume: ResumeInputType }) => {
-  const [input, setInput] = useState<ResumeInputType>(
- resume || defaultInputValue
-  );
 
+  //States
+  const [input, setInput] = useState<ResumeInputType>(resume || defaultInputValue);
   const [page, setPage] = useState<PageType>("Personal Details");
-  const [experience, setExperience] = useState<ExperienceType>(
-    defaultExperienceValue
-  );
-
-  const [education, setEducation] = useState<EducationType>(
-    defaultEducationValue
-  );
-
-  const [customField, setCustomField] =
-    useState<CustomFieldType>(defaultCustomValue);
-
+  const [experience, setExperience] = useState<ExperienceType>(defaultExperienceValue);
+  const [education, setEducation] = useState<EducationType>(defaultEducationValue);
+  const [customField, setCustomField] = useState<CustomFieldType>(defaultCustomValue);
   const [skill, setSkill] = useState<SkillType>(defaultSkillValue);
 
+  //Handle all inputs
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     setInput((prev: ResumeInputType) => {
       return {
@@ -59,14 +51,14 @@ const ResumeForm = ({ resume }: { resume: ResumeInputType }) => {
     });
   };
 
-  //handle pages
+  //Handle pages
   const handlePage = (next: boolean) => {
     setPage((prev) => {
       return navigator(prev, next);
     });
   };
 
-  //handle change in experience
+  //Handle change in experience
   const handleExperience = (e: ChangeEvent<HTMLInputElement>) => {
     setExperience((prev) => ({
       ...prev,
@@ -75,7 +67,7 @@ const ResumeForm = ({ resume }: { resume: ResumeInputType }) => {
     }));
   };
 
-  //handle change in education
+  //Handle change in education
   const handleEducation = (e: ChangeEvent<HTMLInputElement>) => {
     setEducation((prev) => ({
       ...prev,
@@ -83,7 +75,7 @@ const ResumeForm = ({ resume }: { resume: ResumeInputType }) => {
     }));
   };
 
-  //handle change in education
+  //Handle change in education
   const handleCustomField = (e: ChangeEvent<HTMLInputElement>) => {
     setCustomField((prev) => ({
       ...prev,
@@ -91,7 +83,7 @@ const ResumeForm = ({ resume }: { resume: ResumeInputType }) => {
     }));
   };
 
-  //handle change in skill
+  //Handle change in skill
   const handleSkill = (e: ChangeEvent<HTMLInputElement>) => {
     setSkill((prev) => ({
       ...prev,
@@ -99,12 +91,12 @@ const ResumeForm = ({ resume }: { resume: ResumeInputType }) => {
     }));
   };
 
-  //handle color
+  //Handle color
   const handleChangeColor = (e: ChangeEvent<HTMLInputElement>) => {
     setInput((prev) => ({ ...prev, color: e.target.value }));
   };
 
-  //handle delete
+  //Handle delete
   const handleDelete = (name: DeleteType, index: number) => {
     setInput((prev) => ({
       ...prev,
@@ -145,7 +137,7 @@ const ResumeForm = ({ resume }: { resume: ResumeInputType }) => {
         ...prev,
         customField: [...prev["customField"], customField],
       }));
-      setSkill(defaultSkillValue);
+      setCustomField(defaultCustomValue);
     }
   };
 

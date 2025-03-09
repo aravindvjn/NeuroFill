@@ -1,3 +1,12 @@
+import {
+  MdAccountCircle,
+  MdHome,
+  MdOutlineDocumentScanner,
+  MdPrivacyTip,
+} from "react-icons/md";
+import { IoBagHandleSharp, IoQrCode } from "react-icons/io5";
+import { FaFileInvoice } from "react-icons/fa";
+
 export const navLinks = [
     {
       id: 1,
@@ -35,4 +44,15 @@ export const navLinks = [
       link: "/buy-credit",
     },
   ];
+  
+  export const icon = {
+    [navLinks[0].link]: <MdHome size={19} />,
+    [navLinks[1].link]: <MdOutlineDocumentScanner />,
+    [navLinks[2].link]: <FaFileInvoice />,
+    [navLinks[3].link]: <MdPrivacyTip />,
+    [navLinks[4].link]: <IoQrCode />,
+    [navLinks[5].link]: <MdAccountCircle />,
+    [navLinks[6].link]: <IoBagHandleSharp />,
+  };
+  
   

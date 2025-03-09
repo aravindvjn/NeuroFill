@@ -56,9 +56,7 @@ const Welcome = ({currentPage,setCurrentPage}:Props) => {
         className="layout center flex-col gap-[10px]"
       >
         <p className="p3">
-          Transform your images effortlessly with the power of AI. Whether you
-          need to remove objects, extend backgrounds, or enhance photos,
-          NeuroFill has got you covered!
+        AI-Powered Tools for Resumes, Policies, QR Codes & Invoices - Effortless & Instant!
         </p>
 
         <Button onClick={() => handleNextPage(true)}>

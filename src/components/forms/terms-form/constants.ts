@@ -1,4 +1,4 @@
-export const defaultPrivacyPolicyValues = {
+export const defaultPrivacyPolicyValues =  {
     appName: "",
     websiteURL: "",
     businessType: "",
@@ -10,3 +10,4 @@ export const defaultPrivacyPolicyValues = {
     contactEmail: "",
     childrensPrivacy: "",
 };
+
