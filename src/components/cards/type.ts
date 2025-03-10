@@ -7,7 +7,7 @@ export type CardProps = {
 
 
 export type ResumeType = {
-    thumbnail_url?:string;
-    title:string
-    id:string
+    title: string;
+    id: string;
+    templateId: string | null;
 }

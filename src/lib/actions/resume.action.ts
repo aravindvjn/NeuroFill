@@ -6,7 +6,7 @@ import { currentUserId } from "../get-calls/get-current-user"
 import { ResumeInputType } from "@/components/forms/resume-form/type"
 import { revalidatePath } from "next/cache"
 
-export const createResume = async (title: string,templateId:number) => {
+export const createResume = async (title: string, templateId: number) => {
     title = xss(title)
 
     if (title.length < 3 || title.length > 30) {
@@ -25,7 +25,7 @@ export const createResume = async (title: string,templateId:number) => {
             data: {
                 ...defaultInputValue,
                 title,
-                templateId:templateId.toString(),
+                templateId: templateId.toString(),
                 authorId: userId,
                 experience: { create: [] },
                 education: { create: [] },
@@ -79,7 +79,7 @@ export const getResumeById = async (resumeId: string) => {
 //update resume
 export const updateResume = async (resume: ResumeInputType) => {
     try {
-        console.log(resume.id , resume.authorId)
+        console.log(resume.id, resume.authorId)
         const userId = await currentUserId();
         if (!userId) {
             return { success: false, message: "Please Login first" };
@@ -160,18 +160,22 @@ export const getAllResumes = async () => {
 
         const resumes = await prisma.resume.findMany({
             where: { authorId: userId },
-            select: { id: true, title: true },
+            select: { id: true, title: true, templateId: true },
             orderBy: { updatedAt: "desc" },
         });
 
+        if (!resumes) {
+            throw new Error()
+        }
+
         return { success: true, data: resumes };
-    } catch  {
+    } catch {
         return { success: false, message: "Failed to fetch resumes." };
     }
 };
 
 
-export const deleteResume = async(id:string)=>{
+export const deleteResume = async (id: string) => {
     try {
 
         const userId = await currentUserId();
@@ -180,13 +184,13 @@ export const deleteResume = async(id:string)=>{
         }
 
         await prisma.resume.delete({
-            where:{
+            where: {
                 id,
-                authorId:userId
+                authorId: userId
             }
         })
     } catch (error) {
-        console.log("Error in deleting a resume :",error)
+        console.log("Error in deleting a resume :", error)
         return { success: false, message: "Failed to delete" };
     }
     revalidatePath('/resume')

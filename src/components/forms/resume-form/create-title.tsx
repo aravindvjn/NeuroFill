@@ -5,7 +5,8 @@ import Button from "@/components/ui/button";
 import { createResume } from "@/lib/actions/resume.action";
 import { useRouter } from "next/navigation";
 
-const CreateTitle = () => {
+const CreateTitle = ({templateId}:{templateId:number}) => {
+
   const router = useRouter();
   const [title, setTitle] = useState<string>("");
   const [warning, setWarning] = useState<string>("3 - 20 characters required");
@@ -32,7 +33,7 @@ const CreateTitle = () => {
     setIsPending(true);
     setError(null);
 
-    const res = await createResume(title);
+    const res = await createResume(title,templateId);
 
     if (!res?.success) {
       setError(res?.message || "Failed to create a resume.");

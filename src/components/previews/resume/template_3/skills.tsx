@@ -1,5 +1,4 @@
 import { ResumeInputType } from "@/components/forms/resume-form/type";
-import { convertToRatingPercentage } from "@/lib/helpers/conversion";
 import React from "react";
 import { VscDebugBreakpointData } from "react-icons/vsc";
 

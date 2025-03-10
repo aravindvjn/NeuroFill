@@ -2,37 +2,21 @@ import Link from "next/link";
 import React from "react";
 
 type Props = {
-  positionLeft: boolean;
   id: string;
-  toggelDelete:()=>void
+  toggelDelete: () => void;
 };
-const ResumeButtons = ({ id, positionLeft,toggelDelete }: Props) => {
-
+const ResumeButtons = ({ id, toggelDelete }: Props) => {
+  const buttonClasses = "w-[100px] center hover:bg-white py-1 rounded bg-secondary text-white border border-secondary text-secondary hover:text-secondary";
 
   return (
-    <ul
-      className={`absolute bottom-0 z-50 flex flex-col bg-card-background border border-card-border rounded shadow-md ${
-        positionLeft ? "right-full mr-2" : "left-full ml-2"
-      }`}
-    >
-      
-      
-      <Link
-        className="px-5 py-2 border-b border-b-card-border hover:bg-card-border"
-        href={`/v1/resume/${id}/edit`}
-      >
+    <ul className={`flex card-item flex-col w-full h-full center rounded gap-[20px] `}>
+      <Link className={buttonClasses} href={`/v1/resume/${id}/edit`}>
         Edit
       </Link>
-      <Link
-        className="px-5 py-2 hover:bg-card-border border-b border-b-card-border "
-        href={`/v1/resume/${id}`}
-      >
+      <Link className={buttonClasses} href={`/v1/resume/${id}`}>
         View
       </Link>
-      <button
-        className="px-5 py-2 hover:bg-red-300 cursor-pointer"
-        onClick={toggelDelete}
-      >
+      <button className={`${buttonClasses} hover:!bg-red-700 !bg-red-500 !border-red-500 hover:!text-white`} onClick={toggelDelete}>
         Delete
       </button>
     </ul>

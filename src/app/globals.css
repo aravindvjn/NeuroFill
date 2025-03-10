@@ -174,8 +174,13 @@ body {
   margin: 0;
 }
 
+.Urbanist {
+  font-family: "Urbanist";
+}
 
-@import "tailwindcss";
+.sans-serif {
+  font-family: "sans-serif";
+}
 
 @media print {
   body * {
@@ -219,6 +224,7 @@ body {
   .print-only#medium h1 {
     @apply !text-3xl !leading-tight
   }
+
   .print-only#medium h2 {
     @apply !text-2xl !leading-tight
   }
@@ -234,6 +240,7 @@ body {
   .print-only#small h1 {
     @apply !text-3xl !leading-tight
   }
+
   .print-only#small h2 {
     @apply !text-2xl !leading-tight
   }
@@ -249,6 +256,7 @@ body {
   .print-only#large h1 {
     @apply !text-3xl !leading-tight
   }
+
   .print-only#large h2 {
     @apply !text-4xl !leading-tight
   }
@@ -256,6 +264,7 @@ body {
   .print-only#large h3 {
     @apply !text-xl !leading-tight
   }
+
   .print-only#extralarge p {
     @apply !text-[20px]
   }
@@ -263,6 +272,7 @@ body {
   .print-only#extralarge h1 {
     @apply !text-5xl !leading-tight
   }
+
   .print-only#extralarge h2 {
     @apply !text-4xl !leading-tight
   }
@@ -281,6 +291,6 @@ body {
   display: none;
 }
 
-button{
+button {
   cursor: pointer;
 }

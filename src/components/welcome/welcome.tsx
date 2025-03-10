@@ -13,7 +13,7 @@ type Props = {
   setCurrentPage: React.Dispatch<React.SetStateAction<CurrentPageType>>;
   currentPage: CurrentPageType;
 };
-const Welcome = ({currentPage,setCurrentPage}:Props) => {
+const Welcome = ({setCurrentPage}:Props) => {
 
   //handle next page
   const handleNextPage = () => {

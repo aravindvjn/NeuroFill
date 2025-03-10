@@ -1,7 +1,7 @@
 import { ResumeInputType } from "@/components/forms/resume-form/type";
 import { formatDate } from "@/lib/helpers/date";
 import React from "react";
-import { VscDebugBreakpointData, VscDebugBreakpointLog } from "react-icons/vsc";
+import { VscDebugBreakpointData } from "react-icons/vsc";
 
 
 

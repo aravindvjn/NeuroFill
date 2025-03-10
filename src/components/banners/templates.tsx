@@ -23,7 +23,7 @@ const Templates = () => {
   return (
     <div className="text-center pt-10 md:pt-14 bg-gradient-to-b from-blue-500 to-indigo-800 flex justify-between flex-col rounded-lg text-white overflow-hidden md:rounded-xl">
       <PopUp isOpen={showPopUp} onClose={closePopUp}>
-        <CreateTitle index={index} />
+        <CreateTitle templateId={index} />
       </PopUp>
 
       <div className="px-5">

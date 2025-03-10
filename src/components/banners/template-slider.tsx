@@ -1,6 +1,6 @@
 "use client";
 import Image from "next/image";
-import React, { useState } from "react";
+import React from "react";
 import { IoArrowBack, IoArrowForward } from "react-icons/io5";
 import { motion } from "framer-motion";
 import resume1 from "../../assets/images/resume1.png";
@@ -14,7 +14,7 @@ type Props = {
   selectTemplate?: () => void;
 };
 
-const templates = [resume1, resume2, resume3];
+export const templates = [resume1, resume2, resume3];
 
 const TemplateSlider = ({
   index,
@@ -39,11 +39,11 @@ const TemplateSlider = ({
           const isActive = i === index;
           const prevIndex = (index - 1 + templates.length) % templates.length;
 
-          let scale = isActive ? 1.2 : 0.8;
-          let opacity = isActive ? 1 : 0.5;
-          let zIndex = isActive ? 10 : 5;
-          let xOffset = isActive ? "0%" : i === prevIndex ? "-50%" : "50%";
-          let rotateY = isActive ? 0 : i === prevIndex ? -25 : 25;
+          const scale = isActive ? 1.2 : 0.8;
+          const opacity = isActive ? 1 : 0.5;
+          const zIndex = isActive ? 10 : 5;
+          const xOffset = isActive ? "0%" : i === prevIndex ? "-50%" : "50%";
+          const rotateY = isActive ? 0 : i === prevIndex ? -25 : 25;
 
           return (
             <motion.div

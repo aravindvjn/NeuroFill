@@ -1,8 +1,5 @@
 import { ResumeInputType } from "@/components/forms/resume-form/type";
 import React from "react";
-import { FaPhoneAlt } from "react-icons/fa";
-import { IoLocationOutline } from "react-icons/io5";
-import { MdOutlineMailOutline } from "react-icons/md";
 
 const PersonalDetailsPreview = ({
   firstName,
@@ -12,7 +9,6 @@ const PersonalDetailsPreview = ({
   email,
   phone,
   color,
-  summary,
 }: ResumeInputType) => {
   if (!firstName && !lastName && !profession && !email && !phone && !address)
     return;

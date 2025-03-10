@@ -23,8 +23,6 @@ import {
 import Card from "@/components/ui/card";
 import ProfessionalExperience from "./professional-experience";
 import Summary from "./summary";
-import Link from "next/link";
-import { IoArrowBack } from "react-icons/io5";
 import Education from "./education";
 import Skill from "./skill";
 import Buttons from "./buttons";
@@ -222,7 +220,7 @@ const ResumeForm = ({ resume }: { resume: ResumeInputType }) => {
           </Card>
         </form>
         <div className="relative">
-        <p className="absolute px-2 text-red-500 -top-10 text-[12px] md:text-[14px]">Note : The preview may vary based on your device's screen size, but the final result will match the thumbnail.</p>
+        <p className="absolute px-2 text-red-500 -top-10 text-[12px] md:text-[14px]">Note : The preview may vary based on your device&apos;s screen size, but the final result will match the thumbnail.</p>
           {input.templateId === "0" && <ResumePreview resume={input} />}
           {input.templateId === "1" && <ResumePreview1 resume={input} />}
           {input.templateId === "2" && <ResumePreview2 resume={input} />}

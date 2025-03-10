@@ -1,7 +1,7 @@
 "use client";
 import Resume from "@/components/cards/resume";
 import { CiFileOff } from "react-icons/ci";
-import React, { useState } from "react";
+import React from "react";
 import { ResumeType } from "../cards/type";
 import Templates from "../banners/templates";
 
@@ -10,7 +10,6 @@ type Props = {
 };
 
 const ResumeLandingPage = ({ resumes }: Props) => {
-  const [showOptions, setShowOptions] = useState<string>("");
 
   return (
     <div className="layout flex mb-16 flex-col gap-[20px]">
@@ -26,12 +25,10 @@ const ResumeLandingPage = ({ resumes }: Props) => {
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4  gap-[10px] sm:gap-[20px] cursor-pointer md:gap-[30px]">
         {resumes?.map((resume) => (
           <Resume
-            showOption={showOptions}
-            setShowOption={setShowOptions}
             key={resume.id}
-            thumbnail_url=""
             title={resume.title}
             id={resume.id}
+            templateId={resume.templateId}
           />
         ))}
       </div>

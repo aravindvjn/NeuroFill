@@ -1,4 +1,4 @@
-import { ExperienceType, PageType, ResumeInputType } from "./type"
+import { ExperienceType, PageType } from "./type"
 
 export const defaultInputValue = {
   title: "",
