@@ -22,7 +22,7 @@ export default function RootLayout({
   }
 
   return (
-    <section className="flex pt-[60px] sm:pt-0">
+    <section className="flex pt-[50px] sm:pt-0">
       <ResponsiveSideBar />
       <section className="w-full">{children}</section>
     </section>

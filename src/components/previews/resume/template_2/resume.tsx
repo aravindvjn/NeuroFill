@@ -2,13 +2,13 @@ import { ResumeInputType } from "@/components/forms/resume-form/type";
 import Card from "@/components/ui/card";
 import React from "react";
 import PersonalDetailsPreview from "./personal-details";
-import SummaryPreview from "./summary";
 import ExperiencePreview from "./experience";
 import EducationPreview from "./education";
 import SkillPreview from "./skills";
 import CustomFieldPreview from "./custom-field";
-import './resume.css'
-const ResumePreview = ({
+import '../resume.css'
+
+const ResumePreview2 = ({
   resume,
   noElevation,
 }: {
@@ -22,7 +22,6 @@ const ResumePreview = ({
       }`}
     >
       <PersonalDetailsPreview {...resume} />
-      <SummaryPreview {...resume} />
       <ExperiencePreview {...resume} />
       <EducationPreview {...resume} />
       <SkillPreview {...resume} />
@@ -31,4 +30,4 @@ const ResumePreview = ({
   );
 };
 
-export default ResumePreview;
+export default ResumePreview2;

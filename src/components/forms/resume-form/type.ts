@@ -82,7 +82,10 @@ export type SkillProps = {
     skill: SkillType
 };
 
-
+export type TemplateProps = {
+    input: ResumeInputType
+    setInput: React.Dispatch<React.SetStateAction<ResumeInputType>>;
+}
 export type DeleteType = "experience" | "education" | "skill" | "customField"
 
 export type PageType = "Personal Details" | "Professional Experience" | "Skills" | "Summary" | "Education" | "Custom Fields"

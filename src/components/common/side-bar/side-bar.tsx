@@ -25,7 +25,7 @@ const SideBar = () => {
   return (
     <div className="flex flex-col p-[20px] sm:p-[30px] border-r border-secondary min-h-dvh justify-between shadow-md shadow-border sm:w-[270px] md:w-[290px] lg:w-[310px]">
       <div>
-        <div className="pb-2 ">
+        <div className="pb-2 ml-1">
           <BrandName size={25} />
         </div>
 

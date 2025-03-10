@@ -83,7 +83,7 @@ const Buttons = ({ addItems, handlePage, page, input }: Props) => {
           type="button"
           className="w-fit !rounded !bg-blue-500"
         >
-          Add
+          Add to resume
         </Button>
       )}
     </div>

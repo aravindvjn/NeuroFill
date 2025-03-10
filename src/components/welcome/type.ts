@@ -1,1 +1,1 @@
-export type CurrentPageType = "Welcome" | "Features" | "Steps" | "Home"
+export type CurrentPageType = "Welcome" | "Home"

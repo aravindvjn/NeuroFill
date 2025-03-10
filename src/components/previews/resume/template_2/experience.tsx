@@ -1,7 +1,7 @@
 import { ResumeInputType } from "@/components/forms/resume-form/type";
 import { formatDate } from "@/lib/helpers/date";
 import React from "react";
-import { VscDebugBreakpointLog } from "react-icons/vsc";
+import { VscDebugBreakpointData, VscDebugBreakpointLog } from "react-icons/vsc";
 
 
 
@@ -12,14 +12,11 @@ const ExperiencePreview: React.FC<{ experience: ResumeInputType["experience"],co
 
   return (
     <div className="mt-2">
-      <div className="bg-[#f3f4f6] my-1 py-1">
-        <h2 style={{color}} className="text-center font-bold underline text-lg">EXPERIENCE</h2>
-      </div>
+        <h3 style={{color}} className="font-semibold underline-offset-2 my-1 underline text-lg">EXPERIENCE</h3>
       {experience.map((exp, index) => (
         <div className="mb-4 text-[14px]" key={exp.id || index}>
           <div className="flex justify-between items-center border-b border-dotted border-[#9ca3af] pb-1">
-            <p style={{color}} className="flex items-center gap-2 font-semibold text-[16px]">
-              <VscDebugBreakpointLog  />
+            <p style={{color}} className="flex items-center gap-2 font-semibold text-[16px]"><VscDebugBreakpointData/>
               {exp.position} at {exp.companyName}
             </p>
             <p className="italic text-[#6b7280]">

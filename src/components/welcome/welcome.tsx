@@ -7,9 +7,7 @@ import Button from "../ui/button";
 import { slideAnimation } from "@/lib/helpers/motion";
 import BrandName from "../ui/brand-name";
 import { IoArrowForward } from "react-icons/io5";
-import Features from "./features";
 import { containerClasses } from "./common";
-import Steps from "./steps";
 
 type Props = {
   setCurrentPage: React.Dispatch<React.SetStateAction<CurrentPageType>>;
@@ -18,28 +16,10 @@ type Props = {
 const Welcome = ({currentPage,setCurrentPage}:Props) => {
 
   //handle next page
-  const handleNextPage = (next: boolean) => {
-    //if next
-    if (next) {
-      setCurrentPage((prev) => {
-        if (prev === "Welcome") return "Features";
-        if (prev === "Features") return "Steps";
-        setIsWelcomeShown();
-        return "Home";
-      });
-    } else {
-      setCurrentPage((prev) => {
-        if (prev === "Features") return "Welcome";
-        if (prev === "Steps") return "Features";
-        return "Welcome";
-      });
-    }
+  const handleNextPage = () => {
+    setIsWelcomeShown();
+   setCurrentPage("Home")
   };
-
-  if (currentPage === "Features")
-    return <Features handleNextPage={handleNextPage} />;
-
-  if (currentPage === "Steps") return <Steps handleNextPage={handleNextPage} />;
 
   return (
     <div className={containerClasses}>
@@ -59,7 +39,7 @@ const Welcome = ({currentPage,setCurrentPage}:Props) => {
         AI-Powered Tools for Resumes, Policies, QR Codes & Invoices - Effortless & Instant!
         </p>
 
-        <Button onClick={() => handleNextPage(true)}>
+        <Button onClick={handleNextPage}>
           Get Started <IoArrowForward />
         </Button>
       </motion.div>

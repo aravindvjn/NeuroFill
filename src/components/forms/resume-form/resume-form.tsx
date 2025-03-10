@@ -28,17 +28,27 @@ import { IoArrowBack } from "react-icons/io5";
 import Education from "./education";
 import Skill from "./skill";
 import Buttons from "./buttons";
-import ResumePreview from "@/components/previews/resume/resume";
+import ResumePreview from "@/components/previews/resume/template_1/resume";
 import CustomField from "./custom-field";
+import Template from "./template";
+import Header from "@/components/common/header";
+import ResumePreview2 from "@/components/previews/resume/template_2/resume";
+import ResumePreview1 from "@/components/previews/resume/template_3/resume";
 
 const ResumeForm = ({ resume }: { resume: ResumeInputType }) => {
-
   //States
-  const [input, setInput] = useState<ResumeInputType>(resume || defaultInputValue);
+  const [input, setInput] = useState<ResumeInputType>(
+    resume || defaultInputValue
+  );
   const [page, setPage] = useState<PageType>("Personal Details");
-  const [experience, setExperience] = useState<ExperienceType>(defaultExperienceValue);
-  const [education, setEducation] = useState<EducationType>(defaultEducationValue);
-  const [customField, setCustomField] = useState<CustomFieldType>(defaultCustomValue);
+  const [experience, setExperience] = useState<ExperienceType>(
+    defaultExperienceValue
+  );
+  const [education, setEducation] = useState<EducationType>(
+    defaultEducationValue
+  );
+  const [customField, setCustomField] =
+    useState<CustomFieldType>(defaultCustomValue);
   const [skill, setSkill] = useState<SkillType>(defaultSkillValue);
 
   //Handle all inputs
@@ -106,33 +116,25 @@ const ResumeForm = ({ resume }: { resume: ResumeInputType }) => {
 
   //Add experience, skils, educations, custom field
   const addItems = () => {
-
     if (page === pages[2]) {
-
       setInput((prev) => ({
         ...prev,
         experience: [...prev["experience"], experience],
       }));
       setExperience(defaultExperienceValue);
-
     } else if (page === pages[3]) {
-
       setInput((prev) => ({
         ...prev,
         education: [...prev["education"], education],
       }));
       setEducation(defaultEducationValue);
-
     } else if (page === pages[4]) {
-
       setInput((prev) => ({
         ...prev,
         skill: [...prev["skill"], skill],
       }));
       setSkill(defaultSkillValue);
-
     } else if (page === pages[5]) {
-      
       setInput((prev) => ({
         ...prev,
         customField: [...prev["customField"], customField],
@@ -148,24 +150,17 @@ const ResumeForm = ({ resume }: { resume: ResumeInputType }) => {
   };
 
   return (
-    <div className="layout">
-      <p className="p1 mb-4 font-semibold text-center">Create Resume</p>
-
+    <div className="layout mt-[60px]">
+      <Header title="Create Resume" />
       <div className="horizontally-center">
-        <Link
-          href={"/resume"}
-          className="horizontally-center rounded border-text border-2 px-2 py-1"
-        >
-          <IoArrowBack /> Back
-        </Link>
-
         <PickColor
           color={input?.color || "black"}
           handleChangeColor={handleChangeColor}
         />
+        <Template input={input} setInput={setInput} />
       </div>
 
-      <section className="grid mt-[20px] md:grid-cols-2 gap-[20px]">
+      <section className="grid mt-[20px] md:grid-cols-2 gap-[50px] md:gap-[20px]">
         <form>
           <Card>
             <p className="p2 font-bold pb-2">{page}</p>
@@ -226,8 +221,12 @@ const ResumeForm = ({ resume }: { resume: ResumeInputType }) => {
             />
           </Card>
         </form>
-
-        <ResumePreview resume={input} />
+        <div className="relative">
+        <p className="absolute px-2 text-red-500 -top-10 text-[12px] md:text-[14px]">Note : The preview may vary based on your device's screen size, but the final result will match the thumbnail.</p>
+          {input.templateId === "0" && <ResumePreview resume={input} />}
+          {input.templateId === "1" && <ResumePreview1 resume={input} />}
+          {input.templateId === "2" && <ResumePreview2 resume={input} />}
+        </div>
       </section>
     </div>
   );

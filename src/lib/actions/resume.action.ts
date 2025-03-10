@@ -4,8 +4,9 @@ import { prisma } from "../db"
 import { defaultInputValue } from "@/components/forms/resume-form/constants"
 import { currentUserId } from "../get-calls/get-current-user"
 import { ResumeInputType } from "@/components/forms/resume-form/type"
+import { revalidatePath } from "next/cache"
 
-export const createResume = async (title: string) => {
+export const createResume = async (title: string,templateId:number) => {
     title = xss(title)
 
     if (title.length < 3 || title.length > 30) {
@@ -24,6 +25,7 @@ export const createResume = async (title: string) => {
             data: {
                 ...defaultInputValue,
                 title,
+                templateId:templateId.toString(),
                 authorId: userId,
                 experience: { create: [] },
                 education: { create: [] },
@@ -167,3 +169,25 @@ export const getAllResumes = async () => {
         return { success: false, message: "Failed to fetch resumes." };
     }
 };
+
+
+export const deleteResume = async(id:string)=>{
+    try {
+
+        const userId = await currentUserId();
+        if (!userId) {
+            return { success: false, message: "Please log in first." };
+        }
+
+        await prisma.resume.delete({
+            where:{
+                id,
+                authorId:userId
+            }
+        })
+    } catch (error) {
+        console.log("Error in deleting a resume :",error)
+        return { success: false, message: "Failed to delete" };
+    }
+    revalidatePath('/resume')
+}

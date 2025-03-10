@@ -3,7 +3,10 @@ import React, { useState, useRef, useEffect } from "react";
 import type { ResumeType } from "./type";
 import Image from "next/image";
 import { BsThreeDotsVertical } from "react-icons/bs";
-import Link from "next/link";
+import ResumeButtons from "./resume-buttons";
+import PopUp from "../ui/pop-up";
+import { deleteResume } from "@/lib/actions/resume.action";
+import toast from "react-hot-toast";
 
 const Resume = ({
   thumbnail_url,
@@ -17,7 +20,27 @@ const Resume = ({
 }) => {
   const [positionLeft, setPositionLeft] = useState(false);
   const optionsRef = useRef<HTMLDivElement>(null);
+  const [showDelete, setShowDelete] = useState<boolean>(false);
+  const [isLoading,setIsLoading] = useState<boolean>(false)
 
+  const toggleShowDelete = () => {
+    setShowDelete(prev=>!prev);
+  };
+
+  //handle delete operation
+  const handleDelete = async()=>{
+    setIsLoading(true)
+    const res = await deleteResume(id)
+    setIsLoading(false)
+
+    if(res?.success){
+      toast.success("Resume succefully deleted.")
+    }else{
+      toast.success(res?.message || "Failed to delete resume.")
+    }
+  }
+
+  //Postion the options dynamically
   useEffect(() => {
     if (optionsRef.current) {
       const { right } = optionsRef.current.getBoundingClientRect();
@@ -32,7 +55,24 @@ const Resume = ({
   }, [showOption]);
 
   return (
-    <div className="border-[2px] rounded-lg hover:opacity-90  border-secondary">
+    <div className="border-[2px] rounded-lg   border-indigo-600">
+
+      <PopUp isOpen={showDelete} onClose={toggleShowDelete}>
+        <p className="text-lg font-semibold">Are you sure?</p>
+        <p className="text-sm text-gray-500">This action cannot be undone.</p>
+        <div className="mt-4 flex justify-end gap-2">
+          <button
+            className="px-4 py-2 bg-gray-300 rounded hover:bg-gray-400"
+            onClick={toggleShowDelete}
+          >
+            Cancel
+          </button>
+          <button onClick={handleDelete} className="px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700">
+            {isLoading ? "Deleting..." : "Confirm Delete"}
+          </button>
+        </div>
+      </PopUp>
+
       <Image
         className="card-child aspect-square rounded-t-lg"
         height={500}
@@ -40,6 +80,7 @@ const Resume = ({
         src={thumbnail_url || "/images/resume-maker.png"}
         alt={"resume"}
       />
+
       <div className="px-3 h-[40px] bg-card-background rounded-b-lg border-t-[2px] border-secondary flex items-center justify-between w-full">
         <p className="p3 font-semibold line-clamp-1">{title || "Untitled"}</p>
         <div
@@ -50,24 +91,7 @@ const Resume = ({
           <BsThreeDotsVertical />
 
           {showOption === id && (
-            <ul
-              className={`absolute top-0 z-50 flex flex-col bg-card-background border border-card-border rounded shadow-md ${
-                positionLeft ? "right-full mr-2" : "left-full ml-2"
-              }`}
-            >
-              <Link
-                className="px-5 py-2 border-b border-b-card-border hover:bg-card-border"
-                href={`/v1/resume/${id}/edit`}
-              >
-                Edit
-              </Link>
-              <Link
-                className="px-5 py-2 hover:bg-card-border"
-                href={`/v1/resume/${id}`}
-              >
-                View
-              </Link>
-            </ul>
+            <ResumeButtons id={id} toggelDelete={toggleShowDelete} positionLeft={positionLeft} />
           )}
         </div>
       </div>

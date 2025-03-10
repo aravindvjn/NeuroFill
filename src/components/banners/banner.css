@@ -1,0 +1,31 @@
+.background {
+    position: relative;
+}
+
+.ball {
+    position: absolute;
+    background-color: rgba(255, 255, 255, 0.4);
+    border-radius: 50%;
+    filter: blur(1.5px);
+    animation: floatBall linear infinite;
+}
+
+.animate {
+    position: absolute;
+    animation: floatBall linear infinite;
+    filter: blur(1px);
+}
+
+@keyframes floatBall {
+    0% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-15px);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
+}

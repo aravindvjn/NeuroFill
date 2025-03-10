@@ -2,7 +2,7 @@ import React, { ButtonHTMLAttributes } from "react";
 import clsx from "clsx";
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
-  variant?: "primary" | "secondary" | "danger" | "normal"; 
+  variant?: "primary" | "secondary" | "danger" | "normal" | "white"; 
   className?: string;
   isLoading?:boolean
 }
@@ -17,6 +17,7 @@ const Button: React.FC<ButtonProps> = ({ children,isLoading, variant = "primary"
           "secondary-button h-[40px]": variant === "secondary",
           "bg-red-600 text-white hover:bg-red-700": variant === "danger",
           "bg-blue-500 text-white hover:bg-blue-700 h-[30px]": variant === "normal",
+          "bg-white text-primary font-semibold rounded-full shadow-lg hover:bg-gray-200 h-[30px] transition": variant === "white",
         },
         className
       )}

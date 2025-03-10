@@ -1,13 +1,17 @@
 "use client";
-import ResumePreview from "../previews/resume/resume";
+import ResumePreview from "../previews/resume/template_1/resume";
 import { ResumeInputType } from "@/components/forms/resume-form/type";
 import Link from "next/link";
 import React, { ChangeEvent, useRef, useState } from "react";
 import { IoHome } from "react-icons/io5";
+import ResumePreview2 from "../previews/resume/template_2/resume";
+import ResumePreview3 from "../previews/resume/template_3/resume";
+import { dummyResume } from "../previews/resume/dummy";
 
-type SizeType = "small" | "medium" | "large";
+type SizeType = "small" | "medium" | "large" | "extralarge";
 
 const ResumePage = ({ resume }: { resume: ResumeInputType }) => {
+  resume = dummyResume
   const pdfRef = useRef<HTMLDivElement>(null);
   const [isPaid, setIsPaid] = useState<boolean>(false);
   const [size, setSize] = useState<SizeType>("medium");
@@ -47,7 +51,7 @@ const ResumePage = ({ resume }: { resume: ResumeInputType }) => {
         className="border items-center bg-white shadow-lg w-full max-w-3xl text-lg"
       >
         <div id={size} className={isPaid ? "print-only" : ""}>
-          <ResumePreview noElevation resume={resume} />
+          <ResumePreview3 noElevation resume={resume} />
         </div>
       </div>
      
@@ -63,6 +67,7 @@ const ResumePage = ({ resume }: { resume: ResumeInputType }) => {
             <option>small</option>
             <option defaultChecked>medium</option>
             <option>large</option>
+            <option>extralarge</option>
           </select>
         </div>
 

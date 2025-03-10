@@ -36,16 +36,18 @@ const CreateTitle = () => {
 
     if (!res?.success) {
       setError(res?.message || "Failed to create a resume.");
+      setIsPending(false);
     } else {
       if (!res?.id) return;
       router.push(`/v1/resume/${res?.id}/edit`);
     }
-
-    setIsPending(false);
   };
 
   return (
-    <form onSubmit={handleSubmit} className="flex flex-col gap-[10px]">
+    <form
+      onSubmit={handleSubmit}
+      className="flex flex-col gap-[10px] text-text text-start"
+    >
       <p className="p2 font-bold">Create new resume</p>
 
       <Input

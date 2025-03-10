@@ -1,7 +1,7 @@
-import { ExperienceType, PageType } from "./type"
+import { ExperienceType, PageType, ResumeInputType } from "./type"
 
 export const defaultInputValue = {
-  title:"",
+  title: "",
   address: "",
   email: "",
   experience: [],
@@ -44,10 +44,10 @@ export const defaultSkillValue = {
 export const defaultCustomValue = {
   heading: "",
   subheading: "",
-  content:''
+  content: ''
 }
 
-export const skillsRatings = ["","Beginner", "Intermediate", "Advanced", "Expert"]
+export const skillsRatings = ["", "Beginner", "Intermediate", "Advanced", "Expert"]
 
 export const pages: PageType[] = [
   "Personal Details",
@@ -71,8 +71,8 @@ export const navigator = (prev: PageType, next: boolean) => {
 
 
 
-export const createExperiencePrompt = (experience:ExperienceType) =>{
-  return  `Generate a professional experience summary in JSON format based on the given details:
+export const createExperiencePrompt = (experience: ExperienceType) => {
+  return `Generate a professional experience summary in JSON format based on the given details:
     
   - Position: ${experience?.position}
   - Company name :${experience?.companyName}
@@ -87,3 +87,4 @@ export const createExperiencePrompt = (experience:ExperienceType) =>{
     
   for all levels`
 }
+

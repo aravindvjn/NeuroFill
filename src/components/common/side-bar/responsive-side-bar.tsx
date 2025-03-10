@@ -15,9 +15,9 @@ const ResponsiveSideBar = () => {
       <div className="hidden sm:flex">
         <div className="sm:w-[270px] md:w-[290px] lg:w-[310px]"></div>
 
-        <div className="fixed bg-background left-0 top-0">
+        <motion.div {...slideAnimation("left")} className="fixed bg-background left-0 top-0">
           <SideBar />
-        </div>
+        </motion.div>
       </div>
       <AnimatePresence>
         <div className="flex sm:hidden">
