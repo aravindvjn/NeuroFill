@@ -11,6 +11,7 @@ import { useActionState } from "react";
 import { loginUser } from "@/lib/actions/login.action";
 import { defaultInputValue } from "./constants";
 import Link from "next/link";
+import ForgotPasswordButton from "./forgot-pass-button";
 
 const AuthForm = () => {
   const [isLogin, setIsLogin] = useState<boolean>(true);
@@ -20,7 +21,7 @@ const AuthForm = () => {
   const initialState = {
     message: "",
     success: false,
-    data:defaultInputValue,
+    data: defaultInputValue,
   };
 
   // Server action state
@@ -97,10 +98,10 @@ const AuthForm = () => {
 
   // Render footer
   const renderFooter = () => (
-    <div>
+    <div className="mt-2">
       {isLogin ? "Does not have an account?" : "Already have an account?"}{" "}
       <button
-        className="text-primary cursor-pointer font-semibold"
+        className="text-blue-600 hover:underline "
         onClick={toggleLogin}
       >
         {isLogin ? "Sign Up" : "Sign In"}
@@ -151,7 +152,14 @@ const AuthForm = () => {
         </form>
 
         {renderFooter()}
-        <Link className="my-3 border border-primary px-3 py-2 rounded text-primary hover:bg-primary hover:text-white" href={'/'} >Continue Without Login</Link>
+        {isLogin && <ForgotPasswordButton />}
+
+        <Link
+          className="my-3 border border-primary text-center max-w-[340px] w-full  py-2 rounded text-primary hover:bg-primary hover:text-white"
+          href={"/"}
+        >
+          Continue Without Login
+        </Link>
       </motion.div>
     </AnimatePresence>
   );

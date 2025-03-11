@@ -8,7 +8,6 @@ import ResumePreview2 from "../previews/resume/template_2/resume";
 import ResumePreview1 from "../previews/resume/template_3/resume";
 import toast from "react-hot-toast";
 import { FontFamilyType, SizeType } from "./type";
-import { fontFamilyValues } from "./constants";
 import SelectFontFamily from "../forms/resume-form/select-font";
 
 const ResumePage = ({ resume }: { resume: ResumeInputType }) => {

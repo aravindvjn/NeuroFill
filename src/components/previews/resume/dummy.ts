@@ -8,6 +8,7 @@ export const dummyResume: ResumeInputType = {
   address: "456 Elm Street, San Francisco, CA",
   phone: "+1 987 654 3210",
   email: "michael.smith@example.com",
+  fontFamily:"sans-serif",
   summary:
     "Innovative full-stack developer with 6+ years of experience designing and building modern web applications. Skilled in React, Next.js, Node.js, and PostgreSQL.",
   color: "#2ecc71",

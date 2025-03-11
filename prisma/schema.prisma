@@ -21,7 +21,7 @@ model User {
   profilePic       String?
   planId           String?
   password         String
-  resetToken       String?
+  resetToken       String?        @unique
   resetTokenExpiry DateTime?
   creditBalance    Float          @default(0)
   transactions     Transactions[]
