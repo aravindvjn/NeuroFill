@@ -1,3 +1,4 @@
+import { FontFamilyType } from "@/components/common/type";
 import React from "react";
 
 export type ResumeInputType = {
@@ -17,7 +18,7 @@ export type ResumeInputType = {
     authorId?: string;
     templateId?: string;
     customField:CustomFieldType[]
-
+    fontFamily:FontFamilyType
 }
 export type CustomFieldType = {
     id?:string;

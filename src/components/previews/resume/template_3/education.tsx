@@ -16,9 +16,9 @@ const EducationPreview = ({
 
   return (
     <div className="mt-4">
-      <h2 style={{ color }} className="font-bold my-1 text-lg">
+      <h3 style={{ color }} className="font-semibold my-1">
         EDUCATION
-      </h2>
+      </h3>
 
       {education.map((edu, index) => (
         <div className="mb-4 text-[14px]" key={edu.id || index}>
@@ -30,9 +30,9 @@ const EducationPreview = ({
               {edu.degree} {edu.degree && edu.major && "in"} {edu.major}
             </p>
           )}
-          <p className="text-[#6b7280] pl-4">{edu.universityName}</p>
+          <p className="text-[#4b4d51] pl-4">{edu.universityName}</p>
           {edu?.startDate && edu.endDate && (
-            <p className="italic text-[#6b7280] pl-4">
+            <p className=" text-[#4b4d51] pl-4">
               ({formatDate(edu.startDate)} - {formatDate(edu.endDate)})
             </p>
           )}

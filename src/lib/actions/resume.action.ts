@@ -101,6 +101,7 @@ export const updateResume = async (resume: ResumeInputType) => {
                 summary: resume.summary,
                 color: resume.color,
                 templateId: resume.templateId,
+                fontFamily:resume.fontFamily,
                 experience: {
                     deleteMany: {},
                     create: resume.experience.map(exp => ({

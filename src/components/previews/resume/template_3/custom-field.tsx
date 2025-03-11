@@ -18,17 +18,17 @@ const CustomFieldPreview = ({
       {customField?.map((field, index) => (
         <div key={index} className="mt-4">
           {field?.heading && (
-              <h2
+              <h3
                 style={{ color }}
-                className="my-2 font-bold text-lg uppercase"
+                className="my-2 font-semibold  uppercase"
               >
                 {field?.heading}
-              </h2>
+              </h3>
           )}
           <div>
             <p
               style={{ color }}
-              className="flex items-center gap-2 font-semibold text-[16px]"
+              className="flex items-center gap-2 font-semibold"
             >
               <VscDebugBreakpointLog />
               {field?.subheading}

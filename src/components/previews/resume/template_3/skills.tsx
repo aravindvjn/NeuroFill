@@ -15,12 +15,12 @@ const SkillPreview = ({
 
   return (
     <div className="mt-4">
-        <h2
+        <h3
           style={{ color }}
-          className=" font-bold my-1"
+          className="font-semibold my-1"
         >
           SKILLS
-        </h2>
+        </h3>
 
       <ul className="flex flex-col gap-[5px] ">
         {skill.map((singleSkill) => (

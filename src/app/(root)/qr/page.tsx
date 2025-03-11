@@ -1,6 +1,7 @@
-import { cardsItems } from '@/components/cards/contants'
-import Heading from '@/components/common/heading'
-import React from 'react'
+import { cardsItems } from "@/components/cards/contants";
+import Heading from "@/components/common/heading";
+import QRForm from "@/components/forms/qr-form/qr-form";
+import React from "react";
 
 const page = () => {
   return (
@@ -9,8 +10,9 @@ const page = () => {
         subheading={cardsItems[2]?.subheading}
         heading={cardsItems[2]?.heading}
       />
+      <QRForm />
     </div>
-  )
-}
+  );
+};
 
-export default page
+export default page;

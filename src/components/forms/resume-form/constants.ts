@@ -11,7 +11,8 @@ export const defaultInputValue = {
   profession: "",
   summary: '',
   education: [],
-  skill: []
+  skill: [],
+  fontFamily:"sans-serif"
 }
 
 

@@ -1,16 +1,30 @@
 @import "tailwindcss";
 
+
 .resume p {
-    @apply text-[9px] sm:text-[10px] md:text-[12px] lg:text-[13px]
+    @apply text-[10px] sm:text-[11px] md:text-[12px] lg:text-[14px];
 }
 
 .resume h1 {
-    @apply text-[15px] sm:text-[17px] md:text-[18px] lg:text-[20px] leading-tight; 
+    @apply text-[18px] sm:text-[20px] md:text-[22px] lg:text-[24px] leading-snug;
 }
 
 .resume h2 {
-    @apply text-[13px] sm:text-[10px] md:text-[16px] lg:text-[18px] leading-tight; 
+    @apply text-[16px] sm:text-[17px] md:text-[18px] lg:text-[20px] leading-snug;
 }
+
 .resume h3 {
-    @apply text-[12px] sm:text-[13px] md:text-[14px] lg:text-[15px] leading-tight; 
+    @apply text-[14px] sm:text-[15px] md:text-[16px] lg:text-[18px] leading-snug;
+}
+
+.resume h4 {
+    @apply text-[13px] sm:text-[14px] md:text-[15px] lg:text-[16px] leading-snug;
+}
+
+.resume h5 {
+    @apply text-[12px] sm:text-[13px] md:text-[14px] lg:text-[15px] leading-snug;
+}
+
+.resume h6 {
+    @apply text-[11px] sm:text-[12px] md:text-[13px] lg:text-[14px] leading-snug;
 }

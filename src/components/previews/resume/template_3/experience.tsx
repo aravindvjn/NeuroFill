@@ -12,11 +12,11 @@ const ExperiencePreview: React.FC<{ experience: ResumeInputType["experience"],co
 
   return (
     <div className="mt-2">
-        <h2 style={{color}} className="font-bold my-2 text-lg">EXPERIENCE</h2>
+        <h3 style={{color}} className="font-semibold my-2">EXPERIENCE</h3>
       {experience.map((exp, index) => (
-        <div className="mb-4 text-[14px]" key={exp.id || index}>
+        <div className="mb-4 " key={exp.id || index}>
           <div className="flex justify-between items-center pb-1">
-            <p style={{color}} className="flex items-center gap-2 font-semibold text-[16px]"><VscDebugBreakpointData/>
+            <p style={{color}} className="flex items-center gap-2 font-semibold "><VscDebugBreakpointData/>
               {exp.position} at {exp.companyName}
             </p>
           </div>

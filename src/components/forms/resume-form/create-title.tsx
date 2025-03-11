@@ -4,6 +4,7 @@ import Input from "./input";
 import Button from "@/components/ui/button";
 import { createResume } from "@/lib/actions/resume.action";
 import { useRouter } from "next/navigation";
+import toast from "react-hot-toast";
 
 const CreateTitle = ({templateId}:{templateId:number}) => {
 
@@ -38,6 +39,7 @@ const CreateTitle = ({templateId}:{templateId:number}) => {
     if (!res?.success) {
       setError(res?.message || "Failed to create a resume.");
       setIsPending(false);
+      toast.error("Please login first.")
     } else {
       if (!res?.id) return;
       router.push(`/v1/resume/${res?.id}/edit`);

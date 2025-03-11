@@ -25,8 +25,8 @@ const Buttons = ({ addItems, handlePage, page, input }: Props) => {
       router.push(`/v1/resume/${res.id}`);
     } else {
       toast.error(res.message || "Failed to save resume.");
+      setIsLoading(false);
     }
-    setIsLoading(false);
   };
 
   if (page === pages[0]) {

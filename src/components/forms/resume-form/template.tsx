@@ -30,7 +30,7 @@ const Template = ({input,setInput}:TemplateProps) => {
 
       <button onClick={()=>setShow(true)} className="horizontally-center px-3 py-1 rounded border-2 border-primary text-primary">
         <HiViewGrid />
-        Change Template
+        Templates
       </button>
     </>
   );

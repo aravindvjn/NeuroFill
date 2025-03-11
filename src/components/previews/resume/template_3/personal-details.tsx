@@ -19,7 +19,7 @@ const PersonalDetailsPreview = ({
         {firstName} {lastName}
       </h1>
       <div className="w-[100px] border-b"></div>
-      <h3 className="text-[14px] md:text-[15px] mb-1 font-light">{profession}</h3>
+      <h5 className="text-[14px] md:text-[15px] mb-1 font-light">{profession}</h5>
     </div>
   );
 };

@@ -31,7 +31,7 @@ const Resume = ({ title, id, templateId }: ResumeType) => {
   };
 
   return (
-    <div className="relative border-[1px] rounded-lg card">
+    <div className="relative  rounded-lg card">
       <ResumeButtons id={id} toggelDelete={toggleShowDelete} />
 
       <PopUp isOpen={showDelete} onClose={toggleShowDelete}>

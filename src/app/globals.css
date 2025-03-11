@@ -179,11 +179,11 @@ body {
 }
 
 .sans-serif {
-  font-family: "sans-serif" ;
+  font-family: "sans-serif";
 }
 
-.Times-New-Roman{
-  font-family: 'Times New Roman' ;
+.Times-New-Roman {
+  font-family: 'Times New Roman', Times, serif;
 }
 
 .Arial {
@@ -264,95 +264,115 @@ body {
   .print-only#small p {
     @apply !text-[12px];
   }
-  
+
   .print-only#small h1 {
     @apply !text-[24px] !leading-tight;
   }
+
   .print-only#small h2 {
     @apply !text-[20px] !leading-tight;
   }
+
   .print-only#small h3 {
     @apply !text-[18px] !leading-tight;
   }
+
   .print-only#small h4 {
     @apply !text-[16px] !leading-tight;
   }
+
   .print-only#small h5 {
     @apply !text-[14px] !leading-tight;
   }
+
   .print-only#small h6 {
     @apply !text-[12px] !leading-tight;
   }
-  
+
   .print-only#medium p {
     @apply !text-[14px];
   }
-  
+
   .print-only#medium h1 {
     @apply !text-[28px] !leading-tight;
   }
+
   .print-only#medium h2 {
     @apply !text-[24px] !leading-tight;
   }
+
   .print-only#medium h3 {
     @apply !text-[20px] !leading-tight;
   }
+
   .print-only#medium h4 {
     @apply !text-[18px] !leading-tight;
   }
+
   .print-only#medium h5 {
     @apply !text-[16px] !leading-tight;
   }
+
   .print-only#medium h6 {
     @apply !text-[14px] !leading-tight;
   }
-  
+
   .print-only#large p {
     @apply !text-[16px];
   }
-  
+
   .print-only#large h1 {
     @apply !text-[36px] !leading-tight;
   }
+
   .print-only#large h2 {
     @apply !text-[30px] !leading-tight;
   }
+
   .print-only#large h3 {
     @apply !text-[24px] !leading-tight;
   }
+
   .print-only#large h4 {
     @apply !text-[20px] !leading-tight;
   }
+
   .print-only#large h5 {
     @apply !text-[18px] !leading-tight;
   }
+
   .print-only#large h6 {
     @apply !text-[16px] !leading-tight;
   }
-  
+
   .print-only#extralarge p {
     @apply !text-[20px];
   }
-  
+
   .print-only#extralarge h1 {
     @apply !text-[48px] !leading-tight;
   }
+
   .print-only#extralarge h2 {
     @apply !text-[40px] !leading-tight;
   }
+
   .print-only#extralarge h3 {
     @apply !text-[32px] !leading-tight;
   }
+
   .print-only#extralarge h4 {
     @apply !text-[28px] !leading-tight;
   }
+
   .print-only#extralarge h5 {
     @apply !text-[24px] !leading-tight;
   }
+
   .print-only#extralarge h6 {
     @apply !text-[20px] !leading-tight;
   }
-  
+
 
 
 }
@@ -363,4 +383,36 @@ body {
 
 button {
   cursor: pointer;
+}
+
+.active-nav {
+  position: relative;
+  color: white;
+  z-index: 1;
+}
+
+.active-nav::before {
+  content: "";
+  position: absolute;
+  background: linear-gradient(90deg, var(--color-primary), var(--color-secondary));
+  width: 0%;
+  height: 0%;
+  left: 0;
+  z-index: -1;
+  top: 0;
+  border-radius: 40px;
+  animation: nav 150ms linear forwards;
+  transform-origin: center;
+}
+
+@keyframes nav {
+  0% {
+    width: 0%;
+    height: 100%;
+  }
+
+  100% {
+    width: 100%;
+    height: 100%;
+  }
 }

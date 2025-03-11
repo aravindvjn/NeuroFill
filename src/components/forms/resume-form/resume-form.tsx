@@ -32,6 +32,9 @@ import Template from "./template";
 import Header from "@/components/common/header";
 import ResumePreview2 from "@/components/previews/resume/template_2/resume";
 import ResumePreview1 from "@/components/previews/resume/template_3/resume";
+import { fontFamilyValues } from "@/components/common/constants";
+import { FontFamilyType } from "@/components/common/type";
+import SelectFontFamily from "./select-font";
 
 const ResumeForm = ({ resume }: { resume: ResumeInputType }) => {
   //States
@@ -112,6 +115,16 @@ const ResumeForm = ({ resume }: { resume: ResumeInputType }) => {
     }));
   };
 
+  //Handle Font Family
+  const handleFontFamily = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    if (fontFamilyValues.includes(e.target.value)) {
+      setInput((prev) => ({
+        ...prev,
+        fontFamily: e.target.value as FontFamilyType,
+      }));
+    }
+  };
+
   //Add experience, skils, educations, custom field
   const addItems = () => {
     if (page === pages[2]) {
@@ -150,12 +163,16 @@ const ResumeForm = ({ resume }: { resume: ResumeInputType }) => {
   return (
     <div className="layout mt-[60px]">
       <Header title="Create Resume" />
-      <div className="horizontally-center">
-        <PickColor
-          color={input?.color || "black"}
-          handleChangeColor={handleChangeColor}
+      <PickColor
+        color={input?.color || "black"}
+        handleChangeColor={handleChangeColor}
+      />
+      <div className="horizontally-center mt-2">
+        <Template input={input} setInput={setInput} />{" "}
+        <SelectFontFamily
+          fontFamily={input.fontFamily}
+          handleFontFamily={handleFontFamily}
         />
-        <Template input={input} setInput={setInput} />
       </div>
 
       <section className="grid mt-[20px] md:grid-cols-2 gap-[50px] md:gap-[20px]">
@@ -219,8 +236,11 @@ const ResumeForm = ({ resume }: { resume: ResumeInputType }) => {
             />
           </Card>
         </form>
-        <div className="relative">
-        <p className="absolute px-2 text-red-500 -top-10 text-[12px] md:text-[14px]">Note : The preview may vary based on your device&apos;s screen size, but the final result will match the thumbnail.</p>
+        <div className={`relative ${input.fontFamily || "sans-serif"}`}>
+          <p className="absolute px-2 text-red-500 -top-10 text-[12px] md:text-[14px]">
+            Note : The preview may vary based on your device&apos;s screen size,
+            but the final result will match the thumbnail.
+          </p>
           {input.templateId === "0" && <ResumePreview resume={input} />}
           {input.templateId === "1" && <ResumePreview1 resume={input} />}
           {input.templateId === "2" && <ResumePreview2 resume={input} />}

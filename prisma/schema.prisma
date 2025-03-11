@@ -14,18 +14,20 @@ datasource db {
 }
 
 model User {
-  id            String         @id @default(uuid())
-  email         String         @unique
-  firstName     String         @default("NeuroFill User")
-  lastName      String?
-  profilePic    String?
-  planId        String?
-  password      String
-  creditBalance Float          @default(0)
-  transactions  Transactions[]
-  resumes       Resume[]       @relation("UserToResume")
-  createdAt     DateTime       @default(now())
-  updatedAt     DateTime       @updatedAt
+  id               String         @id @default(uuid())
+  email            String         @unique
+  firstName        String         @default("NeuroFill User")
+  lastName         String?
+  profilePic       String?
+  planId           String?
+  password         String
+  resetToken       String?
+  resetTokenExpiry DateTime?
+  creditBalance    Float          @default(0)
+  transactions     Transactions[]
+  resumes          Resume[]       @relation("UserToResume")
+  createdAt        DateTime       @default(now())
+  updatedAt        DateTime       @updatedAt
 }
 
 model PendingUser {
@@ -60,6 +62,7 @@ model Resume {
   customField CustomField[] @relation("ResumeToCustomField")
   createdAt   DateTime      @default(now())
   updatedAt   DateTime      @updatedAt
+  fontFamily  String?
 }
 
 model Experience {
@@ -96,12 +99,12 @@ model Skill {
 }
 
 model CustomField {
-  id         String @id @default(uuid())
+  id         String  @id @default(uuid())
   heading    String?
   subheading String
   content    String
   resumeId   String
-  resume     Resume @relation("ResumeToCustomField", fields: [resumeId], references: [id], onDelete: Cascade)
+  resume     Resume  @relation("ResumeToCustomField", fields: [resumeId], references: [id], onDelete: Cascade)
 }
 
 model Transactions {

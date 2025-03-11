@@ -9,12 +9,13 @@ import ResumePreview1 from "../previews/resume/template_3/resume";
 import toast from "react-hot-toast";
 import { FontFamilyType, SizeType } from "./type";
 import { fontFamilyValues } from "./constants";
+import SelectFontFamily from "../forms/resume-form/select-font";
 
 const ResumePage = ({ resume }: { resume: ResumeInputType }) => {
   const pdfRef = useRef<HTMLDivElement>(null);
   const [isPaid, setIsPaid] = useState<boolean>(false);
   const [size, setSize] = useState<SizeType>("medium");
-  const [fontFamily, setFontFamily] = useState<FontFamilyType>("Urbanist");
+  const [fontFamily, setFontFamily] = useState<FontFamilyType>(resume?.fontFamily || "sans-serif");
   //Handle Print
   const printResume = () => {
     if (!pdfRef.current) return;
@@ -81,15 +82,7 @@ const ResumePage = ({ resume }: { resume: ResumeInputType }) => {
         <div className="horizontally-center">
           <div>
             <p>Font Family </p>
-            <select
-              value={fontFamily}
-              className="self-start px-3 cursor-pointer py-2 capitalize border rounded backdrop-blur-md bg-white/20 "
-              onChange={handleFontFamily}
-            >
-              {fontFamilyValues?.map((font, index) => (
-                <option key={index} defaultChecked={index === 1}>{font}</option>
-              ))}
-            </select>
+            <SelectFontFamily fontFamily={fontFamily} handleFontFamily={handleFontFamily} />
           </div>
 
           <div>

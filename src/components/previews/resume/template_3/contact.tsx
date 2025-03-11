@@ -7,18 +7,18 @@ import { MdOutlineMailOutline } from "react-icons/md";
 const ContactPreview = ({ email, address, phone, color }: ResumeInputType) => {
   return (
     <div className="flex flex-col  gap-[10px]">
-      <h2 style={{ color }} className="font-bold my-1 text-lg">
+      <h3 style={{ color }} className="font-semibold my-1">
         CONTACT
-      </h2>
-      <p className="horizontally-center ">
+      </h3>
+      <p className="flex items-center gap-1.5">
         <FaPhoneAlt color={color} />
         {phone}
       </p>
-      <p className="horizontally-center">
+      <p className="flex items-center gap-1.5">
         <MdOutlineMailOutline  color={color}/>
         {email}
       </p>
-      <p className="horizontally-center">
+      <p className="flex items-center gap-1.5">
         <IoLocationOutline  color={color}/>
         {address}
       </p>
