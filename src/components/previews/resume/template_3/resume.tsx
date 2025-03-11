@@ -24,13 +24,13 @@ const ResumePreview1 = ({
       }`}
     >
       <PersonalDetailsPreview {...resume} />
-      <section className="flex">
+      <section className="flex gap-[10px]">
         <div className="w-3/5">
           <SummaryPreview {...resume} />
           <ExperiencePreview {...resume} />
           <CustomFieldPreview {...resume} />
         </div>
-        <div className="w-2/5 bg-[#f8fef0] p-4 h-full">
+        <div className="w-2/5 bg-[#f8fef0] p-4 h-full color-section">
           <ContactPreview {...resume} />
           <EducationPreview {...resume} />
           <SkillPreview {...resume} />

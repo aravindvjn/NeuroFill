@@ -8,7 +8,7 @@ const SummaryPreview = ({ summary, color }: ResumeInputType) => {
   return (
     <div style={{
       borderColor:color
-    }} className="text-[14px] my-3 mt-5 pb-2">
+    }} className="text-[14px] text-justify my-3 mt-5 pb-2">
         <h2 style={{ color }} className="text-lg font-bold">
           PROFILE
         </h2>

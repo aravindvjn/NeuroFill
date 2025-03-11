@@ -7,11 +7,8 @@ import { IoHome } from "react-icons/io5";
 import ResumePreview2 from "../previews/resume/template_2/resume";
 import ResumePreview1 from "../previews/resume/template_3/resume";
 import toast from "react-hot-toast";
-
-type SizeType = "small" | "medium" | "large" | "extralarge";
-type FontFamilyType = "sans-serif" | "Urbanist";
-
-const fontFamilyValues = ["sans-serif", "Urbanist"];
+import { FontFamilyType, SizeType } from "./type";
+import { fontFamilyValues } from "./constants";
 
 const ResumePage = ({ resume }: { resume: ResumeInputType }) => {
   const pdfRef = useRef<HTMLDivElement>(null);
@@ -31,7 +28,7 @@ const ResumePage = ({ resume }: { resume: ResumeInputType }) => {
   //Handle size
   const handleSize = (e: ChangeEvent<HTMLSelectElement>) => {
     setSize(e.target.value as SizeType);
-    toast.success("Note : Font Size only reflects in print.")
+    toast.success("Note : Font Size only reflects in print.");
   };
 
   const handleFontFamily = (e: ChangeEvent<HTMLSelectElement>) => {
@@ -78,7 +75,9 @@ const ResumePage = ({ resume }: { resume: ResumeInputType }) => {
         >
           Edit resume
         </Link>
-        <p className="p2 font-semibold underline underline-offset-2">Download Options</p>
+        <p className="p2 font-semibold underline underline-offset-2">
+          Download Options
+        </p>
         <div className="horizontally-center">
           <div>
             <p>Font Family </p>
@@ -87,8 +86,9 @@ const ResumePage = ({ resume }: { resume: ResumeInputType }) => {
               className="self-start px-3 cursor-pointer py-2 capitalize border rounded backdrop-blur-md bg-white/20 "
               onChange={handleFontFamily}
             >
-              <option>{fontFamilyValues[0]}</option>
-              <option defaultChecked>{fontFamilyValues[1]}</option>
+              {fontFamilyValues?.map((font, index) => (
+                <option key={index} defaultChecked={index === 1}>{font}</option>
+              ))}
             </select>
           </div>
 

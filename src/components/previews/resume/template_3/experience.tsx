@@ -23,7 +23,7 @@ const ExperiencePreview: React.FC<{ experience: ResumeInputType["experience"],co
           <p className="text-[#4b5563]">
             {exp.city}, {exp.state} ( {formatDate(exp.startDate)} - {exp.currentlyWorking ? "Present" : formatDate(exp.endDate)})
           </p>
-          <p className="text-[#374151]">{exp.workSummary}</p>
+          <p className="text-[#374151] text-justify">{exp.workSummary}</p>
         </div>
       ))}
     </div>

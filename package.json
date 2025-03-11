@@ -23,7 +23,6 @@
     "jose": "^6.0.8",
     "jsonwebtoken": "^9.0.2",
     "next": "15.2.1",
-    "next-auth": "^4.24.11",
     "nodemailer": "^6.10.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
