@@ -6,8 +6,7 @@ import React, { Fragment, useState } from "react";
 import toast from "react-hot-toast";
 import UpdateProfileForm from "./update-profile-form";
 import { AccountFormProps } from "./type";
-
-
+import LogoutButton from "./logout-button";
 
 const AccountForm = ({ user }: AccountFormProps) => {
   const [showPopUp, setShowPopUp] = useState<boolean>(false);
@@ -33,26 +32,26 @@ const AccountForm = ({ user }: AccountFormProps) => {
 
   return (
     <Fragment>
-        <PopUp onClose={() => setShowPopUp(false)} isOpen={showPopUp}>
-          <p>Would you like to request a password reset?</p>
+      <PopUp onClose={() => setShowPopUp(false)} isOpen={showPopUp}>
+        <p>Would you like to request a password reset?</p>
 
-          <div className="horizontally-center mt-2">
-            <button
-              onClick={() => setShowPopUp(false)}
-              className={`${classes} bg-red-500 hover:bg-red-600`}
-            >
-              Cancel
-            </button>
-            <button
-              onClick={requestChangePassword}
-              className={`${classes} bg-blue-500 hover:bg-blue-600`}
-            >
-              {isLoading ? "Processing..." : "Proceed"}
-            </button>
-          </div>
-        </PopUp>
+        <div className="horizontally-center mt-2">
+          <button
+            onClick={() => setShowPopUp(false)}
+            className={`${classes} bg-red-500 hover:bg-red-600`}
+          >
+            Cancel
+          </button>
+          <button
+            onClick={requestChangePassword}
+            className={`${classes} bg-blue-500 hover:bg-blue-600`}
+          >
+            {isLoading ? "Processing..." : "Proceed"}
+          </button>
+        </div>
+      </PopUp>
 
-        <div className="self-start horizontally-center">
+      <div className="self-start horizontally-center">
         <Button
           onClick={() => setShowUpdate((p) => !p)}
           variant="white"
@@ -70,7 +69,10 @@ const AccountForm = ({ user }: AccountFormProps) => {
         </Button>
       </div>
 
-      {showUpdate && <UpdateProfileForm user={user} setShowUpdate={setShowUpdate} />}
+      {showUpdate && (
+        <UpdateProfileForm user={user} setShowUpdate={setShowUpdate} />
+      )}
+      <LogoutButton />
     </Fragment>
   );
 };

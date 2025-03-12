@@ -172,7 +172,7 @@ export const resetPassword = async (token: string, password: string) => {
         })
 
         await prisma.user.update({
-            where:{
+            where: {
                 resetToken: token,
             },
             data: {
@@ -180,11 +180,26 @@ export const resetPassword = async (token: string, password: string) => {
                 resetTokenExpiry: null
             }
         })
-        
+
         return { success: true, message: "Your password has been changed successfully!" }
 
     } catch (error) {
         console.log("Error in reseting password :", error)
         return { success: false, message: "An unexpected error occurred. Please try again later." }
+    }
+}
+
+//Logout 
+export const logout = async () => {
+    try {
+        const cookieStore = await cookies();
+        cookieStore.delete("token");
+        return { success: true, message: "Logged out successfully!" };
+
+    } catch (error) {
+        console.log("Error in logout :", error)
+        return {
+            success: false, message: "An unexpected error occurred. Please try again later"
+        }
     }
 }

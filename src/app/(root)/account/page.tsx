@@ -9,7 +9,7 @@ const Page = async () => {
   const user = await currentUser();
 
   if (!user) {
-    redirect("/");
+    redirect("/auth");
   }
 
   return (

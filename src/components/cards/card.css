@@ -28,8 +28,7 @@
     backdrop-filter: blur(1px);
 }
 
-.card:hover .card-item,
-.card:hover::before {
+.card-item#active{
     display: flex;
     opacity: 1;
     translate: 0% 0%;

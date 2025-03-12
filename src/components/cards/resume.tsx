@@ -9,10 +9,22 @@ import toast from "react-hot-toast";
 import { templates } from "../banners/template-slider";
 import "./card.css";
 
-const Resume = ({ title, id, templateId }: ResumeType) => {
+type Props = {
+  activeId: string
+  setActiveId: React.Dispatch<React.SetStateAction<string>>
+}
+const Resume = ({ title, id, templateId,activeId,setActiveId }: ResumeType & Props) => {
   const [showDelete, setShowDelete] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
+  const handleActive=()=>{
+    setActiveId((prev)=>{
+      if(prev===id){
+        return ""
+      }
+      return id
+    })
+  }
   const toggleShowDelete = () => {
     setShowDelete((prev) => !prev);
   };
@@ -31,8 +43,8 @@ const Resume = ({ title, id, templateId }: ResumeType) => {
   };
 
   return (
-    <div className="relative  rounded-lg card">
-      <ResumeButtons id={id} toggelDelete={toggleShowDelete} />
+    <div onClick={handleActive} className="relative  rounded-lg card">
+      <ResumeButtons isActive={activeId === id}  id={id} toggelDelete={toggleShowDelete} />
 
       <PopUp isOpen={showDelete} onClose={toggleShowDelete}>
         <p className="text-lg font-semibold">Are you sure?</p>

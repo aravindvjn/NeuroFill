@@ -23,6 +23,7 @@
     "jose": "^6.0.8",
     "jsonwebtoken": "^9.0.2",
     "next": "15.2.1",
+    "nextjs-toploader": "^3.7.15",
     "nodemailer": "^6.10.0",
     "qrcode.react": "^4.2.0",
     "react": "^19.0.0",
