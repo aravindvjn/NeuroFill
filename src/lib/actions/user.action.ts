@@ -3,9 +3,11 @@ import { UserInput } from "@/components/forms/auth-form/type";
 import { prisma } from "../db";
 import crypto from "crypto";
 import xss from 'xss'
-import { validateUserInput } from "../helpers/validate-user-input";
+import { validateUserInput } from "../validations/validate-user-input";
 import { sendVerificationEmail } from "../helpers/send-verification";
 import bcrypt from 'bcrypt'
+import { currentUserId } from "../get-calls/get-current-user";
+import { revalidatePath } from "next/cache";
 
 type PrevState = {
     data?: UserInput;
@@ -88,7 +90,7 @@ export async function createPendingUser(prevState: PrevState, formData: FormData
 
         return {
             ...prevState,
-            data:{
+            data: {
                 email: { value: "" },
                 password: { value: "" }
             },
@@ -101,12 +103,12 @@ export async function createPendingUser(prevState: PrevState, formData: FormData
         console.error("Error creating pending user:", error);
         return {
             ...prevState,
-            data:{
+            data: {
                 email: { value: "" },
                 password: { value: "" }
             },
             success: false,
-            message:"Failed to register. Try again!",
+            message: "Failed to register. Try again!",
         };
     }
 }
@@ -159,6 +161,38 @@ export async function verifyEmail(token: string, password: string) {
 }
 
 
-export const requestChangePassword=async()=>{
-    
+export const requestChangePassword = async () => {
+
+}
+
+
+
+//update profile 
+export const updateProfile = async (firstName: string, lastName: string) => {
+    try {
+
+        firstName = xss(firstName)
+        lastName = xss(lastName)
+        
+        if (!firstName.trim() || !lastName.trim()) {
+            return { success: false, message: "First Name and Last Name cannot be empty." }
+        }
+        const userId = await currentUserId();
+
+        if (!userId) {
+            return { success: false, message: "Please log in first." };
+        }
+
+        await prisma.user.update({
+            where: { id: userId },
+            data: { firstName, lastName },
+        });
+
+    } catch (error) {
+        console.log("Error in updating profile:", error)
+        return { success: false, message: "Failed to update profile." }
+    }
+
+    revalidatePath('/account')
+    return { success: true, message: "Profile updated successfully!" };
 }

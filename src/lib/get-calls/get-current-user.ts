@@ -5,7 +5,7 @@ import { prisma } from "../db";
 
 const JWT_SECRET = process.env.JWT_SECRET!
 
-export async function currentUserId() {
+export async function currentUserId(): Promise<string | null> {
     const cookieStore = await cookies();
     const token = cookieStore.get("token")?.value;
 
@@ -17,7 +17,7 @@ export async function currentUserId() {
         // Decode and verify the JWT token
         const { payload } = await jwtVerify(token, new TextEncoder().encode(JWT_SECRET));
 
-        return payload?.userId
+        return payload?.userId as string
 
     } catch (error) {
         console.error("Invalid token:", error);

@@ -16,9 +16,9 @@ const Page = async () => {
     <div className="layout layoutx">
       <Heading heading="Account Settings" subheading="" />
 
-      <div className="flex flex-col text-[18px] md:text-[22px]">
+      <div className="flex flex-col text-[16px] md:text-[18px]">
         <Image
-          className="aspect-square w-[150px] md:w-[250px] my-3"
+          className="aspect-square w-[150px] md:w-[200px] my-3"
           height={500}
           width={500}
           alt=""
@@ -28,7 +28,7 @@ const Page = async () => {
           {user?.firstName} {user?.lastName}
         </p>
         <p>{user?.email}</p>
-        <AccountForm />
+        <AccountForm user={user} />
       </div>
     </div>
   );

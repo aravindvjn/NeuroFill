@@ -6,8 +6,9 @@ import { AnimatePresence, motion } from "framer-motion";
 import BrandName from "@/components/ui/brand-name";
 import { MdMenu } from "react-icons/md";
 import { slideAnimation } from "@/lib/helpers/motion";
+import { SideBarProps } from "./type";
 
-const ResponsiveSideBar = () => {
+const ResponsiveSideBar = ({isLoading,isUser}:SideBarProps) => {
   const [showSideBar, setShowSideBar] = useState<boolean>(false);
 
   return (
@@ -16,7 +17,7 @@ const ResponsiveSideBar = () => {
         <div className="sm:w-[270px] md:w-[290px] lg:w-[310px]"></div>
 
         <motion.div {...slideAnimation("left")} className="fixed bg-background left-0 top-0">
-          <SideBar />
+          <SideBar isLoading={isLoading} isUser={isUser} />
         </motion.div>
         
       </div>
@@ -45,7 +46,7 @@ const ResponsiveSideBar = () => {
                     {...slideAnimation("right", 0.1)}
                     className="w-fit bg-background"
                   >
-                    <SideBar />
+                    <SideBar isLoading={isLoading} isUser={isUser} />
                   </motion.div>
                 </motion.div>
               </div>,

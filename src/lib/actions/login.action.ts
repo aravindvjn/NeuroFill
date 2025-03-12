@@ -171,6 +171,16 @@ export const resetPassword = async (token: string, password: string) => {
             }
         })
 
+        await prisma.user.update({
+            where:{
+                resetToken: token,
+            },
+            data: {
+                resetToken: null,
+                resetTokenExpiry: null
+            }
+        })
+        
         return { success: true, message: "Your password has been changed successfully!" }
 
     } catch (error) {

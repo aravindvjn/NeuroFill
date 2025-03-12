@@ -41,8 +41,8 @@ export const navLinks = [
     },
     {
       id: 8,
-      label: "Buy Credit",
-      link: "/buy-credit",
+      label: "Plans",
+      link: "/plans",
     },
     {
       id: 9,

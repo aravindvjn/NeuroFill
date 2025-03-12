@@ -11,3 +11,17 @@ export type ResumeType = {
     id: string;
     templateId: string | null;
 }
+
+type FeatureList = {
+    [feature: string]: boolean;
+};
+
+export interface PlanType {
+    id: string;
+    name: string;
+    price: string;
+    description: string;
+    features: FeatureList;
+}
+
+export type PlanIDs = "basic" | "pro" | "support"

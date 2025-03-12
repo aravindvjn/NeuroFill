@@ -5,7 +5,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import BrandName from "@/components/ui/brand-name";
 import Button from "@/components/ui/button";
 import { UserInput } from "./type";
-import { validateUserInput } from "@/lib/helpers/validate-user-input";
+import { validateUserInput } from "@/lib/validations/validate-user-input";
 import { createPendingUser } from "@/lib/actions/user.action";
 import { useActionState } from "react";
 import { loginUser } from "@/lib/actions/login.action";
@@ -100,10 +100,7 @@ const AuthForm = () => {
   const renderFooter = () => (
     <div className="mt-2">
       {isLogin ? "Does not have an account?" : "Already have an account?"}{" "}
-      <button
-        className="text-blue-600 hover:underline "
-        onClick={toggleLogin}
-      >
+      <button className="text-blue-600 hover:underline " onClick={toggleLogin}>
         {isLogin ? "Sign Up" : "Sign In"}
       </button>
     </div>
@@ -154,12 +151,14 @@ const AuthForm = () => {
         {renderFooter()}
         {isLogin && <ForgotPasswordButton />}
 
-        <Link
-          className="my-3 border border-primary text-center max-w-[340px] w-full  py-2 rounded text-primary hover:bg-primary hover:text-white"
-          href={"/"}
-        >
-          Continue Without Login
-        </Link>
+        <div className="flex max-w-[400px] w-full px-[30px]">
+          <Link
+            className="my-3 border border-primary text-center w-full  py-2 rounded text-primary hover:bg-primary hover:text-white"
+            href={"/"}
+          >
+            Continue Without Login
+          </Link>
+        </div>
       </motion.div>
     </AnimatePresence>
   );

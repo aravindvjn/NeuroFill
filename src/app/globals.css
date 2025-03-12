@@ -51,35 +51,6 @@ body {
   @apply flex justify-center items-center
 }
 
-.secondary-button {
-  position: relative;
-  padding: 10px 30px;
-  font-weight: 500;
-  color: #00CEC9;
-  background: transparent;
-  border-radius: 999px;
-  overflow: hidden;
-}
-
-
-.secondary-button::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  padding: 2px;
-  border-radius: inherit;
-  background: linear-gradient(to right, var(--color-primary), var(--color-secondary));
-  -webkit-mask:
-    linear-gradient(#fff 0 0) content-box,
-    linear-gradient(#fff 0 0);
-  mask:
-    linear-gradient(#fff 0 0) content-box,
-    linear-gradient(#fff 0 0);
-  -webkit-mask-composite: destination-out;
-  mask-composite: exclude;
-  pointer-events: none;
-}
-
 
 .layoutx {
   @apply px-[20px] sm:px-[25px] md:px-[30px] lg:px-[40px] xl:px-[50px]
