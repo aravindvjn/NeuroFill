@@ -12,6 +12,7 @@ import { loginUser } from "@/lib/actions/login.action";
 import { defaultInputValue } from "./constants";
 import Link from "next/link";
 import ForgotPasswordButton from "./forgot-pass-button";
+import toast from "react-hot-toast";
 
 const AuthForm = () => {
   const [isLogin, setIsLogin] = useState<boolean>(true);
@@ -62,6 +63,17 @@ const AuthForm = () => {
   const toggleLogin = () => {
     setIsLogin((prev) => !prev);
   };
+
+  //useEffect to listen to the state
+  useEffect(()=>{
+
+    if(state.success){
+      toast.success(state.message)
+    }else{
+      toast.error(state.message)
+    }
+    
+  },[state.message])
 
   // Monitor input changes and validate
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -136,8 +148,8 @@ const AuthForm = () => {
             error={input.password.error}
           />
 
-          {state.success && <p className="text-green-500">{state.message}</p>}
-          {!state.success && <p className="text-red-500">{state.message}</p>}
+          {state.success && <p className="text-green-500 text-[14px] md:text-[16px]">{state.message}</p>}
+          {!state.success && <p className="text-red-500 text-[14px] md:text-[16px]">{state.message}</p>}
 
           <Button
             className={`mt-[5px] !rounded ${isDisabled && "opacity-50"}`}
