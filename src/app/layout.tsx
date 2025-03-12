@@ -28,7 +28,7 @@ export default function RootLayout({
         />
       </head>
       <body className={`${urbanist.variable} antialiased`}>
-      <NextTopLoader color="#6C5CE7" />
+      <NextTopLoader showSpinner={false} color="#6C5CE7" />
         <Toaster position="top-center" />
         {children}
       </body>
