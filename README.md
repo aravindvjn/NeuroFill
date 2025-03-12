@@ -1,4 +1,4 @@
-# NeuroFill: A SaaS Web App ( on Dev )
+# NeuroFill: A SaaS Web App
 
 ## Tech Stack
 - Next.js (App Router with Server Actions)

@@ -1,9 +1,8 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Urbanist } from "next/font/google";
 import "./globals.css";
 import { Toaster } from "react-hot-toast";
-import { metaData } from "@/lib/constants";
-import Head from "next/head";
+import { metaData, viewPort } from "@/lib/constants";
 
 const urbanist = Urbanist({
   variable: "--font-urbanist",
@@ -12,6 +11,7 @@ const urbanist = Urbanist({
 });
 
 export const metadata: Metadata = metaData;
+export const viewport: Viewport = viewPort;
 
 export default function RootLayout({
   children,
@@ -20,12 +20,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <Head>
+      <head>
         <meta
           name="google-site-verification"
           content="epTFGi9V4Mj-7GySM2eqgEZNEQL6dgAu1VY4shwrnTY"
         />
-      </Head>
+      </head>
       <body className={`${urbanist.variable} antialiased`}>
         <Toaster position="top-center" />
         {children}

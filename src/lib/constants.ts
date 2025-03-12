@@ -1,5 +1,10 @@
 import { Metadata } from "next";
 
+export const viewPort = {
+  width: "device-width",
+  initialScale: 1.0,
+};
+
 export const metaData: Metadata = {
   title: "NeuroFill - Free AI Resume Builder, Content Generator & Creative Tools",
   description: "NeuroFill is a powerful AI-powered SaaS platform for creating resumes, generating content, designing logos, and producing invoices. Ideal for job seekers, freelancers, and businesses seeking efficient and professional solutions.",

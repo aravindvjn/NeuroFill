@@ -19,13 +19,15 @@ export default function RootLayout({
   const [isUser, setIsUser] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState<boolean>(true);
 
-  const fetchUser = async () => {
-    const res = await currentUserId();
-    setIsUser(!!res);
-    setIsLoading(false);
-  }
 
   useEffect(() => {
+    // Fetch user data to show in the side bar
+    const fetchUser = async () => {
+      const res = await currentUserId();
+      setIsUser(!!res);
+      setIsLoading(false);
+    }
+  
     if (!isUser) {
       fetchUser();
     }
