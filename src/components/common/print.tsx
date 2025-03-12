@@ -14,7 +14,9 @@ const ResumePage = ({ resume }: { resume: ResumeInputType }) => {
   const pdfRef = useRef<HTMLDivElement>(null);
   const [isPaid, setIsPaid] = useState<boolean>(false);
   const [size, setSize] = useState<SizeType>("medium");
-  const [fontFamily, setFontFamily] = useState<FontFamilyType>(resume?.fontFamily || "sans-serif");
+  const [fontFamily, setFontFamily] = useState<FontFamilyType>(
+    resume?.fontFamily || "sans-serif"
+  );
   //Handle Print
   const printResume = () => {
     if (!pdfRef.current) return;
@@ -55,10 +57,9 @@ const ResumePage = ({ resume }: { resume: ResumeInputType }) => {
         className={`border items-center bg-white shadow-lg w-full max-w-3xl text-lg ${fontFamily}`}
       >
         <div id={size} className={isPaid ? "print-only" : ""}>
-          {resume?.templateId === "0" ||
-            (!resume.templateId && (
-              <ResumePreview noElevation resume={resume} />
-            ))}
+          {(resume?.templateId === "0" || !resume.templateId) && (
+            <ResumePreview noElevation resume={resume} />
+          )}
           {resume?.templateId === "1" && (
             <ResumePreview1 noElevation resume={resume} />
           )}
@@ -81,7 +82,10 @@ const ResumePage = ({ resume }: { resume: ResumeInputType }) => {
         <div className="horizontally-center">
           <div>
             <p>Font Family </p>
-            <SelectFontFamily fontFamily={fontFamily} handleFontFamily={handleFontFamily} />
+            <SelectFontFamily
+              fontFamily={fontFamily}
+              handleFontFamily={handleFontFamily}
+            />
           </div>
 
           <div>

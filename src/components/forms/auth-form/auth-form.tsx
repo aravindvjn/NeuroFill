@@ -65,15 +65,17 @@ const AuthForm = () => {
   };
 
   //useEffect to listen to the state
-  useEffect(()=>{
-
-    if(state.success){
-      toast.success(state.message)
-    }else{
-      toast.error(state.message)
-    }
+  useEffect(() => {
     
-  },[state.message])
+    if (state.message) {
+      if (state.success) {
+        toast.success(state.message);
+      } else {
+        toast.error(state.message);
+      }
+    }
+
+  }, [state.message]);
 
   // Monitor input changes and validate
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -148,8 +150,16 @@ const AuthForm = () => {
             error={input.password.error}
           />
 
-          {state.success && <p className="text-green-500 text-[14px] md:text-[16px]">{state.message}</p>}
-          {!state.success && <p className="text-red-500 text-[14px] md:text-[16px]">{state.message}</p>}
+          {state.success && (
+            <p className="text-green-500 text-[14px] md:text-[16px]">
+              {state.message}
+            </p>
+          )}
+          {!state.success && (
+            <p className="text-red-500 text-[14px] md:text-[16px]">
+              {state.message}
+            </p>
+          )}
 
           <Button
             className={`mt-[5px] !rounded ${isDisabled && "opacity-50"}`}

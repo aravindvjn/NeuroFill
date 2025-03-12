@@ -13,7 +13,7 @@ const Page = async () => {
   }
 
   return (
-    <div className="layout layoutx">
+    <div className="my-[10px] layoutx">
       <Heading heading="Account Settings" subheading="" />
 
       <div className="flex flex-col text-[16px] md:text-[18px]">

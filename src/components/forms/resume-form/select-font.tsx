@@ -11,7 +11,7 @@ const SelectFontFamily = ({ fontFamily, handleFontFamily }: Props) => {
   return (
     <select
       value={fontFamily}
-      className="self-start px-3 cursor-pointer py-2 capitalize border rounded backdrop-blur-md bg-white/20 "
+      className="self-start px-3 cursor-pointer py-2 !-z-10 capitalize border rounded backdrop-blur-md bg-white/20 "
       onChange={handleFontFamily}
     >
       {fontFamilyValues?.map((font, index) => (

@@ -5,6 +5,7 @@ import Input from "@/components/ui/input";
 import { verifyEmail } from "@/lib/actions/user.action";
 import Link from "next/link";
 import React, { useState } from "react";
+import toast from "react-hot-toast";
 
 const VerifyEmailForm = ({ token }: { token: string }) => {
   const [password, setPassword] = useState<string>("");
@@ -27,13 +28,17 @@ const VerifyEmailForm = ({ token }: { token: string }) => {
     const res = await verifyEmail(token, password);
 
     setResponse(res);
+    if (res.success) {
+      toast.success(res.message);
+    } else {
+      toast.error(res.message);
+    }
     setIsLoading(false);
   };
 
   return (
     <form className="max-w-[400px] w-full flex flex-col gap-5 mt-[40px]">
       <div className="center">
-
         <BrandName size={30} />
       </div>
 
@@ -53,8 +58,7 @@ const VerifyEmailForm = ({ token }: { token: string }) => {
         <Link className="text-center underline text-blue-500" href={"/auth"}>
           Login
         </Link>
-      )
-      }
+      )}
 
       <Button
         disabled={isLoading}
@@ -63,7 +67,6 @@ const VerifyEmailForm = ({ token }: { token: string }) => {
       >
         {isLoading ? "Verifying..." : "Verify Email"}
       </Button>
-      
     </form>
   );
 };
