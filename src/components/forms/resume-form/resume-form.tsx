@@ -26,16 +26,14 @@ import Summary from "./summary";
 import Education from "./education";
 import Skill from "./skill";
 import Buttons from "./buttons";
-import ResumePreview from "@/components/previews/resume/template_1/resume";
 import CustomField from "./custom-field";
 import Template from "./template";
 import Header from "@/components/common/header";
-import ResumePreview2 from "@/components/previews/resume/template_2/resume";
-import ResumePreview1 from "@/components/previews/resume/template_3/resume";
 import { fontFamilyValues } from "@/components/common/constants";
 import { FontFamilyType } from "@/components/common/type";
 import SelectFontFamily from "./select-font";
 import toast from "react-hot-toast";
+import ResumePreviewer from "@/components/common/resume-preview";
 
 const ResumeForm = ({ resume }: { resume: ResumeInputType }) => {
   //States
@@ -55,10 +53,9 @@ const ResumeForm = ({ resume }: { resume: ResumeInputType }) => {
 
   //Handle all inputs
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-    let image:File;
+    let image: File;
     const { target } = e;
     if (target.type === "file" && target.files && target.files.length > 0) {
-
       if (!target.files[0].type.includes("image")) {
         toast.error("Please select an image file.");
         return;
@@ -71,7 +68,7 @@ const ResumeForm = ({ resume }: { resume: ResumeInputType }) => {
         [target.name]: image || target.value,
       };
     });
-    console.log(input)
+    console.log(input);
   };
 
   //Handle pages
@@ -253,9 +250,7 @@ const ResumeForm = ({ resume }: { resume: ResumeInputType }) => {
             Note : The preview may vary based on your device&apos;s screen size,
             but the final result will match the thumbnail.
           </p>
-          {input.templateId === "0" && <ResumePreview resume={input} />}
-          {input.templateId === "1" && <ResumePreview1 resume={input} />}
-          {input.templateId === "2" && <ResumePreview2 resume={input} />}
+          <ResumePreviewer resume={input} />
         </div>
       </section>
     </div>

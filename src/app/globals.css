@@ -232,6 +232,10 @@ body {
     print-color-adjust: exact;
   }
 
+  .print-only#small .photo {
+    width: 130px;
+  }
+
   .print-only#small p {
     @apply !text-[12px];
   }
@@ -259,7 +263,9 @@ body {
   .print-only#small h6 {
     @apply !text-[12px] !leading-tight;
   }
-
+  .print-only#medium .photo {
+    width: 150px;
+  }
   .print-only#medium p {
     @apply !text-[14px];
   }
@@ -288,6 +294,9 @@ body {
     @apply !text-[14px] !leading-tight;
   }
 
+  .print-only#large .photo {
+    width: 180px;
+  }
   .print-only#large p {
     @apply !text-[16px];
   }
@@ -316,6 +325,9 @@ body {
     @apply !text-[16px] !leading-tight;
   }
 
+  .print-only#extralarge .photo {
+    width: 200px;
+  }
   .print-only#extralarge p {
     @apply !text-[20px];
   }

@@ -9,6 +9,8 @@ import ResumePreview1 from "../previews/resume/template_3/resume";
 import toast from "react-hot-toast";
 import { FontFamilyType, SizeType } from "./type";
 import SelectFontFamily from "../forms/resume-form/select-font";
+import ResumePreview3 from "../previews/resume/template_4/resume";
+import ResumePreviewer from "./resume-preview";
 
 const ResumePage = ({ resume }: { resume: ResumeInputType }) => {
   const pdfRef = useRef<HTMLDivElement>(null);
@@ -57,15 +59,7 @@ const ResumePage = ({ resume }: { resume: ResumeInputType }) => {
         className={`border items-center bg-white shadow-lg w-full max-w-3xl text-lg ${fontFamily}`}
       >
         <div id={size} className={isPaid ? "print-only" : ""}>
-          {(resume?.templateId === "0" || !resume.templateId) && (
-            <ResumePreview noElevation resume={resume} />
-          )}
-          {resume?.templateId === "1" && (
-            <ResumePreview1 noElevation resume={resume} />
-          )}
-          {resume?.templateId === "2" && (
-            <ResumePreview2 noElevation resume={resume} />
-          )}
+          <ResumePreviewer resume={resume} noElevation />
         </div>
       </div>
 

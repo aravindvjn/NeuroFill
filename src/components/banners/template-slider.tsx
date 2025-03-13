@@ -6,6 +6,7 @@ import { motion } from "framer-motion";
 import resume1 from "../../assets/images/resume1.png";
 import resume2 from "../../assets/images/resume2.png";
 import resume3 from "../../assets/images/resume3.png";
+import resume4 from "../../assets/images/resume3.png";
 
 type Props = {
   index: number;
@@ -14,7 +15,7 @@ type Props = {
   selectTemplate?: () => void;
 };
 
-export const templates = [resume1, resume2, resume3];
+export const templates = [resume1, resume2, resume3,resume4];
 
 const TemplateSlider = ({
   index,
