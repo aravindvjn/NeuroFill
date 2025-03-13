@@ -1,15 +1,11 @@
 "use client";
-import ResumePreview from "../previews/resume/template_1/resume";
 import { ResumeInputType } from "@/components/forms/resume-form/type";
 import Link from "next/link";
 import React, { ChangeEvent, useRef, useState } from "react";
 import { IoHome } from "react-icons/io5";
-import ResumePreview2 from "../previews/resume/template_2/resume";
-import ResumePreview1 from "../previews/resume/template_3/resume";
 import toast from "react-hot-toast";
 import { FontFamilyType, SizeType } from "./type";
 import SelectFontFamily from "../forms/resume-form/select-font";
-import ResumePreview3 from "../previews/resume/template_4/resume";
 import ResumePreviewer from "./resume-preview";
 
 const ResumePage = ({ resume }: { resume: ResumeInputType }) => {
