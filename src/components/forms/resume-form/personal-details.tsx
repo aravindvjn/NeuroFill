@@ -19,12 +19,15 @@ const PersonalDetails = ({ handleChange, input }: Props) => {
           name="lastName"
         />
       </div>
-      <Input
-        onChange={handleChange}
-        value={input?.profession}
-        label="Profession"
-        name="profession"
-      />
+      <div className="w-full flex items-center gap-[20px]">
+        <Input
+          onChange={handleChange}
+          value={input?.profession}
+          label="Profession"
+          name="profession"
+        />
+        <Input name="image" type="file" onChange={handleChange} accept="image/*" className="cursor-pointer" label="Photo" />
+      </div>
       <Input
         onChange={handleChange}
         value={input?.address}
@@ -45,7 +48,6 @@ const PersonalDetails = ({ handleChange, input }: Props) => {
           name="email"
         />
       </div>
-
     </div>
   );
 };

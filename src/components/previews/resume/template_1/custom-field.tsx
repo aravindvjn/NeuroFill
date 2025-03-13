@@ -21,7 +21,7 @@ const CustomFieldPreview = ({
             <div className="bg-[#f3f4f6] my-1 py-1">
               <h3
                 style={{ color }}
-                className="text-center font-bold underline text-lg uppercase"
+                className="text-center font-bold underline uppercase"
               >
                 {field?.heading}
               </h3>
@@ -30,12 +30,12 @@ const CustomFieldPreview = ({
           <div>
             <p
               style={{ color }}
-              className="flex items-center gap-2 font-semibold text-[16px]"
+              className="flex items-center gap-2 font-semibold"
             >
               <VscDebugBreakpointLog />
               {field?.subheading}
             </p>
-            <p className="text-[#6b7280]">{field?.content}</p>
+            <p className="text-[#374151]">{field?.content}</p>
           </div>
         </div>
       ))}

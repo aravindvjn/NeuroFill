@@ -17,14 +17,15 @@ export type ResumeInputType = {
     skill: SkillType[]
     authorId?: string;
     templateId?: string;
-    customField:CustomFieldType[]
-    fontFamily:FontFamilyType
+    customField: CustomFieldType[]
+    fontFamily: FontFamilyType
+    image: string | File
 }
 export type CustomFieldType = {
-    id?:string;
-    heading:string;
-    subheading:string;
-    content:string
+    id?: string;
+    heading: string;
+    subheading: string;
+    content: string
 }
 
 export type ExperienceType = {

@@ -2,6 +2,7 @@ import { ResumeInputType } from "@/components/forms/resume-form/type";
 
 export const dummyResume: ResumeInputType = {
   id: "1",
+  image:"",
   firstName: "Michael",
   lastName: "Smith",
   profession: "Full-Stack Developer",

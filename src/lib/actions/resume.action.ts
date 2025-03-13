@@ -5,6 +5,7 @@ import { defaultInputValue } from "@/components/forms/resume-form/constants"
 import { currentUserId } from "../get-calls/get-current-user"
 import { ResumeInputType } from "@/components/forms/resume-form/type"
 import { revalidatePath } from "next/cache"
+import { uploadImage } from "./cloudinary.action"
 
 export const createResume = async (title: string, templateId: number) => {
     title = xss(title)
@@ -79,7 +80,6 @@ export const getResumeById = async (resumeId: string) => {
 //update resume
 export const updateResume = async (resume: ResumeInputType) => {
     try {
-        console.log(resume.id, resume.authorId)
         const userId = await currentUserId();
         if (!userId) {
             return { success: false, message: "Please Login first" };
@@ -87,6 +87,13 @@ export const updateResume = async (resume: ResumeInputType) => {
 
         if (!resume.id || resume.authorId !== userId) {
             return { success: false, message: "Invalid Credentials" };
+        }
+        let image_url;
+        if (typeof resume.image !== 'string') {
+            image_url = await uploadImage(resume.image);
+            if(!image_url) {
+                return { success: false, message: "Failed to upload image. Try again." };
+            }
         }
 
         const updatedResume = await prisma.resume.update({
@@ -101,7 +108,8 @@ export const updateResume = async (resume: ResumeInputType) => {
                 summary: resume.summary,
                 color: resume.color,
                 templateId: resume.templateId,
-                fontFamily:resume.fontFamily,
+                fontFamily: resume.fontFamily,
+                image: image_url,
                 experience: {
                     deleteMany: {},
                     create: resume.experience.map(exp => ({

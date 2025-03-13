@@ -47,6 +47,7 @@ model Resume {
   title       String        @default("Untitled")
   firstName   String
   lastName    String
+  image       String?
   profession  String
   address     String
   phone       String

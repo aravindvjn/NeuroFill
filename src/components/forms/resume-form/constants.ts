@@ -12,7 +12,8 @@ export const defaultInputValue = {
   summary: '',
   education: [],
   skill: [],
-  fontFamily:"sans-serif"
+  fontFamily:"sans-serif",
+  image:"",
 }
 
 

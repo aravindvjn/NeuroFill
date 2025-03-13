@@ -35,6 +35,7 @@ import ResumePreview1 from "@/components/previews/resume/template_3/resume";
 import { fontFamilyValues } from "@/components/common/constants";
 import { FontFamilyType } from "@/components/common/type";
 import SelectFontFamily from "./select-font";
+import toast from "react-hot-toast";
 
 const ResumeForm = ({ resume }: { resume: ResumeInputType }) => {
   //States
@@ -54,12 +55,23 @@ const ResumeForm = ({ resume }: { resume: ResumeInputType }) => {
 
   //Handle all inputs
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+    let image:File;
+    const { target } = e;
+    if (target.type === "file" && target.files && target.files.length > 0) {
+
+      if (!target.files[0].type.includes("image")) {
+        toast.error("Please select an image file.");
+        return;
+      }
+      image = target.files[0];
+    }
     setInput((prev: ResumeInputType) => {
       return {
         ...prev,
-        [e.target.name]: e.target.value,
+        [target.name]: image || target.value,
       };
     });
+    console.log(input)
   };
 
   //Handle pages

@@ -11,6 +11,8 @@
 
 ## Features  
 - **Resume Maker**  
+- **Different types of templates are available for resume**  
+- **Font families and font size are customizable**
 - **Privacy Policy & Terms Generator**  
 - **QR Code Generator**  
 - **Invoice Generator**  
