@@ -21,10 +21,10 @@ const EducationPreview = ({
       </h3>
 
       {education.map((edu, index) => (
-        <div className="mb-4 text-[14px]" key={edu.id || index}>
+        <div className="mb-4" key={edu.id || index}>
           {edu.degree && edu.major && (
             <p
-              className="flex items-center gap-1 font-semibold text-[16px]"
+              className="flex items-center gap-1 font-semibold"
             >
               <VscDebugBreakpointData color={color} />
               {edu.degree} {edu.degree && edu.major && "in"} {edu.major}

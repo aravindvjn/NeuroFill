@@ -14,8 +14,8 @@ const PersonalDetailsPreview = ({
     return;
 
   return (
-    <div style={{ color }} className="text-center text-[14px] border-b-3 pb-1">
-      <h1 className="text-xl font-bold">
+    <div style={{ color }} className="text-center border-b-3 pb-1">
+      <h1 className="font-bold">
         {firstName} {lastName}
       </h1>
       <p className="font-semibold">{profession}</p>

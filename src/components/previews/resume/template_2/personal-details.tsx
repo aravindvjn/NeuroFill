@@ -18,13 +18,13 @@ const PersonalDetailsPreview = ({
     return;
 
   return (
-    <div style={{ color }} className="text-start text-[14px]  pb-1">
-      <h1 className="text-xl">
+    <div style={{ color }} className="text-start pb-1">
+      <h1>
         {firstName} {lastName}
       </h1>
-      <h3 className="text-lg mb-1 font-light">{profession}</h3>
+      <h3 className="mb-1 font-light">{profession}</h3>
       <p className="text-justify">{summary}</p>
-      <div className="flex mt-3 items-center justify-between py-1 border-b-2 border-t-2 ">
+      <div className="flex mt-3 items-center justify-between py-1 border-b-2 border-t-2">
         <p className="horizontally-center ">
           <FaPhoneAlt />
           {phone}

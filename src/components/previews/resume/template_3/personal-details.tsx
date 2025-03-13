@@ -14,12 +14,12 @@ const PersonalDetailsPreview = ({
     return;
 
   return (
-    <div style={{ backgroundColor:color || '#297c74' }} className="text-center center text-white flex-col text-[14px] p-5 uppercase pb-1 gap-[7px]">
+    <div style={{ backgroundColor:color || '#297c74' }} className="text-center center text-white flex-col p-5 uppercase pb-1 gap-[7px]">
       <h1 className="text-2xl">
         {firstName} {lastName}
       </h1>
       <div className="w-[100px] border-b"></div>
-      <h5 className="text-[14px] md:text-[15px] mb-1 font-light">{profession}</h5>
+      <h5 className="md:text-[15px] mb-1 font-light">{profession}</h5>
     </div>
   );
 };

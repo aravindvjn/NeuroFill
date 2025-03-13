@@ -19,20 +19,20 @@ const EducationPreview = ({
       <div className="bg-[#f3f4f6] my-1 py-1">
         <h3
           style={{ color }}
-          className="text-center font-bold underline text-lg"
+          className="text-center font-bold underline"
         >
           EDUCATION
         </h3>
       </div>
 
       {education.map((edu, index) => (
-        <div className="mb-4 text-[14px]" key={edu.id || index}>
+        <div className="mb-4" key={edu.id || index}>
           <div className="flex justify-between">
 
             {edu.degree && edu.major && (
               <p
                 style={{ color }}
-                className="flex items-center gap-2 font-semibold text-[16px]"
+                className="flex items-center gap-2 font-semibold"
               >
                 <VscDebugBreakpointLog />
                 {edu.degree} {edu.degree && edu.major && "in"} {edu.major}

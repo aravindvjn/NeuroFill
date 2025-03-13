@@ -20,11 +20,11 @@ const ExperiencePreview: React.FC<{
         EXPERIENCE
       </h3>
       {experience.map((exp, index) => (
-        <div className="mb-4 text-[14px]" key={exp.id || index}>
+        <div className="mb-4" key={exp.id || index}>
           <div className="flex justify-between items-center border-b border-dotted border-[#9ca3af] pb-1">
             <p
               style={{ color }}
-              className="flex items-center gap-2 font-semibold text-[16px]"
+              className="flex items-center gap-2 font-semibold"
             >
               <VscDebugBreakpointData />
               {exp.position} at {exp.companyName}

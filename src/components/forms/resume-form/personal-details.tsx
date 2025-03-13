@@ -3,6 +3,7 @@ import { Props } from "./type";
 import Input from "./input";
 
 const PersonalDetails = ({ handleChange, input }: Props) => {
+  const imageTemplates = ["3"]
   return (
     <div className="flex flex-col gap-[10px] w-full">
       <div className="w-full flex items-center gap-[20px]">
@@ -26,7 +27,16 @@ const PersonalDetails = ({ handleChange, input }: Props) => {
           label="Profession"
           name="profession"
         />
-        <Input name="image" type="file" onChange={handleChange} accept="image/*" className="cursor-pointer" label="Photo" />
+        {imageTemplates.includes(input?.templateId || "") && (
+          <Input
+            name="image"
+            type="file"
+            onChange={handleChange}
+            accept="image/*"
+            className="cursor-pointer"
+            label="Photo"
+          />
+        )}
       </div>
       <Input
         onChange={handleChange}

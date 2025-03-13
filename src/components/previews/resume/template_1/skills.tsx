@@ -23,7 +23,7 @@ const SkillPreview = ({
           SKILLS
         </h3>
       </div>
-      <ul className="grid grid-cols-2 gap-[20px] ">
+      <ul className="grid grid-cols-2 gap-[20px]">
         {skill.map((singleSkill) => (
           <li
             key={singleSkill.id}
