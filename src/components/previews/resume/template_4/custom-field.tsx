@@ -33,7 +33,7 @@ const CustomFieldPreview = ({
               <VscDebugBreakpointLog />
               {field?.subheading}
             </p>
-            <p className="text-[#6b7280] text-justify">{field?.content}</p>
+            <p className="text-[#374151] text-justify">{field?.content}</p>
           </div>
         </div>
       ))}

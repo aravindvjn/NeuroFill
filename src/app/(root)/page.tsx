@@ -8,7 +8,7 @@ export default async function Page() {
   return (
     <section>
       <WelcomeBanner />
-      <div className="grid lg:grid-cols-2 gap-[10px] p-[10px] sm:gap-[20px] lg:gap-[30px] sm:p-[20px] lg:p-[30px]">
+      <div className="layout grid lg:grid-cols-2 gap-[10px] py-[10px] sm:gap-[20px] md:gap-[30px] lg:gap-[40px] sm:p-[20px] lg:p-[30px]">
         <ResumeBanner />
         <PrivacyBanner />
         <InvoiceBanner />

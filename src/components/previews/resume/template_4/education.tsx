@@ -30,9 +30,9 @@ const EducationPreview = ({
               {edu.degree} {edu.degree && edu.major && "in"} {edu.major}
             </p>
           )}
-          <p className="text-[#4b4d51] pl-4">{edu.universityName}</p>
+          <p className="text-[#374151] pl-4">{edu.universityName}</p>
           {edu?.startDate && edu.endDate && (
-            <p className=" text-[#4b4d51] pl-4">
+            <p className=" text-[#374151] pl-4">
               ({formatDate(edu.startDate)} - {formatDate(edu.endDate)})
             </p>
           )}
