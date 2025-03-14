@@ -12,7 +12,7 @@ const transporter = nodemailer.createTransport({
 });
 
 export async function sendVerificationEmail(email: string, token: string) {
-  const verifyUrl = `${process.env.NEXTAUTH_URL}/verify-email?token=${token}`;
+  const verifyUrl = `${process.env.NEXTAUTH_URL}/auth/verify-email?token=${token}`;
 
   await transporter.sendMail({
     from: process.env.EMAIL_FROM,
@@ -25,16 +25,30 @@ export async function sendVerificationEmail(email: string, token: string) {
   });
 }
 
-export async function sendResetPassword(email: string, token: string) {
-  const resetUrl = `${process.env.NEXTAUTH_URL}/reset-password?token=${token}`;
+export async function sendResetPassword(email: string, token: string, havePassword: boolean) {
+  const resetUrl = `${process.env.NEXTAUTH_URL}/auth/reset-password?token=${token}`;
+
+  const subject = havePassword
+    ? "NeuroFill - Reset Your Password"
+    : "NeuroFill - Enable Email & Password Login";
+
+  const text = havePassword
+    ? `You requested a password reset. Click the link below to reset your password within 1 hour:\n\n${resetUrl}`
+    : `You're enabling email & password login for your account. Click the link below to set a password within 1 hour:\n\n${resetUrl}`;
+
+  const html = havePassword
+    ? `<p>You requested a password reset. Click the link below to reset your password within <b>1 hour</b>:</p>
+       <p><a href="${resetUrl}">Reset Password</a></p>
+       <p>If you didn’t request this, please ignore this email.</p>`
+    : `<p>You're enabling email & password login for your account. Click the link below to set a password within <b>1 hour</b>:</p>
+       <p><a href="${resetUrl}">Set Password</a></p>
+       <p>If you didn’t request this, please ignore this email.</p>`;
 
   await transporter.sendMail({
     from: process.env.EMAIL_FROM,
     to: email,
-    subject: "NeuroFill - Reset Your Password",
-    text: `You requested a password reset. Click the link below to reset your password within 1 hour:\n\n${resetUrl}`,
-    html: `<p>You requested a password reset. Click the link below to reset your password within <b>1 hour</b>:</p>
-           <p><a href="${resetUrl}">Reset Password</a></p>
-           <p>If you didn’t request this, please ignore this email.</p>`,
+    subject,
+    text,
+    html,
   });
 }

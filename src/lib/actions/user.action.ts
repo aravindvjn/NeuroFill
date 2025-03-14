@@ -161,10 +161,6 @@ export async function verifyEmail(token: string, password: string) {
 }
 
 
-export const requestChangePassword = async () => {
-
-}
-
 
 
 //update profile 

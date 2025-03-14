@@ -18,13 +18,13 @@ const Page = async () => {
 
       <div className="flex flex-col text-[16px] md:text-[18px]">
         <Image
-          className="aspect-square w-[150px] md:w-[200px] my-3"
+          className="aspect-square rounded-full w-[150px] md:w-[200px] my-3"
           height={500}
           width={500}
           alt=""
           src={user?.profilePic || "/images/defaultProfile.png"}
         />
-        <p>
+        <p className="font-semibold">
           {user?.firstName} {user?.lastName}
         </p>
         <p>{user?.email}</p>

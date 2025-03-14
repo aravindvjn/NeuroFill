@@ -40,8 +40,8 @@ const PersonalDetailsPreview = ({
       className="text-center flex justify-between text-white  p-5 uppercase gap-[7px]"
     >
       <div >{renderImage()}</div>
-      <div>
-        <h1 className="font-bold">
+      <div className="text-right">
+        <h1 className="font-semibold">
           {firstName} {lastName}
         </h1>
         <h5 className="mb-1 font-light">{profession}</h5>

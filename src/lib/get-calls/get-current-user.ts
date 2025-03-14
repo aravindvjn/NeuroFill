@@ -1,29 +1,22 @@
-'use server'
-import { cookies } from "next/headers";
-import { jwtVerify } from "jose";
+"use server";
 import { prisma } from "../db";
-
-const JWT_SECRET = process.env.JWT_SECRET!
+import { getServerSession } from "next-auth";
+import { authOptions } from "../auth.config";
 
 export async function currentUserId(): Promise<string | null> {
-    const cookieStore = await cookies();
-    const token = cookieStore.get("token")?.value;
-
-    if (!token) {
-        return null
-    }
-
     try {
-        // Decode and verify the JWT token
-        const { payload } = await jwtVerify(token, new TextEncoder().encode(JWT_SECRET));
+        const session = await getServerSession(authOptions); 
+        console.log(session)
+        if (!session || !session.user) return null;
 
-        return payload?.userId as string
+        return session.user.id ?? null;
 
     } catch (error) {
-        console.error("Invalid token:", error);
-        return null
+        console.error("Error in getting current user ID:", error);
+        return null;
     }
 }
+
 
 
 //get current user data 

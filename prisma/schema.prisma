@@ -20,7 +20,7 @@ model User {
   lastName         String?
   profilePic       String?
   planId           String?
-  password         String
+  password         String?
   resetToken       String?        @unique
   resetTokenExpiry DateTime?
   creditBalance    Float          @default(0)

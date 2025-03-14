@@ -22,9 +22,9 @@ const ExperiencePreview: React.FC<{
           <div className="flex justify-between items-center pb-1">
             <p
               style={{ color }}
-              className="flex items-center gap-2 font-semibold "
+              className="flex items-start gap-2 font-semibold "
             >
-              <VscDebugBreakpointData />
+              <VscDebugBreakpointData className="mt-[2px]" />
               {exp.position} {exp.position && exp.companyName && "at"}{" "}
               {exp.companyName}
             </p>

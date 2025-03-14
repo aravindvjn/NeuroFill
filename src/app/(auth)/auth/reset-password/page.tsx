@@ -10,7 +10,6 @@ type Props = {
 
 const Page = async ({ searchParams }: Props) => {
   const { token } = await searchParams;
-
   if (!token) {
     redirect("/auth");
   }

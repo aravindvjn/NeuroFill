@@ -3,7 +3,7 @@ import { Urbanist } from "next/font/google";
 import "./globals.css";
 import { Toaster } from "react-hot-toast";
 import { metaData, viewPort } from "@/lib/constants";
-import NextTopLoader from 'nextjs-toploader';
+import NextTopLoader from "nextjs-toploader";
 
 const urbanist = Urbanist({
   variable: "--font-urbanist",
@@ -28,8 +28,13 @@ export default function RootLayout({
         />
       </head>
       <body className={`${urbanist.variable} antialiased`}>
-      <NextTopLoader showSpinner={false} color="#6C5CE7" />
-        <Toaster position="top-center" />
+        <NextTopLoader showSpinner={false} color="#6C5CE7" />
+        <Toaster
+          position="top-center"
+          toastOptions={{
+            duration: 3000,
+          }}
+        />
         {children}
       </body>
     </html>

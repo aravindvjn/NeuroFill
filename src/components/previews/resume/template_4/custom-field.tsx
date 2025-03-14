@@ -28,9 +28,9 @@ const CustomFieldPreview = ({
           <div>
             <p
               style={{ color }}
-              className="flex items-center gap-2 font-semibold"
+              className={`flex items-start gap-2 ${field?.content && "font-semibold"}`}
             >
-              <VscDebugBreakpointLog />
+              <VscDebugBreakpointLog className="mt-[2px]" />
               {field?.subheading}
             </p>
             <p className="text-[#374151] text-justify">{field?.content}</p>

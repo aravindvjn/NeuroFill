@@ -16,19 +16,19 @@ const ExperiencePreview: React.FC<{
       <div className="bg-[#f3f4f6] my-1 py-1">
         <h3
           style={{ color }}
-          className="text-center font-bold underline text-lg"
+          className="text-center font-bold underline"
         >
           EXPERIENCE
         </h3>
       </div>
       {experience.map((exp, index) => (
-        <div className="mb-4 text-[14px]" key={exp.id || index}>
+        <div className="mb-4" key={exp.id || index}>
           <div className="flex justify-between items-center border-b border-dotted border-[#9ca3af] pb-1">
             <p
               style={{ color }}
-              className="flex items-center gap-2 font-semibold text-[16px]"
+              className="flex items-start gap-2 font-semibold"
             >
-              <VscDebugBreakpointLog />
+              <VscDebugBreakpointLog className="mt-[2px]" />
               {exp.position} at {exp.companyName}
             </p>
             {exp.startDate && (exp.endDate || exp.currentlyWorking) && (

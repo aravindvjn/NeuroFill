@@ -169,7 +169,7 @@ const ResumeForm = ({ resume }: { resume: ResumeInputType }) => {
   };
 
   return (
-    <div className="layout mt-[60px]">
+    <div className="layout mt-[60px] text-[14px] md:text-[16px]">
       <Header title="Create Resume" />
       <PickColor
         color={input?.color || "black"}
@@ -186,7 +186,7 @@ const ResumeForm = ({ resume }: { resume: ResumeInputType }) => {
       <section className="grid mt-[20px] md:grid-cols-2 gap-[50px] md:gap-[20px]">
         <form>
           <Card>
-            <p className="p2 font-bold pb-2">{page}</p>
+            <p className="text-[18px] sm:text-[19px] md:text-[20px] font-semibold pb-2">{page}</p>
 
             {page === pages[0] && (
               <PersonalDetails input={input} handleChange={handleChange} />

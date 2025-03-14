@@ -8,13 +8,14 @@ import { UserInput } from "./type";
 import { validateUserInput } from "@/lib/validations/validate-user-input";
 import { createPendingUser } from "@/lib/actions/user.action";
 import { useActionState } from "react";
-import { loginUser } from "@/lib/actions/login.action";
 import { defaultInputValue } from "./constants";
-import Link from "next/link";
 import ForgotPasswordButton from "./forgot-pass-button";
 import toast from "react-hot-toast";
-
+import { signIn } from "next-auth/react";
+import { useRouter } from "next/navigation";
+import AuthOptions from "./auth-options";
 const AuthForm = () => {
+  const router = useRouter();
   const [isLogin, setIsLogin] = useState<boolean>(true);
   const [input, setInput] = useState<UserInput>(defaultInputValue);
   const [isDisabled, setIsDisabled] = useState<boolean>(true);
@@ -26,11 +27,34 @@ const AuthForm = () => {
   };
 
   // Server action state
-  const actionFunction = isLogin ? loginUser : createPendingUser;
   const [state, formAction, isPending] = useActionState(
-    actionFunction,
+    createPendingUser,
     initialState
   );
+
+  //handle Login
+  const handleAction = async (formData: FormData) => {
+    const email = formData.get("email");
+    const password = formData.get("password");
+
+    if (!password || !email) {
+      toast.error("Please fill all fields");
+      return;
+    }
+
+    const res = await signIn("credentials", {
+      email,
+      password,
+      redirect: false,
+    });
+
+    if (res?.error) {
+      toast.error(res.error);
+    } else {
+      toast.dismiss();
+      router.push("/");
+    }
+  };
 
   // Sync state data with input
   useEffect(() => {
@@ -66,7 +90,6 @@ const AuthForm = () => {
 
   //useEffect to listen to the state
   useEffect(() => {
-    
     if (state.message) {
       if (state.success) {
         toast.success(state.message);
@@ -74,7 +97,6 @@ const AuthForm = () => {
         toast.error(state.message);
       }
     }
-
   }, [state.message]);
 
   // Monitor input changes and validate
@@ -125,7 +147,7 @@ const AuthForm = () => {
       <motion.div className="layout flex-col min-h-svh center">
         <form
           className="flex flex-col gap-[10px] max-w-[400px] w-full px-[30px]"
-          action={formAction}
+          action={isLogin ? handleAction : formAction}
         >
           <div className="center mb-4">
             <BrandName size={30} />
@@ -170,17 +192,10 @@ const AuthForm = () => {
           </Button>
         </form>
 
+
+        <AuthOptions />
         {renderFooter()}
         {isLogin && <ForgotPasswordButton />}
-
-        <div className="flex max-w-[400px] w-full px-[30px]">
-          <Link
-            className="my-3 border border-primary text-center w-full  py-2 rounded text-primary hover:bg-primary hover:text-white"
-            href={"/"}
-          >
-            Continue Without Login
-          </Link>
-        </div>
       </motion.div>
     </AnimatePresence>
   );
