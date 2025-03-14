@@ -6,7 +6,7 @@ import { motion } from "framer-motion";
 import resume1 from "../../assets/images/resume1.png";
 import resume2 from "../../assets/images/resume2.png";
 import resume3 from "../../assets/images/resume3.png";
-import resume4 from "../../assets/images/resume3.png";
+import resume4 from "../../assets/images/resume4.png";
 
 type Props = {
   index: number;

@@ -32,7 +32,7 @@ const ResumePreview3 = ({
         </div>
         <div style={{
           borderColor:resume.color || "#055BB5"
-        }} className="w-2/3 border-l-2 pl-4 flex flex-col ">
+        }} className="w-2/3 border-l-1 pl-4 flex flex-col ">
           <SummaryPreview {...resume} />
           <ExperiencePreview {...resume} />
           <CustomFieldPreview {...resume} />

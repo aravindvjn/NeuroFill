@@ -68,7 +68,6 @@ const ResumeForm = ({ resume }: { resume: ResumeInputType }) => {
         [target.name]: image || target.value,
       };
     });
-    console.log(input);
   };
 
   //Handle pages
