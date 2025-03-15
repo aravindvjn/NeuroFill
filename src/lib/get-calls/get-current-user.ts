@@ -6,7 +6,6 @@ import { authOptions } from "../auth.config";
 export async function currentUserId(): Promise<string | null> {
     try {
         const session = await getServerSession(authOptions); 
-        console.log(session)
         if (!session || !session.user) return null;
 
         return session.user.id ?? null;

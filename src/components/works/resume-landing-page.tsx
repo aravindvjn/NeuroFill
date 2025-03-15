@@ -27,10 +27,10 @@ const ResumeLandingPage = ({ resumes, isLoggedIn }: Props) => {
           </Link>
         </div>
       )}
-      <p className="font-semibold text-lg sm:text-xl md:text-2xl lg:text-3xl">
+      <p className="font-semibold text-lg sm:text-xl md:text-2xl lg:text-3xl leading-0 mt-2">
         Recent Works
       </p>
-      <p className="text-[12px] leading-0 sm:text-[14px] md:text-[16px] text-text-secondary">
+      <p className="text-[12px] leading-tight sm:text-[14px] md:text-[16px] text-text-secondary">
         Your recently created resumes, ready to impress potential employers.
       </p>
 

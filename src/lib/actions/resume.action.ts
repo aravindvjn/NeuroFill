@@ -16,7 +16,6 @@ export const createResume = async (title: string, templateId: number) => {
 
     try {
         const userId = await currentUserId()
-        console.log("User ID:", userId)
 
         if (!userId || typeof userId !== "string") {
             return { success: false, message: "Please log in." }

@@ -43,7 +43,6 @@ export async function generateSummary(resumeData: ResumeInputType) {
     const responseText = result.response.text();
     const data = JSON.parse(responseText);
 
-    console.log("AI returned Data:", data);
     return data;
   } catch (error) {
     console.error("Error generating summary:", error);
@@ -64,7 +63,6 @@ export const generateWithAI = async (prompt: string) => {
     const responseText = result.response.text();
     const data = JSON.parse(responseText);
 
-    console.log("AI returned Data:", data);
     return { success: true, data };
 
   } catch {

@@ -5,7 +5,7 @@ import React from "react";
 
 const page = () => {
   return (
-    <div className="layoutx my-2">
+    <div className="layout">
       <Heading
         subheading={cardsItems[3].subheading}
         heading={cardsItems[3].heading}

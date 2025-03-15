@@ -13,7 +13,6 @@ export const uploadImage = async (base64: string) => {
       folder: "neurofill", 
       resource_type: "image",
     });
-    console.log(res.secure_url)
     return res.secure_url; 
   } catch (error) {
     console.error("Cloudinary Upload Error:", error);

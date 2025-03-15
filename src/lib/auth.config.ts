@@ -21,7 +21,6 @@ export const authOptions: AuthOptions = {
             password: { label: "password", type: "password" },
         },
         async authorize(credentials) {
-            console.log("credentials", credentials?.email);
             if (!credentials?.email || !credentials?.password) {
                 throw new Error("Please provide both email and password");
             }
@@ -63,7 +62,7 @@ export const authOptions: AuthOptions = {
                 });
 
                 if (!existingUser) {
-                    const newUser =await prisma.user.create({
+                    const newUser = await prisma.user.create({
                         data: {
                             email: user.email,
                             firstName: user.name || "NeuroFill User",
@@ -71,7 +70,7 @@ export const authOptions: AuthOptions = {
                         },
                     });
                     user.id = newUser.id;
-                }else{
+                } else {
                     user.id = existingUser.id;
                 }
             }
