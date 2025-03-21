@@ -26,6 +26,11 @@ export default function RootLayout({
           name="google-site-verification"
           content="epTFGi9V4Mj-7GySM2eqgEZNEQL6dgAu1VY4shwrnTY"
         />
+        <script
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6450612392463325"
+          crossOrigin="anonymous"
+        ></script>
       </head>
       <body className={`${urbanist.variable} antialiased`}>
         <NextTopLoader showSpinner={false} color="#6C5CE7" />
